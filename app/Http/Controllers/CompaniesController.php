@@ -15,12 +15,30 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        return view('companies.index');
+        $complist=$this->companies->all();
+
+        return view('companies.index',compact('complist'));
     }
 
-    public function create(){
+    public function store(Request $request){
+         $this->validate($request, [
 
+                'logo' => 'required',
+                'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+
+        ]);
+        if($request->hasfile('logo'))
+         {
+            $image=$request->file('logo');
+            $input['logo'] = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = storage_path('app/public/logos');
+            $image->move($destinationPath, $input['logo']);
+         }
+        $result=$request->all();
+        unset($result['_token']);
+        $this->companies->create($result);
+        // dd($result);
+
+        return back()->with('success', 'Your images has been successfully');
     }
-
-
 }

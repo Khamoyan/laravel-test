@@ -15,6 +15,14 @@ class EmployeesController extends Controller
     **/
 
     public function index(){
-    	return view('employees.index');
+    	$list=$this->employees->all();
+    	return view('employees.index',compact('list'));
+    }
+    public function store(Request $request){
+        $result=$request->all();
+        unset($result['_token']);
+        $this->employees->create($result);
+         return back()->with('success', 'Your images has been successfully');
+
     }
 }
