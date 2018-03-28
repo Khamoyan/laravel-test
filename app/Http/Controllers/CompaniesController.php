@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Companies;
+use App\Http\Request\CompaniesRequest;
 
 class CompaniesController extends Controller
 {
@@ -33,12 +34,27 @@ class CompaniesController extends Controller
             $input['logo'] = time().'.'.$image->getClientOriginalExtension();
             $destinationPath = storage_path('app/public/logos');
             $image->move($destinationPath, $input['logo']);
+            
          }
         $result=$request->all();
         unset($result['_token']);
         $this->companies->create($result);
-        // dd($result);
+          return back();
 
-        return back()->with('success', 'Your images has been successfully');
+          }
+    public function update(Request $request,$id){
+        $result=$request->all();
+        unset($result['_token']);
+        unset($result['_method']);
+        
+        $this->companies->where('id',$id)->update($result);
+
+        return back();
+    }
+
+    public function destroy($id){
+        
+        $this->companies->where('id',$id)->delete();
+        return back();
     }
 }

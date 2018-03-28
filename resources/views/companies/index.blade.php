@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@if(Auth::user()->id)
 <div class="container">
   <div>
    <h2>Create </h2>
@@ -38,7 +39,7 @@
         <th>Companies Name</th>
         <th>Email</th>
         <th>Web Site</th>
-        <th>Logo</th>
+        {{-- <th>Logo</th> --}}
         <th>Edit</th>
         <th>Delete</th>
       </tr>
@@ -46,13 +47,13 @@
     <tbody>
     @foreach($complist as $complist)
       <tr>
-        <td>{{ $complist->id }}</td>
+        <td data-id={{$complist->id}}>{{ $complist->id }}</td>
         <td>{{ $complist->name }}</td> 
         <td>{{ $complist->email }}</td> 
         <td>{{ $complist->website }}</td>
-        <td><img src="{{url('storage/app/public/logos/'.$complist->logo)}}.jpg" style="height: 100px;width: 100px"></td>
-        <td><button type="button"> Edit</button></td>  
-        <td><button type="button"> Delete</button></td>
+        <td><img src="{{url('storage/app/public/logos/'.$complist->logo)}}" style="height: 100px;width: 100px"></td>
+        <td><button type="button" class="btn btn-info btn-lg edit" data-toggle="modal" data-target="#myModal" data-id={{$complist->id}}> Edit</button></td>  
+        <td><button type="sublit" class="btn btn-info btn-lg delete" data-toggle="modal" data-target="#myModalDelete" data-id={{$complist->id}}> Delete</button></td>
       </tr> 
        @endforeach      
     </tbody>
@@ -60,4 +61,85 @@
  </div>
 </div>
 
+ <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+        </div>
+        <div class="modal-body">
+        <h4 class="modal-title">Edit Companies</h4>
+         <form method="POST" action="" id="editForm" enctype="multipart/form-data" >
+          {{method_field('PUT')}}
+          @csrf
+          <div class="form-row">
+         
+            <div class="form-group col-md-6">
+              <label for="inputName">Companies Name</label>
+              <input type="text" class="form-control" placeholder="Name" name="name">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="inputEmail">Email</label>
+              <input type="email" class="form-control" placeholder="Email" name="email">
+            </div>
+            </div>
+            <div class="form-group">
+              <label for="inputWebSite">Web Site</label>
+              <input type="text" class="form-control" placeholder="websit@websit.com" name="website">
+            </div>
+            <div class="form-group">
+              <input type="file" name="logo" value="">
+            </div>
+            <button type="submit" class="btn btn-primary">Edit</button>
+     </form>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+   <div class="modal fade" id="myModalDelete" role="dialog">
+    <div class="modal-dialog">
+    
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body">
+        <h4 class="modal-title">Delete Companies</h4>
+         <form method="POST" action="" id="deleteForm" enctype="multipart/form-data" >
+          {{method_field('delete')}}
+          @csrf
+            <button type="submit" class="btn btn-primary">delete</button>
+          </form>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  @endif
+  <script type="text/javascript">
+$(document).ready(function(){
+  $('.edit').click(function(){
+    $('#editForm').attr('action','/companies/'+$(this).data('id'));
+  })
+  $('.delete').click(function(){
+    $('#deleteForm').attr('action','/companies/'+$(this).data('id'));
+  })
+
+})
+</script>
+
 @endsection
+

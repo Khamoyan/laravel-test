@@ -20,7 +20,7 @@ class CreateEmployeesTable extends Migration
             $table->integer('company_id')->uniqid()->index();
             $table->string('email');
             $table->integer('phone');
-            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('company_id')->references('id')->on('companies')->onUpdate('restrict')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,8 +30,8 @@ class CreateEmployeesTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('employees');
-    }
+    // public function down()
+    // {
+    //     Schema::dropIfExists('employees');
+    // }
 }

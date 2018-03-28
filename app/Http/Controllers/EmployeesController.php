@@ -22,7 +22,17 @@ class EmployeesController extends Controller
         $result=$request->all();
         unset($result['_token']);
         $this->employees->create($result);
-         return back()->with('success', 'Your images has been successfully');
-
+         return back();
+    }
+    public function update(Request $request, $id){
+        $result=$request->all();
+        unset($result['_token']);
+        unset($result['_method']);
+        $this->employees->where('id',$id)->update($result);
+        return back();   
+    }
+    public function destroy ($id){
+        $this->employees->where('id',$id)->delete();
+        return back();
     }
 }

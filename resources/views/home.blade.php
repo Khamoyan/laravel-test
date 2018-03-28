@@ -17,8 +17,10 @@
                   <div class="container-fluid">
                     <ul class="nav navbar-nav">
                       <li class="active"><a href="#">Home</a></li>
+                      
                       <li><a href={{url('companies')}}>Companies</a></li>
                       <li><a href={{url('employees')}}>Employees</a></li>
+                    
                     </ul>
                   </div>
                 </nav>
