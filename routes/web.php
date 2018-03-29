@@ -21,15 +21,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/companies','CompaniesController');
+// Route::resource('/companies','CompaniesController');
 Route::resource('/employees','EmployeesController');
 
 
-// Route::get('/companies', 'CompaniesController@index');
-// Route::post('/companies', 'CompaniesController@store');
-// Route::get('/companies/{id}', 'CompaniesController@show');
-// Route::put('/companies/{id}', 'CompaniesController@update');
-// Route::delete('/companies/{id}', 'CompaniesController@destroy ');
+Route::get('/companies', 'CompaniesController@index');
+Route::post('/companies', 'CompaniesController@store');
+Route::get('/companies/{id}', 'CompaniesController@show');
+Route::put('/companies/{id}', 'CompaniesController@update');
+Route::delete('/companies/{id}', 'CompaniesController@destroy');
 
 // Route::get('/employees','EmployeesController@index');
 // Route::post('/employees','EmployeesController@store');

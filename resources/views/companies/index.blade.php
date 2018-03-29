@@ -39,25 +39,27 @@
         <th>Companies Name</th>
         <th>Email</th>
         <th>Web Site</th>
-        {{-- <th>Logo</th> --}}
+        <th>Logo</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
     </thead>
     <tbody>
-    @foreach($complist as $complist)
+    @foreach($complists as $complist)
       <tr>
         <td data-id={{$complist->id}}>{{ $complist->id }}</td>
-        <td>{{ $complist->name }}</td> 
+        <td><a href="/companies/{{$complist->id}}">{{ $complist->name }}</a></td>
         <td>{{ $complist->email }}</td> 
-        <td>{{ $complist->website }}</td>
-        <td><img src="{{url('storage/app/public/logos/'.$complist->logo)}}" style="height: 100px;width: 100px"></td>
+        <td><a href="https://{{($complist->website) }}">{{ $complist->website }}</a></td>
+        <td><img src="{{asset('logos/'.$complist->logo)}}" style="height: 100px;width: 100px"></td>
         <td><button type="button" class="btn btn-info btn-lg edit" data-toggle="modal" data-target="#myModal" data-id={{$complist->id}}> Edit</button></td>  
-        <td><button type="sublit" class="btn btn-info btn-lg delete" data-toggle="modal" data-target="#myModalDelete" data-id={{$complist->id}}> Delete</button></td>
+        <td><button type="button" class="btn btn-info btn-lg delete" data-toggle="modal" data-target="#myModalDelete" data-id={{$complist->id}}> Delete</button></td>
       </tr> 
        @endforeach      
     </tbody>
   </table>
+  {{ $complists->links()}}
+
  </div>
 </div>
 
@@ -88,7 +90,7 @@
             </div>
             <div class="form-group">
               <label for="inputWebSite">Web Site</label>
-              <input type="text" class="form-control" placeholder="websit@websit.com" name="website">
+              <input type="text" class="form-control" placeholder="websit.com" name="website">
             </div>
             <div class="form-group">
               <input type="file" name="logo" value="">
@@ -111,7 +113,6 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-
         </div>
         <div class="modal-body">
         <h4 class="modal-title">Delete Companies</h4>
@@ -120,16 +121,9 @@
           @csrf
             <button type="submit" class="btn btn-primary">delete</button>
           </form>
-          
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
   @endif
-  <script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function(){
   $('.edit').click(function(){
     $('#editForm').attr('action','/companies/'+$(this).data('id'));
@@ -142,4 +136,5 @@ $(document).ready(function(){
 </script>
 
 @endsection
+
 

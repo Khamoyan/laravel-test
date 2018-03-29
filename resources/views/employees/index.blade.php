@@ -28,7 +28,8 @@
         </div>
         <div class="form-group">
           <label for="inputPhone">Compani</label>
-          <input type="text" class="form-control" placeholder="Compani" name="company_id">
+          <input type="text" class="form-control" placeholder="Compani" name="company">
+          <input type="hidden" name="compani_id">
         </div>
          <button type="submit" class="btn btn-primary">Create</button>
      </form>
@@ -47,24 +48,23 @@
         <th>Phone</th>
         <th>Edit</th>
         <th>Delete</th>
-        <th>Info</th>
       </tr>
     </thead>
     <tbody>
-    @foreach($list as $list)
+    @foreach($lists as $list)
       <tr>
         <td>{{ $list->id }}</td>
-        <td>{{ $list->first_name }}</td>
+        <td><a href="/employees/{{$list->id}}">{{ $list->first_name }}</a></td>
         <td>{{ $list->last_name }}</td> 
         <td>{{ $list->email }}</td> 
         <td>{{ $list->phone }}</td>
        <td><button type="button" class="btn btn-info btn-lg edit" data-toggle="modal" data-target="#myModal" data-id={{$list->id}}> Edit</button></td>  
         <td><button type="sublit" class="btn btn-info btn-lg delete" data-toggle="modal" data-target="#myModalDelete" data-id={{$list->id}}> Delete</button></td>
-        <td><button type="sublit" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalShere" data-id={{$list->id}} > Info</button></td>
       </tr> 
        @endforeach      
     </tbody>
   </table>
+  {{ $lists->links()}}
  </div>
 </div>
 <div class="modal fade" id="myModal" role="dialog">
@@ -139,23 +139,8 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="myModalShere" role="dialog">
-    <div class="modal-dialog">
-    
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-        </div>
-        <div class="modal-body">
-        <h4 class="modal-title">Compani Name</h4>
-         
-      </div>
-    </div>
-  </div>
+  
   @endif
-
-
 
 <script type="text/javascript">
 $(document).ready(function(){
