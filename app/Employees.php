@@ -17,7 +17,6 @@ class Employees extends Model
     	'phone'
     ];
 
-   
     public function companies()
     {
     	$this->belongsTo('App\Employees');

@@ -16,8 +16,8 @@ class Companies extends Model
     	'website',
     ];
 
-     public function employees(){
-
+     public function employees()
+     {
     	$this->hasMany('App\Companies');
-    }
+     }
 }

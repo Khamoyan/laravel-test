@@ -9,7 +9,8 @@ use App\Http\Request\CompaniesRequest;
 
 class CompaniesController extends Controller
 {
-	public function __construct(Companies $companies, Employees $employees){
+	public function __construct(Companies $companies, Employees $employees)
+    {
 		$this->companies=$companies;
         $this->employees=$employees;
 	}
@@ -17,7 +18,8 @@ class CompaniesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function request(Request $request){
+    public function request(Request $request)
+    {
         $result=$request->all();
         $this->validate($request, [
                 'logo' => 'required',
@@ -33,11 +35,10 @@ class CompaniesController extends Controller
         return view('companies.index',['lists'=>$lists]);
     }
 
-    public function store(Request $request){
-        
+    public function store(Request $request)
+    {      
         $result=CompaniesController::request($request);
-        if($request->hasfile('logo'))
-         {
+        if($request->hasfile('logo')) {
             $image=$request->file('logo');
             $result['logo'] = time().'.'.$image->getClientOriginalExtension();
             $destinationPath = public_path('/logos');
@@ -48,11 +49,10 @@ class CompaniesController extends Controller
         return back();
      }
 
-    public function update(Request $request,$id){
-
+    public function update(Request $request,$id)
+    {
         $result=CompaniesController::request($request);
-         if($request->hasfile('logo'))
-         {
+         if($request->hasfile('logo')) {
             $image=$request->file('logo');
             $result['logo'] = time().'.'.$image->getClientOriginalExtension();
             $destinationPath = public_path('/logos');
@@ -63,14 +63,14 @@ class CompaniesController extends Controller
         return back();
     }
 
-    public function destroy($id){
-        
+    public function destroy($id)
+    {
         $this->companies->where('id',$id)->delete();
         return back();
     }
 
-    public function show($id){
-
+    public function show($id)
+    {
         $company=$this->companies->where('id',$id)->first();
         $employees=$this->employees->where('company_id',$id)->get();
         return view('companies.show',['company'=>$company,'employees'=>$employees]);

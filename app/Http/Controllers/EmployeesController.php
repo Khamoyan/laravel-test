@@ -8,7 +8,8 @@ use App\Companies;
 
 class EmployeesController extends Controller
 {
-	public function __construct(Employees $employees, Companies $companies){
+	public function __construct(Employees $employees, Companies $companies)
+    {
 		$this->employees=$employees;
         $this->companies=$companies;
 	}
@@ -17,47 +18,49 @@ class EmployeesController extends Controller
     *@return Illuminate\Http\Request
     **/
 
-    public function request(Request $request){
+    public function request(Request $request)
+    {
         $result=$request->all();
         $company=$this->companies->where('name',$result['company'])->first();
-        if(!empty($company)){
+        if(!empty($company)) {
             $result['company_id']=$company['id'];
             unset($result['_token'],$result['company'],$result['_method']);
             return $result;
-        }else{
+        } else {
             $result['company_id']=0;
             unset($result['_token'],$result['company'],$result['_method']);
             return $result;
         }
     }
 
-    public function index(){
+    public function index()
+    {
     	$lists=$this->employees->paginate(4);
     	return view('employees.index',compact('lists'));
     }
 
-    public function store(Request $request){
-
+    public function store(Request $request)
+    {
         $result=EmployeesController::request($request);
         $this->employees->create($result);
          return back();
     }
 
-    public function update(Request $request, $id){
-
+    public function update(Request $request, $id)
+    {
         $result=EmployeesController::request($request);
         $this->employees->where('id',$id)->update($result);
         return back();   
     }
 
-    public function destroy ($id){
-
+    public function destroy ($id)
+    {
         $this->employees->where('id',$id)->delete();
         return back();
     }
     
-    public function show($id){
-
+    public function show($id)
+    {
         $employee=$this->employees->where('id',$id)->first();
         $company=$this->companies->where('id',$employee['company_id'])->first();
 
