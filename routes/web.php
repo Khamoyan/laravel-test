@@ -15,15 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-// Route::resource('/companies','CompaniesController');
-Route::resource('/employees','EmployeesController');
-
 
 Route::get('/companies', 'CompaniesController@index');
 Route::post('/companies', 'CompaniesController@store');
@@ -31,9 +25,9 @@ Route::get('/companies/{id}', 'CompaniesController@show');
 Route::put('/companies/{id}', 'CompaniesController@update');
 Route::delete('/companies/{id}', 'CompaniesController@destroy');
 
-// Route::get('/employees','EmployeesController@index');
-// Route::post('/employees','EmployeesController@store');
-// Route::get('/employees/{id}','EmployeesController@show')
-// Route::put('/employees/{id}','EmployeesController@update');
-// Route::delete('/employees/{id}','EmployeesController@delete');
+Route::get('/employees','EmployeesController@index');
+Route::post('/employees','EmployeesController@store');
+Route::get('/employees/{id}','EmployeesController@show');
+Route::put('/employees/{id}','EmployeesController@update');
+Route::delete('/employees/{id}','EmployeesController@destroy');
 

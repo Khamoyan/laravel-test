@@ -17,7 +17,7 @@ class CreateEmployeesTable extends Migration
             $table->increments('id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->integer('company_id')->uniqid()->index();
+            $table->integer('company_id')->uniqid()->index()->nullable();
             $table->string('email');
             $table->integer('phone');
             $table->foreign('company_id')->references('id')->on('companies')->onUpdate('restrict')->onDelete('cascade');

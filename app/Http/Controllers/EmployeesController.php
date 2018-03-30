@@ -12,42 +12,58 @@ class EmployeesController extends Controller
 		$this->employees=$employees;
         $this->companies=$companies;
 	}
+
     /**
     *@return Illuminate\Http\Request
     **/
+
+    public function request(Request $request){
+        $result=$request->all();
+        $company=$this->companies->where('name',$result['company'])->first();
+        if(!empty($company)){
+            $result['company_id']=$company['id'];
+            unset($result['_token'],$result['company'],$result['_method']);
+            return $result;
+        }else{
+            $result['company_id']=0;
+            unset($result['_token'],$result['company'],$result['_method']);
+            return $result;
+        }
+    }
 
     public function index(){
     	$lists=$this->employees->paginate(4);
     	return view('employees.index',compact('lists'));
     }
+
     public function store(Request $request){
-        $result=$request->all();
-        unset($result['_token']);
-        $comapi=$this->companies->where('name',$result['company'])->first();
-        $result['company_id']=$comapi['id'];
-        unset($result['company']);
+
+        $result=EmployeesController::request($request);
         $this->employees->create($result);
          return back();
     }
+
     public function update(Request $request, $id){
-        $result=$request->all();
-        unset($result['_token']);
-        unset($result['_method']);
+
+        $result=EmployeesController::request($request);
         $this->employees->where('id',$id)->update($result);
         return back();   
     }
+
     public function destroy ($id){
+
         $this->employees->where('id',$id)->delete();
         return back();
     }
+    
     public function show($id){
 
-        $employees=$this->employees->where('id',$id)->first();
-        $companies=$this->companies->where('id',$employees['company_id'])->first();
+        $employee=$this->employees->where('id',$id)->first();
+        $company=$this->companies->where('id',$employee['company_id'])->first();
 
         return view('employees.show',[
-            'employees'=>$employees,
-            'companies'=>$companies,
+            'employee'=>$employee,
+            'company'=>$company,
             ]);
     }
 

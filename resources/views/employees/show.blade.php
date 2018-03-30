@@ -1,27 +1,35 @@
 @extends('layouts.app')
+@section('content')   
 
-@section('content')  
 <div class="container"> 
-<h3>{{$employees->first_name}}</h3>
+  <h3>{{$employee->first_name}}</h3>
   <div class="container">
-    <table class="table">
+    <table class="table"> 
+
      <tr>
         <th>Company Name:</th>
-        <td>{{$companies->name}}</td>
+        @if(!empty($company->name))
+        <td>{{$company->name}}</td>
+        @else
+        <td>No Company</td>
+        @endif
+        
       </tr>
       <tr>
         <th>Last Name:</th>
-        <td>{{$employees->last_name}}</td>
+        <td>{{$employee->last_name}}</td>
       </tr>
       <tr>
         <th>Email:</th>
-        <td>{{$employees->email}}</td>
+        <td>{{$employee->email}}</td>
       </tr>
       <tr>
         <th>Phone:</th>
-        <td>{{$employees->phone}}</td>
+        <td>{{$employee->phone}}</td>
       </tr>
+      
     </table>
   </div>     
-</div>   
+</div> 
+
 @endsection
