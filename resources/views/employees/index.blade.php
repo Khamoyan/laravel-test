@@ -5,8 +5,8 @@
 @if(Auth::user()->id)
 <div class="container">
   <div>
-   <h2>Create </h2> 
-   <form method="POST" action="" >
+   <div id='addEmployees'></div> 
+   <!-- <form method="POST" action="" >
      @csrf 
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -37,7 +37,7 @@
 
          <button type="submit" class="btn btn-primary">Create</button>
     </form>
-</div>
+</div> -->
 
 <div style="height:40px "></div>
 
