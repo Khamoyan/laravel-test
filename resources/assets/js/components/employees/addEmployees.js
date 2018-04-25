@@ -1,20 +1,22 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 
 class AddEmployees extends Component{
     constructor(props){
         super(props);
         this.state={
             addEmployees:{
-                firstName:'',
-                lastName:'',
-                emil:'',
+                first_name:'',
+                last_name:'',
+                email:'',
                 phone:'',
-                company:''
+                company_id:''
             }
         }
         this.handleSubmit=this.handleSubmit.bind(this);
         this.handleInput=this.handleInput.bind(this)
+        this.handelAddEmployees=this.handelAddEmployees.bind(this)
         
     }
 
@@ -26,9 +28,19 @@ class AddEmployees extends Component{
 
     handleSubmit(e){
         e.preventDefault();
-        this.props.onAdd(this.state.addEmployees)
+        this.handelAddEmployees(this.state.addEmployees)
 
     }
+    handelAddEmployees(employees){
+
+        axios.post('/api/employees',{employees}).then((response)=>{
+            // var r=this.props.addPost(response.data.employees);
+            
+        }).catch((err) => {
+            
+        })
+        }
+        
 
     render(){
         const divStyle={}
@@ -59,7 +71,7 @@ class AddEmployees extends Component{
 
                     <div class="form-group">
                         <label for="inputPhone">Company</label>
-                        <input type="text" class="form-control" placeholder="Company" name="company" onChange={(e)=>this.handleInput('company',e)} />
+                        <input type="text" class="form-control" placeholder="Company" name="company_id" onChange={(e)=>this.handleInput('company_id',e)} />
                         <input type="hidden" name="company_id" />
                     </div>  
                     <button type="submit" class="btn btn-primary" onSubmit={this.handleSubmit}>Create</button>             

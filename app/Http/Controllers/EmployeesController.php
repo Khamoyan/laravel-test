@@ -21,29 +21,36 @@ class EmployeesController extends Controller
     public function request(Request $request)
     {
         $result=$request->all();
-        $company=$this->companies->where('name',$result['company'])->first();
-        if(!empty($company)) {
-            $result['company_id']=$company['id'];
-            unset($result['_token'],$result['company'],$result['_method']);
-            return $result;
-        } else {
-            $result['company_id']=0;
-            unset($result['_token'],$result['company'],$result['_method']);
-            return $result;
-        }
+        // $company=$this->companies->where('name',$result['company'])->first();
+        // dd($company);
+        // if(!empty($company)) {
+        //     $result['company_id']=$company['id'];
+        //     unset($result['_token'],$result['company'],$result['_method']);
+        //     return $result;
+        // } else {
+        //     $result['company_id']=0;
+        //     unset($result['_token'],$result['company'],$result['_method']);
+        //     return $result;
+        // }
+        // dd($result['employees']);
+        return $result['employees'];
     }
 
     public function index()
     {
-    	$lists=$this->employees->paginate(4);
-    	return view('employees.index',compact('lists'));
+        // $lists=$this->employees->paginate(4);
+        // return view('employees.index',compact('lists'));
+        $lists=$this->employees->get();
+    	return view('employees.index',['employees'=>$lists]);
     }
 
     public function store(Request $request)
     {
         $result=EmployeesController::request($request);
         $this->employees->create($result);
-         return back();
+        //  return back();
+        return response()->json($result, 201);
+        
     }
 
     public function update(Request $request, $id)
@@ -56,7 +63,7 @@ class EmployeesController extends Controller
     public function destroy ($id)
     {
         $this->employees->where('id',$id)->delete();
-        return back();
+        return redirect('/employeess');
     }
     
     public function show($id)
