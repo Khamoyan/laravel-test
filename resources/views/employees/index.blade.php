@@ -5,7 +5,6 @@
 @if(Auth::user()->id)
 <div class="container">
   <div>
-   <div id='addEmployees'></div> 
    <!-- <form method="POST" action="" >
      @csrf 
       <div class="form-row">
@@ -40,7 +39,6 @@
 </div> -->
 
 <div style="height:40px "></div>
-<div id='listEmployees'></div>
 </div>
  
  <div class="modal fade" id="myModal" role="dialog">

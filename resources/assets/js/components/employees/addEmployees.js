@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 class AddEmployees extends Component{
+    
     constructor(props){
         super(props);
         this.state={
@@ -16,8 +17,7 @@ class AddEmployees extends Component{
         }
         this.handleSubmit=this.handleSubmit.bind(this);
         this.handleInput=this.handleInput.bind(this)
-        this.handelAddEmployees=this.handelAddEmployees.bind(this)
-        
+        this.handelAddEmployees=this.handelAddEmployees.bind(this);
     }
 
     handleInput(key,e){
@@ -34,14 +34,12 @@ class AddEmployees extends Component{
     handelAddEmployees(employees){
 
         axios.post('/api/employees',{employees}).then((response)=>{
-            // var r=this.props.addPost(response.data.employees);
-            
-        }).catch((err) => {
-            
-        })
+    
+            }).catch((err) => {
+                
+            })
         }
-        
-
+    
     render(){
         const divStyle={}
         return(         
@@ -49,41 +47,36 @@ class AddEmployees extends Component{
           
              <h2>Create</h2>
              <form onSubmit={this.handleSubmit} >
-                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                 <div className="form-row">
+                    <div className="form-group col-md-6">
                         <label for="inputFname">First Name</label>
-                        <input type="text" class="form-control" placeholder="First Name" name="first_name" onChange={(e)=>this.handleInput('first_name',e)} />
+                        <input type="text" className="form-control" placeholder="First Name" name="first_name" onChange={(e)=>this.handleInput('first_name',e)} />
                     </div>
-                    <div class="form-group col-md-6">
+                    <div className="form-group col-md-6">
                         <label for="inputLname">Last Name</label>
-                        <input type="text" class="form-control" placeholder="Last Name" name="last_name" onChange={(e)=>this.handleInput('last_name',e)} />
+                        <input type="text" className="form-control" placeholder="Last Name" name="last_name" onChange={(e)=>this.handleInput('last_name',e)} />
                     </div>
                  </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="inputEmail">Email</label>
-                        <input type="email" class="form-control" placeholder="email@gmail.com" name="email" onChange={(e)=>this.handleInput('email',e)} />
+                        <input type="email" className="form-control" placeholder="email@gmail.com" name="email" onChange={(e)=>this.handleInput('email',e)} />
                     </div>
 
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="inputPhone">Phon</label>
-                        <input type="text" class="form-control" placeholder="099******" name="phone" onChange={(e)=>this.handleInput('phone',e)} />
+                        <input type="text" className="form-control" placeholder="099******" name="phone" onChange={(e)=>this.handleInput('phone',e)} />
                     </div>
 
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="inputPhone">Company</label>
-                        <input type="text" class="form-control" placeholder="Company" name="company_id" onChange={(e)=>this.handleInput('company_id',e)} />
+                        <input type="text" className="form-control" placeholder="Company" name="company_id" onChange={(e)=>this.handleInput('company_id',e)} />
                         <input type="hidden" name="company_id" />
                     </div>  
-                    <button type="submit" class="btn btn-primary" onSubmit={this.handleSubmit}>Create</button>             
+                    <button type="submit" className="btn btn-primary" onSubmit={this.handleSubmit}>Create</button>             
              </form>
-
           </div>                               
         )
     }
 }
 
 export default AddEmployees;
-
-if(document.getElementById('addEmployees')){
-    ReactDOM.render(<AddEmployees />,document.getElementById('addEmployees'))
-}

@@ -11,7 +11,6 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
-        <!-- <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css"> -->
         
         <style>
             html, body {
@@ -82,6 +81,5 @@
         </div>
         
     </body>
-    <!-- <script src="{{mix('js/app.js')}}" ></script> -->
 </html>
 <head>

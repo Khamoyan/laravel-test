@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import ListEmployees from './listEmployees'
 
 class DeleteEmployee extends Component{
     constructor(props){
@@ -31,9 +32,9 @@ class DeleteEmployee extends Component{
         axios.delete(`/api/employees/${id}`,{}).then((response)=>{
             // var r=this.props.addPost(response.data.employees);
             
-        }).catch((err) => {
-            
-        })
+            }).catch((err) => {
+                
+            })
         }
         
 
@@ -44,16 +45,10 @@ class DeleteEmployee extends Component{
                   <h4 class="modal-title">Delete Companies</h4>
                   <form  id="deleteForm" enctype="multipart/form-data" onSubmit={this.handleSubmit}>
                         <input type="hidden"  value='' id='delete' onChange={this.handleInput}/>
-                   
                     <button type="submit" class="btn btn-primary">Delete</button>
                   </form>
             </div>                   
         )
     }
 }
-
 export default DeleteEmployee;
-
-if(document.getElementById('deleteEmployee')){
-    ReactDOM.render(<DeleteEmployee />,document.getElementById('deleteEmployee'))
-}

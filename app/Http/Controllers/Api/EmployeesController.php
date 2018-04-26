@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Employees;
@@ -32,22 +32,22 @@ class EmployeesController extends Controller
         //     unset($result['_token'],$result['company'],$result['_method']);
         //     return $result;
         // }
+        // dd($result['employees']);
         return $result['employees'];
     }
 
     public function index()
     {
         $lists=$this->employees->get();
-        return response()->json([ $lists],200);
-        // $lists=$this->employees->paginate(4);
-        // return view('employees.index',compact('lists'));
+        return response()->json(['employees', $lists],200);
     }
 
     public function store(Request $request)
     {
         $result=EmployeesController::request($request);
         $this->employees->create($result);
-         return back();        
+        return response()->json($result, 201);
+        
     }
 
     public function update(Request $request, $id)

@@ -17,7 +17,5 @@ require('./bootstrap');
 
  
 // /* Import the Main component */
-// import Employees from './components/employees/addEmployees';
-import DeleteEmployee from './components/employees/deleteEmployees';
-import AddEmployees from './components/employees/addEmployees'
-import ListEmployees from './components/employees/listEmployees'
+
+import Main from './components/Main'
