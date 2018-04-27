@@ -1,48 +1,43 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import UpdateEmployeesModal from '../modals/updateEmployeeModal';
+import UpdateCompanyModal from '../modals/updateCompanyModal';
 
-
-
-class UpdateEmployee extends Component{
+class UpdateCompany extends Component{
     constructor(props){
         super(props);
         this.state={
-                employee:{
-                    first_name:'',
-                    last_name:'',
+                company:{
+                    name:'',
                     email:'',
-                    phone:'',
-                    company_id:''
+                    logo:'',
+                    website:''
                     },
                 id:this.props.id,
                 data_target:`update${this.props.id}`
         }
         this.handleSubmit=this.handleSubmit.bind(this);
-        this.handelUpdateEmployees=this.handelUpdateEmployees.bind(this)
+        this.handelUpdateCopmany=this.handelUpdateCopmany.bind(this)
         this.handleInput=this.handleInput.bind(this);
         this.update=this.update.bind(this)
         
     }
     handleInput(key,e){
-        var state = Object.assign({}, this.state.employee); 
+        var state = Object.assign({}, this.state.company); 
         state[key] = e.target.value;
-        this.setState({employee: state });
+        this.setState({company: state });
     }
 
     handleSubmit(e){
 
         e.preventDefault();
-        this.handelUpdateEmployees(this.state.id,this.state.employee)
+        this.handelUpdateCopmany(this.state.id,this.state.company)
 
     }
-    handelUpdateEmployees(id,employees){
-        axios.put(`/api/employees/${id}`,employees).then((response)=>{
-            // var r=this.props.addPost(response.data.employees);
-            
+    handelUpdateCopmany(id,company){
+        axios.put(`/api/employees/${id}`,company).then((response)=>{
             }).catch((err) => {
-                
+
             })
         }
         update(){
@@ -54,9 +49,9 @@ class UpdateEmployee extends Component{
         return(   
            <div>
              <td><button type="button" className="btn btn-info btn-lg edit" data-toggle="modal" data-target={this.state.data_target}  onClick={this.update}> Edit</button></td> 
-             <UpdateEmployeesModal id={this.state.data_target} updateEmployee={this.handleSubmit} handleInput={this.handleInput}/>
+             <UpdateCompanyModal id={this.state.data_target} updateCompany={this.handleSubmit} handleInput={this.handleInput}/>
            </div>          
         )
     }
 }
-export default UpdateEmployee;
+export default UpdateCompany;

@@ -9,7 +9,7 @@ class DeleteEmployeesModal extends Component{
                         <button type="button" className="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div className="modal-body">
-                        <h4 className="modal-title">Delete Company</h4>
+                        <h4 className="modal-title">Delete Employee</h4>
                             <button type="submit" className="btn btn-primary" onClick={this.props.delete} >Delete</button>
                         </div>
                     </div>

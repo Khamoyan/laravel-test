@@ -54,13 +54,13 @@ class EmployeesController extends Controller
     {
         $result=EmployeesController::request($request);
         $this->employees->where('id',$id)->update($result);
-        return back();   
+        return response()->json(200); 
     }
 
     public function destroy ($id)
     {
         $this->employees->where('id',$id)->delete();
-        return redirect('/employeess');
+        return response()->json('asasa');
     }
     
     public function show($id)

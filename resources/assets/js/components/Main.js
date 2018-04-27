@@ -4,6 +4,11 @@ import {HashRouter,Switch, Route,Link} from 'react-router-dom';
 import axios from 'axios';
 import ListEmployees from './employees/listEmployees'
 import AddEmployees from './employees/addEmployees';
+import DeleteEmployee from './employees/deleteEmployees';
+import ShowEmployees from './employees/showEmployee';
+import ListCompanies from './companies/listCompanies';
+import AddCompany from './companies/addCompany';
+
 
 class Main extends Component {
     constructor(props){
@@ -19,6 +24,8 @@ class Main extends Component {
                         <Switch>
                             <Route path='/employees' render={() => <ListEmployees />} /> 
                             <Route path='/add_emplyees' component={AddEmployees}/>
+                            <Route path='/companies' render={()=><ListCompanies />}/>
+                            <Route path='/add_companies' component={AddCompany}/>
                         </Switch>
                     </HashRouter>
                 </div>        

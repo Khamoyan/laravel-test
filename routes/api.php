@@ -18,6 +18,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('employees', 'EmployeesController@store');
-Route::delete('/employees/{id}','EmployeesController@destroy');
 Route::get('employees', 'EmployeesController@index');
+Route::delete('/employees/{id}','EmployeesController@destroy');
 Route::put('/employees/{id}','EmployeesController@update');
+Route::get('/employees/{id}','EmployeesController@show');
+
+Route::get('/companies', 'CompaniesController@index');
+Route::post('/companies', 'CompaniesController@store');
+Route::get('/companies/{id}', 'CompaniesController@show');
+Route::put('/companies/{id}', 'CompaniesController@update');
+Route::delete('/companies/{id}', 'CompaniesController@destroy');
+

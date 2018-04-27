@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-class DeleteEmployeesModal extends Component{
+class DeleteCompanyModal extends Component{
     render(){
         return(
             <div className="modal fade" id={this.props.id} role="dialog">
@@ -18,6 +18,6 @@ class DeleteEmployeesModal extends Component{
         )
     }
 }
-export default DeleteEmployeesModal;
+export default DeleteCompanyModal
 
     

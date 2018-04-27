@@ -32,7 +32,7 @@ class EmployeesController extends Controller
         //     unset($result['_token'],$result['company'],$result['_method']);
         //     return $result;
         // }
-        return $result['employees'];
+        return $result;
     }
 
     public function index()
@@ -47,31 +47,37 @@ class EmployeesController extends Controller
     {
         $result=EmployeesController::request($request);
         $this->employees->create($result);
-         return back();        
+        return response()->json(200);
+        //  return back();        
     }
 
     public function update(Request $request, $id)
     {
+        
         $result=EmployeesController::request($request);
         $this->employees->where('id',$id)->update($result);
-        return back();   
+        return response()->json(200);
+
+        // return back();   
     }
 
     public function destroy ($id)
     {
         $this->employees->where('id',$id)->delete();
-        return redirect('/employeess');
+        return response()->json('asasa');
+        // return redirect('/employeess');
     }
     
     public function show($id)
     {
         $employee=$this->employees->where('id',$id)->first();
         $company=$this->companies->where('id',$employee['company_id'])->first();
+        return response()->json([ $employee],200);
 
-        return view('employees.show',[
-            'employee'=>$employee,
-            'company'=>$company,
-            ]);
+        // return view('employees.show',[
+        //     'employee'=>$employee,
+        //     'company'=>$company,
+        //     ]);
     }
 
 }
