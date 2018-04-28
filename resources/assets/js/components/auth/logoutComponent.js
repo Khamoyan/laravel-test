@@ -7,6 +7,7 @@ class RegisterComponent extends Component{
     constructor(props){
         super(props);
         this.state={
+            user_id:'',
             user:{
                 email:'',
                 password:''
@@ -34,6 +35,9 @@ class RegisterComponent extends Component{
     login(data){
 
         axios.post('/api/login',data).then((response)=>{
+            sessionStorage.setItem('id', response.data.user.id);
+            sessionStorage.setItem('name', response.data.user.name);
+            this.setState({user_id: response.data.user.id});
     
             }).catch((err) => {
                 
