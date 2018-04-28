@@ -1,14 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import Main from './Main';
-import registerServiceWorker from './registerServiceWorker';
-import { HashRouter } from 'react-router-dom';
+import {HashRouter,Switch, Route,Link} from 'react-router-dom';
+import LoginComponent from './auth/loginComponent';
 
-ReactDOM.render(
-	(
-		<HashRouter>
-			<Main />
-		</HashRouter>
-	), document.getElementById('root'));
-registerServiceWorker();
+class Index extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+
+        }  
+    }
+    render() {
+        return (
+                <div className="container">
+                    <HashRouter>
+                        <Switch>
+                            <Route path='/log' render={() => <LoginComponent />} /> 
+                            
+                        </Switch>
+					</HashRouter>
+					
+                </div>        
+        );
+    }
+}
+export default Index;
+
+if(document.getElementById('root1')){
+    ReactDOM.render(<Index />,document.getElementById('root1'))
+}

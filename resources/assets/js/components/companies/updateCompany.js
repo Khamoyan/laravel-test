@@ -25,22 +25,31 @@ class UpdateCompany extends Component{
     handleInput(key,e){
         var state = Object.assign({}, this.state.company); 
         state[key] = e.target.value;
-        this.setState({company: state });
+        if(key ==='logo'){
+            state[key]=e.target.files[0];
+        }
+        this.setState({company: state});
     }
 
     handleSubmit(e){
+        e.preventDefault();     
+        let data = new FormData()
+        data.append('name', this.state.company.name);
+        data.append('email', this.state.company.email);
+        data.append('website',this.state.company.website);
+        data.append('logo', this.state.company.logo);
 
-        e.preventDefault();
-        this.handelUpdateCopmany(this.state.id,this.state.company)
+        this.handelUpdateCopmany(this.state.id,data)
 
     }
-    handelUpdateCopmany(id,company){
-        axios.put(`/api/employees/${id}`,company).then((response)=>{
+    handelUpdateCopmany(id,data){  
+        axios.put(`/api/companies/${id}`,data).then((response)=>{
+            
             }).catch((err) => {
 
             })
         }
-        update(){
+    update(){
             $(`#${this.state.data_target}`).modal();
         }
 

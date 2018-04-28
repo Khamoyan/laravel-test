@@ -11,6 +11,8 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css">
         
         <style>
             html, body {
@@ -66,7 +68,8 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+    <div id='root1'> </div>
+        <!-- <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -78,7 +81,8 @@
                 </div>
             @endif
 
-        </div>
+        </div> -->
+        <script src="{{mix('js/app.js')}}" ></script>
         
     </body>
 </html>

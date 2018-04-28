@@ -21,12 +21,10 @@ class CompaniesController extends Controller
     public function request(Request $request)
     {
         $result=$request->all();
-        
         $this->validate($request, [
                 'logo' => 'required',
                 'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:min_width=100,min_height=100'
         ]);
-        dd($result);
         // unset($result['_token'],$result['_method']);
         
         return $result;
@@ -58,8 +56,10 @@ class CompaniesController extends Controller
 
     public function update(Request $request,$id)
     {
+        dd($request);
         $result=CompaniesController::request($request);
          if($request->hasfile('logo')) {
+            
             $image=$request->file('logo');
             $result['logo'] = time().'.'.$image->getClientOriginalExtension();
             $destinationPath = public_path('/logos');
@@ -67,7 +67,8 @@ class CompaniesController extends Controller
                 $image->move($destinationPath, $result['logo']);
             }
          }
-        return back();
+         return response()->json(201);
+        // return back();
     }
 
     public function destroy($id)

@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import FormData from 'form-data'
 
 class AddCompany extends Component{
     
@@ -20,33 +21,39 @@ class AddCompany extends Component{
     }
 
     handleInput(key,e){
-        var state = Object.assign({}, this.state.company); 
-        state[key] = e.target.value;
-        this.setState({company: state });
+        var state = Object.assign({}, this.state.company);    
+        state[key]=e.target.value;
+        if(key ==='logo'){
+            state[key]=e.target.files[0];
+        }
+        this.setState({company: state});
     }
 
     handleSubmit(e){
         e.preventDefault();
-        this.handelAddCompany(this.state.company)
-        console.log(this.state.company)
+        let data = new FormData()
+        data.append('name', this.state.company.name);
+        data.append('email', this.state.company.email);
+        data.append('website',this.state.company.website);
+        data.append('logo', this.state.company.logo);
 
+        this.handelAddCompany(data);
     }
-    handelAddCompany(company){
-
-        axios.post('/api/companies',{company}).then((response)=>{
-    
+    handelAddCompany(data){
+        axios.post('/api/companies',data) .then((response)=>{
+            
             }).catch((err) => {
                 
             })
         }
-    
+
     render(){
         const divStyle={}
         return(         
           <div style={divStyle}>  
           
              <h2>Create</h2>
-             <form onSubmit={this.handleSubmit} enctype="multipart/form-data">
+             <form onSubmit={this.handleSubmit} enctype="multipart/form-data" id='form' >
              <div class="form-row">
                
                <div class="form-group col-md-6">
