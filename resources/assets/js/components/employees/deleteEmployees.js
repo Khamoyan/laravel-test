@@ -1,45 +1,51 @@
-import React,{Component} from 'react';
-import ReactDOM from 'react-dom';
+import React, {Component} from 'react';
 import axios from 'axios';
 import DeleteEmployeesModal from '../modals/deleteEmployeeModal';
 
-class DeleteEmployee extends Component{
-    constructor(props){
+class DeleteEmployee extends Component {
+    constructor(props) {
         super(props);
-        this.state={
-                id:this.props.id,
-                data_target:`delete${this.props.id}`
-        }
-        this.handleSubmit=this.handleSubmit.bind(this);
-        this.handelDeleteEmployees=this.handelDeleteEmployees.bind(this)
-        this.deleteModal=this.deleteModal.bind(this)
-        
+        this.state = {
+            id: this.props.id,
+            data_target: `delete${this.props.id}`
+        };
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handelDeleteEmployees = this.handelDeleteEmployees.bind(this)
+        this.deleteModal = this.deleteModal.bind(this)
+
     }
-    handleSubmit(e){
+
+    handleSubmit(e) {
         e.preventDefault();
         this.handelDeleteEmployees(this.state.id)
 
     }
-    handelDeleteEmployees(id){
-        
-        axios.delete(`/api/employees/${id}`).then((response)=>{
-            
-            }).catch((err) => {
-                
-            })
-        }
-        deleteModal(){
-            $(`#${this.state.data_target}`).modal();
-        }
-       
-    render(){
-        const divStyle={}
-        return(   
+
+    handelDeleteEmployees(id) {
+
+        axios.delete(`/api/employees/${id}`).then((response) => {
+
+        }).catch((err) => {
+
+        })
+    }
+
+    deleteModal() {
+        $(`#${this.state.data_target}`).modal();
+    }
+
+    render() {
+        return (
             <div>
-              <td><button type="button" className="btn btn-info btn-lg delete" data-toggle="modal" data-target={this.state.data_target}  onClick={this.deleteModal} > Delete</button></td>   
-              <DeleteEmployeesModal id={this.state.data_target} delete={this.handleSubmit}  />
-              </div>                          
-            )
+                <td>
+                    <button type="button" className="btn btn-info btn-lg delete" data-toggle="modal"
+                            data-target={this.state.data_target} onClick={this.deleteModal}> Delete
+                    </button>
+                </td>
+                <DeleteEmployeesModal id={this.state.data_target} delete={this.handleSubmit}/>
+            </div>
+        )
     }
 }
+
 export default DeleteEmployee;

@@ -21,19 +21,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // Auth::routes();
-Route::post('register', 'AuthController@register');
-Route::post('login', 'AuthController@login');
-Route::get('logout', 'AuthController@logout');
+Route::post('register', 'Api\AuthController@register');
+Route::post('login', 'Api\AuthController@login');
+Route::get('logout', 'Api\AuthController@logout');
 
-Route::post('employees', 'EmployeesController@store');
-Route::get('employees', 'EmployeesController@index');
-Route::delete('/employees/{id}','EmployeesController@destroy');
-Route::put('/employees/{id}','EmployeesController@update');
-Route::get('/employees/{id}','EmployeesController@show');
+Route::get('/employees', 'Api\EmployeesController@index');
+Route::post('employees', 'Api\EmployeesController@store');
+Route::get('/employees/{id}', 'Api\EmployeesController@show');
+Route::put('/employees/{id}', 'Api\EmployeesController@update');
+Route::delete('/employees/{id}', 'Api\EmployeesController@destroy');
 
-Route::get('/companies', 'CompaniesController@index');
-Route::post('/companies', 'CompaniesController@store');
-Route::get('/companies/{id}', 'CompaniesController@show');
-Route::put('/companies/{id}', 'CompaniesController@update');
-Route::delete('/companies/{id}', 'CompaniesController@destroy');
+Route::get('/companies', 'Api\CompaniesController@index');
+Route::post('/companies', 'Api\CompaniesController@store');
+Route::get('/companies/{id}', 'Api\CompaniesController@show');
+Route::put('/companies/{id}', 'ApiCompaniesController@update');
+Route::delete('/companies/{id}', 'Api\CompaniesController@destroy');
 

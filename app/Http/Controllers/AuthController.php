@@ -1,47 +1,71 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\RegisterRequest;
+use Mockery\Exception;
+
+
 class AuthController extends Controller
 {
+
     public function __construct(User $user)
     {
-       $this->middleware('guest')->except('logout');
+        $this->user = $user;
+
     }
-    public function login(Request $request, User $user)
+
+    public function login(Request $request)
     {
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        
-        $inputs = ['email' => $request->get('email'), 'password' => $request->get('password')];
-        if(!Auth::attempt($inputs, $request->has('remember'))){
-            return response()->json(['message' => "Incorect Login or Password"],401);
+        $input = $request->all();
+        $mail = $input['emil'];
+        $password = $input['password'];
+        try {
+            if (Auth::attempt(['Email' => $mail, 'Password' => $password])) {
+                Auth::login($this->user);
+                return response()->json(['user' => Auth::user()], 200);
+
+            } else {
+                return response()->json(['response' => 'Wrong login or password'], 401);
+            }
         }
-        $user = $user->where('email', $request->get('email'))->first();
-        \Auth::login($user);
-        return response()->json(['user' => Auth::user()],200);
+        catch (Exception $e) {
+
+            return response()->json($e, 401);
+        }
+
     }
-    public function logout(){
+
+    public function logout()
+    {
         Auth::logout();
-        return response()->json(['message' => "403"], 200);
+        return response()->json(['message' => "Logout account"], 200);
     }
-    public function register(RegisterRequest $request) {
-    	
-        $user = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => bcrypt($request -> input('password')),
-            'confirm_token' => md5(time().str_random(2)),
-        ]);
-        Auth::login($user);
-        return response()->json(['user' => Auth::user()], 200);
+
+    public function register(Request $request)
+    {
+        $input = $request->all();
+        $user = User::crete([
+                                'name' => $input('name'),
+                                'email' => $input('email'),
+                                'password' => bcrypt($input('password')),
+                                'confirm_token' => md5(time() . str_random(2)),
+                            ]);
+        try {
+            Auth::login($user);
+            return response()->json(['user' => Auth::user()], 200);
+
+        }
+        catch (Exception $e) {
+
+            return response()->json($e, 401);
+        }
     }
 
 }

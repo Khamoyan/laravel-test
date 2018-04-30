@@ -35,8 +35,6 @@ class CompaniesController extends Controller
     {
         $lists = $this->companies->get();
         return response()->json([$lists], 200);
-        // $lists=$this->companies->paginate(10);
-        // return view('companies.index',['lists'=>$lists]);
     }
 
     public function store(Request $request)
@@ -52,7 +50,6 @@ class CompaniesController extends Controller
             }
         }
         return response()->json(201);
-        // return back();
     }
 
     public function update(Request $request, $id)
@@ -69,7 +66,6 @@ class CompaniesController extends Controller
             }
         }
         return response()->json(201);
-        // return back();
     }
 
     public function destroy($id)
@@ -83,6 +79,5 @@ class CompaniesController extends Controller
         $company = $this->companies->where('id', $id)->first();
         $employees = $this->employees->where('company_id', $id)->get();
         return response()->json([$company], 200);
-        // return view('companies.show',['company'=>$company,'employees'=>$employees]);
     }
 }
