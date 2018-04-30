@@ -4,6 +4,8 @@ import axios from 'axios';
 import DeleteEmployee from './deleteEmployees';
 import UpdateEmployee from './updateEmployees';
 import ShowEmployees from './showEmployee';
+import AddEmployees from './addEmployees';
+// import Pagination from 'react-laravel-paginator';
 
 class ListEmployees extends Component {
     constructor(props) {
@@ -11,9 +13,7 @@ class ListEmployees extends Component {
         this.state = {
             employees: [],
         }
-
     }
-
     componentWillMount() {
         axios.get('/api/employees').then((response) => {
             this.setState({employees: Object.values(response.data[0])});
@@ -23,6 +23,9 @@ class ListEmployees extends Component {
 
         })
     }
+     onCurrPageChange(pageNumber) {
+        this.setState({currPage: pageNumber});
+      }
 
     renderEmployees() {
         return this.state.employees.map(function (value, index) {
@@ -45,26 +48,30 @@ class ListEmployees extends Component {
         const divStyle = {}
         return (
             <div style={divStyle}>
-                <div className="container">
-                    <h2>Employees list</h2>
-                    <table className="table">
-                        <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                            <th>Show</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {this.renderEmployees()}
-                        </tbody>
-                    </table>
-                </div>
+                <AddEmployees />
+                    <div className="container">
+                        <h2>Employees list</h2>
+                        <table className="table">
+                            <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                                <th>Show</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {this.renderEmployees()}
+                            </tbody>
+                        </table>
+                    </div>
+                    {/* <Pagination
+                        currPage={4} lastPage={20} onChange={this.onCurrPageChange}
+                    /> */}
             </div>
         );
     }

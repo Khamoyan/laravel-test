@@ -12,6 +12,7 @@ class UpdateEmployee extends Component {
                 last_name: '',
                 email: '',
                 phone: '',
+                company:'',
                 company_id: ''
             },
             id: this.props.id,

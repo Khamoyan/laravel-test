@@ -12,9 +12,9 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+// Route::get('/welcome', function () {
+//     return view('welcome');
+// });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -34,6 +34,6 @@ Route::delete('/employees/{id}', 'Api\EmployeesController@destroy');
 Route::get('/companies', 'Api\CompaniesController@index');
 Route::post('/companies', 'Api\CompaniesController@store');
 Route::get('/companies/{id}', 'Api\CompaniesController@show');
-Route::put('/companies/{id}', 'ApiCompaniesController@update');
+Route::put('/companies/{id}', 'Api\CompaniesController@update');
 Route::delete('/companies/{id}', 'Api\CompaniesController@destroy');
 

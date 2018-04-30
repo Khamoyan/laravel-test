@@ -4,7 +4,7 @@ import axios from 'axios';
 import DeleteCompany from './deleteCompany';
 import ShowCompany from './showCompany';
 import UpdateCompany from './updateCompany';
-
+import AddCompany from './addCompany';
 
 class ListCompanies extends Component {
     constructor(props) {
@@ -16,7 +16,6 @@ class ListCompanies extends Component {
 
     componentWillMount() {
         axios.get('/api/companies').then((response) => {
-
             this.setState({companies: Object.values(response.data[0])});
 
         }).catch((err) => {
@@ -26,6 +25,7 @@ class ListCompanies extends Component {
     }
 
     renderCompanies() {
+
         return this.state.companies.map(function (value) {
             return (
                 <tr>
@@ -36,7 +36,7 @@ class ListCompanies extends Component {
                     <td> {value.website} </td>
                     <td><DeleteCompany id={value.id}/></td>
                     <td><UpdateCompany id={value.id}/></td>
-                    <td><ShowCompany id={value.id}/></td>
+                    {/* <td><ShowCompany id={value.id}/></td> */}
                 </tr>
             )
         })
@@ -46,6 +46,7 @@ class ListCompanies extends Component {
         const divStyle = {}
         return (
             <div style={divStyle}>
+                <AddCompany />
                 <div className="container">
                     <h2>Companies list</h2>
                     <table className="table">
@@ -62,7 +63,7 @@ class ListCompanies extends Component {
                         </tr>
                         </thead>
                         <tbody>
-                        {this.renderCompanies()}
+                             {this.renderCompanies()}
                         </tbody>
                     </table>
                 </div>

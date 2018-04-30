@@ -13,6 +13,7 @@ class UpdateCompanyModal extends Component {
                             </div>
                             <div className="modal-body">
                                 <h4 className="modal-title">Edit Companies</h4>
+                                <form enctype="multipart/form-data">
                                 <div className="form-row">
 
                                     <div className="form-group col-md-6">
@@ -33,11 +34,12 @@ class UpdateCompanyModal extends Component {
                                            onChange={(e) => this.props.handleInput('website', e)}/>
                                 </div>
                                 <div className="form-group">
-                                    <input type="file" name="logo" value=""
+                                    <input type="file" name="logo" 
                                            onChange={(e) => this.props.handleInput('logo', e)}/>
                                 </div>
                                 <button type="submit" className="btn btn-primary" onClick={this.props.updateCompany}>Edit
                                 </button>
+                                </form>
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>

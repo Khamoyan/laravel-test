@@ -18,8 +18,7 @@ class UpdateCompany extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handelUpdateCopmany = this.handelUpdateCopmany.bind(this)
         this.handleInput = this.handleInput.bind(this);
-        this.update = this.update.bind(this)
-
+        this.update=this.update.bind(this);
     }
 
     handleInput(key, e) {
@@ -33,14 +32,13 @@ class UpdateCompany extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        let data = new FormData()
+        let data = new FormData()  
         data.append('name', this.state.company.name);
         data.append('email', this.state.company.email);
         data.append('website', this.state.company.website);
         data.append('logo', this.state.company.logo);
-
+        
         this.handelUpdateCopmany(this.state.id, data)
-
     }
 
     handelUpdateCopmany(id, data) {

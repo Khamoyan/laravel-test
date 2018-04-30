@@ -1,15 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Mockery\Exception;
-
+use Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class AuthController extends Controller
 {
+
 
     public function __construct(User $user)
     {
@@ -23,20 +26,20 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        $input = $request->all();
-        $mail = $input['emil'];
-        $password = $input['password'];
+        
         try {
-            if (Auth::attempt(['Email' => $mail, 'Password' => $password])) {
+            $input = $request->all();
+            $mail = $input['email'];
+            $password = $input['password'];
+            if (Auth::attempt(['email' => $mail, 'password' => $password])) {
                 Auth::login($this->user);
-                return response()->json(['user' => Auth::user()], 200);
+                return response()->json(['user'=>Auth::user()->get()], 200);
 
             } else {
                 return response()->json(['response' => 'Wrong login or password'], 401);
             }
         }
         catch (Exception $e) {
-
             return response()->json($e, 401);
         }
 
@@ -50,20 +53,25 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $input = $request->all();
-        $user = User::crete([
-                                'name' => $input('name'),
-                                'email' => $input('email'),
-                                'password' => bcrypt($input('password')),
-                                'confirm_token' => md5(time() . str_random(2)),
-                            ]);
+        $this->validate($request, [
+            'name' => 'required|max:20',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|',
+        ]);
+        
         try {
+                $input = $request->all();
+                $user = User::create([
+                    'name' => $input['name'],
+                    'email' => $input['email'],
+                    'password' => bcrypt($input['password']),
+                    'confirm_token' => md5(time() . str_random(2)),
+                ]);
             Auth::login($user);
             return response()->json(['user' => Auth::user()], 200);
 
         }
         catch (Exception $e) {
-
             return response()->json($e, 401);
         }
     }

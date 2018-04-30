@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter,Switch, Route,Link} from 'react-router-dom';
 import LoginComponent from './auth/loginComponent';
+import RegisterComponent from './auth/registerComponent';
 
 class Index extends Component {
     constructor(props){
@@ -15,8 +16,8 @@ class Index extends Component {
                 <div className="container">
                     <HashRouter>
                         <Switch>
-                            <Route path='/log' render={() => <LoginComponent />} /> 
-                            
+                            <Route path='/log' render={() => <LoginComponent />} />
+                            <Route path='/reg' render={() => <RegisterComponent />} />    
                         </Switch>
 					</HashRouter>
 					

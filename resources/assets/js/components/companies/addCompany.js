@@ -36,12 +36,14 @@ class AddCompany extends Component {
         data.append('email', this.state.company.email);
         data.append('website', this.state.company.website);
         data.append('logo', this.state.company.logo);
-
+        console.log(data);
         this.handelAddCompany(data);
     }
 
     handelAddCompany(data) {
         axios.post('/api/companies', data).then((response) => {
+            // log(response.data)
+            this.setState({company:response.data})
 
         }).catch((err) => {
 

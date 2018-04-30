@@ -26,7 +26,7 @@ class CompaniesController extends Controller
             'logo' => 'required',
             'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:min_width=100,min_height=100'
         ]);
-        // unset($result['_token'],$result['_method']);
+        unset($result['_token'],$result['_method']);
 
         return $result;
     }
@@ -34,9 +34,8 @@ class CompaniesController extends Controller
     public function index()
     {
         $lists = $this->companies->get();
-        return response()->json([$lists], 200);
-        // $lists=$this->companies->paginate(10);
-        // return view('companies.index',['lists'=>$lists]);
+        $lists=$this->companies->paginate(10);
+        return view('companies.index',['lists'=>$lists]);
     }
 
     public function store(Request $request)
@@ -51,8 +50,7 @@ class CompaniesController extends Controller
                 $image->move($destinationPath, $result['logo']);
             }
         }
-        return response()->json(201);
-        // return back();
+        return back();
     }
 
     public function update(Request $request, $id)
@@ -69,7 +67,7 @@ class CompaniesController extends Controller
             }
         }
         return response()->json(201);
-        // return back();
+        return back();
     }
 
     public function destroy($id)
@@ -82,7 +80,6 @@ class CompaniesController extends Controller
     {
         $company = $this->companies->where('id', $id)->first();
         $employees = $this->employees->where('company_id', $id)->get();
-        return response()->json([$company], 200);
-        // return view('companies.show',['company'=>$company,'employees'=>$employees]);
+        return view('companies.show',['company'=>$company,'employees'=>$employees]);
     }
 }

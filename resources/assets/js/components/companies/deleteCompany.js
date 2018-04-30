@@ -23,7 +23,6 @@ class DeleteCompany extends Component {
     }
 
     handelDeleteEmployees(id) {
-
         axios.delete(`/api/companies/${id}`).then((response) => {
 
         }).catch((err) => {

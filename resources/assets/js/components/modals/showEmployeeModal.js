@@ -17,8 +17,8 @@ class ShowEmployeeModal extends Component {
                                     <table className="table">
 
                                         <tr>
-                                            <th>Company Name:</th>
-                                            <td>name</td>
+                                            <th>Name:</th>
+                                            <td>{this.props.company}</td>
                                         </tr>
                                         <tr>
                                             <th>Last Name:</th>

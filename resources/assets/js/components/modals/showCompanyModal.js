@@ -18,15 +18,15 @@ class ShowCompanyModal extends Component {
 
                                         <tr>
                                             <th>Email:</th>
-                                            <td>{this.props.list[2]}</td>
+                                            <td>{this.props.company[2]}</td>
                                         </tr>
                                         <tr>
                                             <th>Web site:</th>
-                                            <td>{this.props.list[4]}</td>
+                                            <td>{this.props.company[4]}</td>
                                         </tr>
                                         <tr>
                                             <th>Logo:</th>
-                                            <td><img src={`public/logos/${this.props.list[3]})`}/></td>
+                                            {/* <td><img src={`public/logos/${this.props.list[3]})`}/></td> */}
                                         </tr>
                                     </table>
                                 </div>

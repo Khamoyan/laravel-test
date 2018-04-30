@@ -9,6 +9,7 @@ class ShowEmployees extends Component {
         super(props);
         this.state = {
             data_target: `show${this.props.id}`,
+            company:'',
             employee: []
         };
         this.show = this.show.bind(this)
@@ -17,8 +18,8 @@ class ShowEmployees extends Component {
 
     componentWillMount() {
         axios.get(`/api/employees/${this.props.id}`).then((response) => {
-
-            this.setState({employee: Object.values(response.data[0])});
+            this.setState({company:response.data[0]})
+            this.setState({employee: Object.values(response.data[1])});
         }).catch((err) => {
             console.log(err);
 
@@ -37,7 +38,7 @@ class ShowEmployees extends Component {
                 <button type="button" className="btn btn-info btn-lg edit" data-toggle="modal"
                         data-target={this.state.data_target} onClick={this.show}>Show Employee
                 </button>
-                <ShowEmployeeModal id={this.state.data_target} list={this.state.employee}/>
+                <ShowEmployeeModal id={this.state.data_target} list={this.state.employee} company={this.state.company}/>
             </div>
         )
     }
