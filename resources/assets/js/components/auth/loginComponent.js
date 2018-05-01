@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Redirect, HashRouter} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 
 class LoginComponent extends Component {
 
@@ -44,7 +45,7 @@ class LoginComponent extends Component {
     render() {
         let redirect_to_home
             if(this.state.id) {
-                redirect_to_home=<Redirect to='/'/>
+                redirect_to_home=<Redirect to='/home'/>
             }
         return (
             <div className='containe'>

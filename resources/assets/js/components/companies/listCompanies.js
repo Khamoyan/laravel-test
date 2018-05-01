@@ -11,7 +11,37 @@ class ListCompanies extends Component {
         super(props);
         this.state = {
             companies: []
-        }
+        };
+        this.deleteCompany = this.deleteCompany.bind(this);
+        this.editCompany = this.editCompany.bind(this);
+        this.addCompany = this.addCompany.bind(this);
+    }
+
+    deleteCompany(company) {
+        this.state.companies.map((value, index) => {
+            if (value.id === company) {
+                this.state.companies.splice(index, 1);
+            }
+        });
+        this.setState(this.state.companies);
+    }
+
+    editCompany(company) {
+        this.state.companies.map((value, index) => {
+            if (value.id === company.id) {
+                value.name = company.name;
+                value.email = company.email;
+                value.logo = company.logo;
+                value.website=company.website;
+            }
+        });
+        this.setState(this.state.companies);
+    }
+
+    addCompany(company) {
+        this.state.companies.push(company);
+        this.setState({companies: this.state.companies});
+        alert('creting');
     }
 
     componentWillMount() {
@@ -25,6 +55,8 @@ class ListCompanies extends Component {
     }
 
     renderCompanies() {
+        let deleteCompany = this.deleteCompany;
+        let editCompany = this.editCompany;
 
         return this.state.companies.map(function (value) {
             return (
@@ -34,8 +66,8 @@ class ListCompanies extends Component {
                     <td> {value.email} </td>
                     <td> {value.logo} </td>
                     <td> {value.website} </td>
-                    <td><DeleteCompany id={value.id}/></td>
-                    <td><UpdateCompany id={value.id}/></td>
+                    <td><DeleteCompany id={value.id} deleteCompany={deleteCompany}/></td>
+                    <td><UpdateCompany id={value.id} editCompany={editCompany}/></td>
                     {/* <td><ShowCompany id={value.id}/></td> */}
                 </tr>
             )
@@ -46,7 +78,7 @@ class ListCompanies extends Component {
         const divStyle = {}
         return (
             <div style={divStyle}>
-                <AddCompany />
+                <AddCompany addCompany={this.addCompany}/>
                 <div className="container">
                     <h2>Companies list</h2>
                     <table className="table">
@@ -63,7 +95,7 @@ class ListCompanies extends Component {
                         </tr>
                         </thead>
                         <tbody>
-                             {this.renderCompanies()}
+                        {this.renderCompanies()}
                         </tbody>
                     </table>
                 </div>

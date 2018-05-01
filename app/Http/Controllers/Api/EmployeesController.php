@@ -22,22 +22,22 @@ class EmployeesController extends Controller
     public function request(Request $request)
     {
         $result = $request->all();
-        $company=$this->companies->where('name',$result['company'])->first();
-        if(!empty($company)) {
-            $result['company_id']=$company['id'];
-            unset($result['_token'],$result['company'],$result['_method']);
+        $company = $this->companies->where('name', $result['company'])->first();
+        if (!empty($company)) {
+            $result['company_id'] = $company['id'];
+            unset($result['_token'], $result['company'], $result['_method']);
             return $result;
         } else {
-            $result['company_id']=0;
-            unset($result['_token'],$result['company'],$result['_method']);
+            $result['company_id'] = 0;
+            unset($result['_token'], $result['company'], $result['_method']);
             return $result;
         }
-        
+
     }
 
     public function index()
     {
-        $lists =$this->employees->get();
+        $lists = $this->employees->paginate(3);
         return response()->json([$lists], 200);
     }
 
@@ -53,7 +53,8 @@ class EmployeesController extends Controller
     {
         $result = EmployeesController::request($request);
         $this->employees->where('id', $id)->update($result);
-        return response()->json(201);
+        $employee_update = $this->employees->where('id', $id)->get();
+        return response()->json($employee_update, 201);
     }
 
     public function destroy($id)
@@ -66,7 +67,7 @@ class EmployeesController extends Controller
     {
         $employee = $this->employees->where('id', $id)->first();
         $company = $this->companies->where('id', $employee['company_id'])->first();
-        return response()->json([$company['name'],$employee], 200);
+        return response()->json([$company['name'], $employee], 200);
     }
 
 }

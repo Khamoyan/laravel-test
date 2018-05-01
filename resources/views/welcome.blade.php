@@ -69,6 +69,9 @@
     </head>
     <body>
     <div id='root1'> </div>
+    {{--<div id='root'></div>--}}
+
+    {{--<div id='root'></div>--}}
         <!-- <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">

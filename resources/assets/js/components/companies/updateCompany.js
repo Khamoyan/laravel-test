@@ -16,9 +16,9 @@ class UpdateCompany extends Component {
             data_target: `update${this.props.id}`
         };
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handelUpdateCopmany = this.handelUpdateCopmany.bind(this)
+        this.handelUpdateCompany = this.handelUpdateCompany.bind(this)
         this.handleInput = this.handleInput.bind(this);
-        this.update=this.update.bind(this);
+        this.update = this.update.bind(this);
     }
 
     handleInput(key, e) {
@@ -32,17 +32,20 @@ class UpdateCompany extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        let data = new FormData()  
+        let data = new FormData();
         data.append('name', this.state.company.name);
         data.append('email', this.state.company.email);
         data.append('website', this.state.company.website);
         data.append('logo', this.state.company.logo);
-        
-        this.handelUpdateCopmany(this.state.id, data)
+
+        this.handelUpdateCompany(this.state.id, data)
     }
 
-    handelUpdateCopmany(id, data) {
+    handelUpdateCompany(id, data) {
         axios.put(`/api/companies/${id}`, data).then((response) => {
+            this.setState({company: response.data[0]});
+            console.log('ok')
+            this.props.editCompany(this.state.company);
 
         }).catch((err) => {
 

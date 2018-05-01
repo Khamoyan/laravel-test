@@ -16,8 +16,8 @@ class Index extends Component {
                 <div className="container">
                     <HashRouter>
                         <Switch>
-                            <Route path='/log' render={() => <LoginComponent />} />
-                            <Route path='/reg' render={() => <RegisterComponent />} />    
+                            <div><Route path='/' render={() => <LoginComponent />} /></div>
+                            <div><Route path='/' render={() => <RegisterComponent />} /> </div>
                         </Switch>
 					</HashRouter>
 					

@@ -5,6 +5,8 @@ import DeleteEmployee from './deleteEmployees';
 import UpdateEmployee from './updateEmployees';
 import ShowEmployees from './showEmployee';
 import AddEmployees from './addEmployees';
+import ReactPaginate from 'react-paginate';
+
 // import Pagination from 'react-laravel-paginator';
 
 class ListEmployees extends Component {
@@ -12,22 +14,55 @@ class ListEmployees extends Component {
         super(props);
         this.state = {
             employees: [],
-        }
+        };
+
+        this.deleteEmployee = this.deleteEmployee.bind(this);
+        this.editEmployee = this.editEmployee.bind(this);
+        this.addEmployee = this.addEmployee.bind(this)
     }
+
+    deleteEmployee(employee) {
+        let employees = this.state.employees;
+        employees.map((value, index) => {
+            if (value.id === employee) {
+                employees.splice(index, 1);
+            }
+        });
+        this.setState({employees});
+    }
+
+    editEmployee(employee) {
+        this.state.employees.map((value, index) => {
+            if (value.id === employee.id) {
+                value.first_name = employee.first_name;
+                value.last_name = employee.last_name;
+                value.email = employee.email;
+            }
+        });
+        this.setState({employee});
+        this.props.editEmployee(employee)
+    }
+
+    addEmployee(employee) {
+        this.state.employees.push(employee);
+        this.setState({employees: this.state.employees});
+        alert('creting');
+    }
+
     componentWillMount() {
         axios.get('/api/employees').then((response) => {
-            this.setState({employees: Object.values(response.data[0])});
+            this.setState({employees: Object.values(response.data[0])})
 
         }).catch((err) => {
             console.log(err);
 
         })
     }
-     onCurrPageChange(pageNumber) {
-        this.setState({currPage: pageNumber});
-      }
+
 
     renderEmployees() {
+        const deleteEmployee = this.deleteEmployee;
+        const editEmployee = this.editEmployee;
         return this.state.employees.map(function (value, index) {
             return (
                 <tr>
@@ -36,8 +71,8 @@ class ListEmployees extends Component {
                     <td> {value.last_name} </td>
                     <td> {value.email} </td>
                     <td> {value.phone} </td>
-                    <td><DeleteEmployee id={value.id}/></td>
-                    <td><UpdateEmployee id={value.id}/></td>
+                    <td><DeleteEmployee id={value.id} deleteEmployee={deleteEmployee}/></td>
+                    <td><UpdateEmployee id={value.id} editEmployee={editEmployee}/></td>
                     <td><ShowEmployees id={value.id}/></td>
                 </tr>
             )
@@ -45,33 +80,30 @@ class ListEmployees extends Component {
     }
 
     render() {
-        const divStyle = {}
+        const divStyle = {};
         return (
             <div style={divStyle}>
-                <AddEmployees />
-                    <div className="container">
-                        <h2>Employees list</h2>
-                        <table className="table">
-                            <thead>
-                            <tr>
-                                <th>id</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                                <th>Show</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {this.renderEmployees()}
-                            </tbody>
-                        </table>
-                    </div>
-                    {/* <Pagination
-                        currPage={4} lastPage={20} onChange={this.onCurrPageChange}
-                    /> */}
+                <AddEmployees addEmployee={this.addEmployee}/>
+                <div className="container">
+                    <h2>Employees list</h2>
+                    <table className="table">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                            <th>Show</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {this.renderEmployees()}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         );
     }

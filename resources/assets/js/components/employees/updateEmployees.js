@@ -41,7 +41,8 @@ class UpdateEmployee extends Component {
 
     handelUpdateEmployees(id, employees) {
         axios.put(`/api/employees/${id}`, employees).then((response) => {
-            // var r=this.props.addPost(response.data.employees);
+            this.setState({employee:response.data[0]});
+            this.props.editEmployee(this.state.employee);
 
         }).catch((err) => {
 

@@ -11,7 +11,7 @@ class AddEmployees extends Component {
                 last_name: '',
                 email: '',
                 phone: '',
-                company:'',
+                company: '',
                 company_id: ''
             }
         };
@@ -35,7 +35,8 @@ class AddEmployees extends Component {
     handelAddEmployees(employees) {
 
         axios.post('/api/employees', employees).then((response) => {
-            
+            this.props.addEmployee(response.data);
+
         }).catch((err) => {
 
         })
@@ -76,7 +77,8 @@ class AddEmployees extends Component {
                         <label>Company</label>
                         <input type="text" className="form-control" placeholder="Company" name="company"
                                onChange={(e) => this.handleInput('company', e)}/>
-                        <input type="hidden" name="company_id" name="company_id" onChange={(e) => this.handleInput('company_id', e)} />
+                        <input type="hidden" name="company_id" name="company_id"
+                               onChange={(e) => this.handleInput('company_id', e)}/>
                     </div>
                     <button type="submit" className="btn btn-primary" onSubmit={this.handleSubmit}>Create</button>
                 </form>

@@ -31,7 +31,7 @@ class AddCompany extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        let data = new FormData()
+        let data = new FormData();
         data.append('name', this.state.company.name);
         data.append('email', this.state.company.email);
         data.append('website', this.state.company.website);
@@ -42,9 +42,7 @@ class AddCompany extends Component {
 
     handelAddCompany(data) {
         axios.post('/api/companies', data).then((response) => {
-            // log(response.data)
-            this.setState({company:response.data})
-
+            this.props.addCompany(response.data);
         }).catch((err) => {
 
         })
