@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Redirect, HashRouter} from 'react-router-dom'
+import {Redirect, HashRouter,Route,Router,Switch} from 'react-router-dom'
 import {Link} from 'react-router-dom';
+import Main from '../Main';
+import RegisterComponent from './registerComponent';
 
 class LoginComponent extends Component {
 
@@ -43,13 +45,20 @@ class LoginComponent extends Component {
     }
 
     render() {
+        
         let redirect_to_home
             if(this.state.id) {
-                redirect_to_home=<Redirect to='/home'/>
-            }
+                 redirect_to_home=
+                    <HashRouter> 
+                        <Switch>
+                            <Redirect from='/' to='/home' />;
+                        </Switch>
+                   </HashRouter>
+              }
         return (
             <div className='containe'>
-                <div className='row justify-content-center'>
+                <div>
+                    <h3>Login</h3>
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
                             <label>Email address</label>

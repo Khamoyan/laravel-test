@@ -36,7 +36,6 @@ class AddCompany extends Component {
         data.append('email', this.state.company.email);
         data.append('website', this.state.company.website);
         data.append('logo', this.state.company.logo);
-        console.log(data);
         this.handelAddCompany(data);
     }
 

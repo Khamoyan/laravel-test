@@ -5,6 +5,7 @@ import DeleteCompany from './deleteCompany';
 import ShowCompany from './showCompany';
 import UpdateCompany from './updateCompany';
 import AddCompany from './addCompany';
+import Home from '../Home';
 
 class ListCompanies extends Component {
     constructor(props) {
@@ -17,13 +18,24 @@ class ListCompanies extends Component {
         this.addCompany = this.addCompany.bind(this);
     }
 
+    componentWillMount() {
+        axios.get('/api/companies').then((response) => {
+            this.setState({companies: Object.values(response.data[0])});
+
+        }).catch((err) => {
+            console.log(err);
+
+        })
+    }
+
     deleteCompany(company) {
-        this.state.companies.map((value, index) => {
+        let companies = this.state.companies 
+        companies.map((value, index) => {
             if (value.id === company) {
-                this.state.companies.splice(index, 1);
+                companies.splice(index, 1);
             }
         });
-        this.setState(this.state.companies);
+        this.setState({companies});
     }
 
     editCompany(company) {
@@ -44,15 +56,6 @@ class ListCompanies extends Component {
         alert('creting');
     }
 
-    componentWillMount() {
-        axios.get('/api/companies').then((response) => {
-            this.setState({companies: Object.values(response.data[0])});
-
-        }).catch((err) => {
-            console.log(err);
-
-        })
-    }
 
     renderCompanies() {
         let deleteCompany = this.deleteCompany;
@@ -61,46 +64,52 @@ class ListCompanies extends Component {
         return this.state.companies.map(function (value) {
             return (
                 <tr>
-                    <td> {value.id} </td>
                     <td> {value.name} </td>
                     <td> {value.email} </td>
-                    <td> {value.logo} </td>
                     <td> {value.website} </td>
+                    <td><img src={`http://laravel.development/logos/${value.logo}`} style={{height: 61+'px'}} /></td>
                     <td><DeleteCompany id={value.id} deleteCompany={deleteCompany}/></td>
                     <td><UpdateCompany id={value.id} editCompany={editCompany}/></td>
-                    {/* <td><ShowCompany id={value.id}/></td> */}
+                    <td><ShowCompany id={value.id}/></td>
                 </tr>
             )
         })
     }
 
     render() {
-        const divStyle = {}
-        return (
-            <div style={divStyle}>
-                <AddCompany addCompany={this.addCompany}/>
-                <div className="container">
-                    <h2>Companies list</h2>
-                    <table className="table">
-                        <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>Company Name</th>
-                            <th>Email</th>
-                            <th>Web Site</th>
-                            <th>Logo</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                            <th>Show</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {this.renderCompanies()}
-                        </tbody>
-                    </table>
+        let id= sessionStorage.getItem('id');
+        if(id){
+            const divStyle = {}
+            return (
+                <div style={divStyle}>
+                    <Home/>
+                    <AddCompany addCompany={this.addCompany}/>
+                    <div className="container">
+                        <h2>Companies list</h2>
+                        <table className="table">
+                            <thead>
+                            <tr>
+                                <th>Company Name</th>
+                                <th>Email</th>
+                                <th>Web Site</th>
+                                <th>Logo</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                                <th>Show</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {this.renderCompanies()}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+          } else{
+                return(
+                    <h1>NotFound</h1>
+                )
+        }
     }
 }
 

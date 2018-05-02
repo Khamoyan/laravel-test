@@ -37,7 +37,7 @@ class UpdateCompanyModal extends Component {
                                     <input type="file" name="logo" 
                                            onChange={(e) => this.props.handleInput('logo', e)}/>
                                 </div>
-                                <button type="submit" className="btn btn-primary" onClick={this.props.updateCompany}>Edit
+                                <button type="submit" className="btn btn-primary" onClick={this.props.updateCompany} data-dismiss="modal">Edit
                                 </button>
                                 </form>
                             </div>

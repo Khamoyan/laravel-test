@@ -12,7 +12,7 @@ class ShowCompanyModal extends Component {
                         <div className="modal-body">
                             <h4 className="modal-title">Show Employee</h4>
                             <div className="container">
-                                <h3>{this.props.list[1]}</h3>
+                                <h3>{this.props.company[1]}</h3>
                                 <div className="container">
                                     <table className="table">
 
@@ -26,7 +26,7 @@ class ShowCompanyModal extends Component {
                                         </tr>
                                         <tr>
                                             <th>Logo:</th>
-                                            {/* <td><img src={`public/logos/${this.props.list[3]})`}/></td> */}
+                                            <td><img src={`http://laravel.development/logos/${this.props.company[3]}`} style={{height: 61+'px'}}/></td>
                                         </tr>
                                     </table>
                                 </div>

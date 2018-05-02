@@ -5,7 +5,9 @@ import ListEmployees from './employees/listEmployees'
 import AddEmployees from './employees/addEmployees';
 import ListCompanies from './companies/listCompanies';
 import AddCompany from './companies/addCompany';
-
+import Home from './Home';
+import LoginComponent from './auth/loginComponent'
+import RegisterComponent from './auth/registerComponent'
 
 class Main extends Component {
     constructor(props) {
@@ -19,31 +21,13 @@ class Main extends Component {
                 <div>
                     <HashRouter>
                         <Switch>
-
                             <div>
-                                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                                    <div className="collapse navbar-collapse" id="navbarNav">
-                                        <ul className="navbar-nav">
-                                            <li className="nav-item active">
-                                                <Link to='/'>Home </Link>
-                                            </li>
-                                            <li className="nav-item">
-                                                <Link to='employees'>Employees </Link>
-                                            </li>
-                                            <li className="nav-item">
-                                                <Link to='companies'>Companies </Link>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </nav>
-
+                                <Route exact path='/' render={() => <LoginComponent />} />
+                                <Route exact path='/' render={() => <RegisterComponent />} />      
                                 <Route path='/employees' render={() => <ListEmployees/>}/>
-                                <Route path='/add_emplyees' component={AddEmployees}/>
                                 <Route path='/companies' render={() => <ListCompanies/>}/>
-                                <Route path='/add_companies' component={AddCompany}/>
-
-                            </div>>
-
+                                <Route path='/home' render={() => <Home/>}/>
+                            </div>
                         </Switch>
                     </HashRouter>
                 </div>

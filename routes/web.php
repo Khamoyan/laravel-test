@@ -11,17 +11,14 @@
 |
 */
 
- Route::get('/home', function () {
+ Route::get('/', function () {
      return view('home');
  });
  
- Route::get('/test', function () {
-    return view('welcome');
-});
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+// Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/companies', 'CompaniesController@index');
 Route::post('/companies', 'CompaniesController@store');

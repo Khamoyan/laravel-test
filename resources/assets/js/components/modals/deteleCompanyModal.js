@@ -11,7 +11,7 @@ class DeleteCompanyModal extends Component {
                         </div>
                         <div className="modal-body">
                             <h4 className="modal-title">Delete Company</h4>
-                            <button type="submit" className="btn btn-primary" onClick={this.props.delete}>Delete
+                            <button type="submit" className="btn btn-primary" onClick={this.props.delete} data-dismiss="modal">Delete
                             </button>
                         </div>
                     </div>

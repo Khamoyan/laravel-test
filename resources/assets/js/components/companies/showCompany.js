@@ -16,9 +16,9 @@ class ShowCompany extends Component {
     }
 
     componentWillMount() {
-        axios.get(`/api/companies/${this.props.id}`).then((response) => {
-            this.setState({companies: Object.values(response.data[1])});
-            this.setState({employees:Object.values(response.data[0])})
+        axios.get(`/api/companies/${this.props.id}`).then((response) => {   
+            this.setState({companies: Object.values(response.data[0])});
+            // this.setState({employees:Object.values(response.data[0])})
         }).catch((err) => {
             console.log(err);
         })
@@ -36,7 +36,7 @@ class ShowCompany extends Component {
                 <button type="button" className="btn btn-info btn-lg edit" data-toggle="modal"
                         data-target={this.state.data_target} onClick={this.show}>Show Employee
                 </button>
-                <ShowCompanyModal id={this.state.data_target} company={this.state.companies} employees={this.state.employees}/>
+                <ShowCompanyModal id={this.state.data_target} company={this.state.companies}/>
             </div>
         )
     }

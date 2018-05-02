@@ -46,7 +46,7 @@ class UpdateEmployeesModal extends Component {
                                            onChange={(e) => this.props.handleInput('company', e)}/>
                                     <input type="hidden" name="company_id" onChange={(e) => this.props.handleInput('company_id', e)} />
                                 </div>
-                                <button type="submit" className="btn btn-primary" onClick={this.props.updateEmployee}>
+                                <button type="submit" className="btn btn-primary" onClick={this.props.updateEmployee} data-dismiss="modal">
                                     Edit
                                 </button>
 

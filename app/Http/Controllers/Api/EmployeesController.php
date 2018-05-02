@@ -32,12 +32,11 @@ class EmployeesController extends Controller
             unset($result['_token'], $result['company'], $result['_method']);
             return $result;
         }
-
     }
 
     public function index()
     {
-        $lists = $this->employees->paginate(3);
+        $lists = $this->employees->paginate(4);
         return response()->json([$lists], 200);
     }
 
@@ -59,8 +58,9 @@ class EmployeesController extends Controller
 
     public function destroy($id)
     {
+        $delete_employee=$this->employees->where('id', $id)->get();
         $this->employees->where('id', $id)->delete();
-        return response()->json('Delete', 200);
+        return response()->json($delete_employee, 200);
     }
 
     public function show($id)

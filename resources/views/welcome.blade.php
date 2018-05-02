@@ -68,12 +68,8 @@
         </style>
     </head>
     <body>
-    <div id='root1'> </div>
-    {{--<div id='root'></div>--}}
-
-    {{--<div id='root'></div>--}}
-        <!-- <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+        <div class="flex-center position-ref full-height">
+            <!-- @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
@@ -82,10 +78,9 @@
                         {{-- <a href="{{ route('register') }}">Register</a> --}}
                     @endauth
                 </div>
-            @endif
+            @endif -->
 
-        </div> -->
-        <script src="{{mix('js/app.js')}}" ></script>
+        </div>
         
     </body>
 </html>

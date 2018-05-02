@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import {Redirect, HashRouter,Switch} from 'react-router-dom'
 
 class RegisterComponent extends Component{
     
@@ -12,13 +13,14 @@ class RegisterComponent extends Component{
             email:'',
             password:'',
             confirmPassword:'',
+            status:false,
         }
         this.handleSubmit=this.handleSubmit.bind(this);
         this.handleInputName=this.handleInputName.bind(this);
         this.handleInputEmail=this.handleInputEmail.bind(this);
         this.handleInputPassword=this.handleInputPassword.bind(this);
         this.handleInputConfirmPassword=this.handleInputConfirmPassword.bind(this);
-        this.login=this.login.bind(this);
+        this.create=this.create.bind(this);
     }
 
     handleInputName(e){
@@ -50,27 +52,36 @@ class RegisterComponent extends Component{
                 email:this.state.email,
                 password:this.state.password
             }
-            this.login(user)
+            this.create(user)
         } else {
             console.log('error');
         }
         
     }
-    login(data){
+    create(data){
 
         axios.post('/api/register',data).then((response)=>{
-
+            this.setState({status: true}); 
             }).catch((err) => {
                 
             })
         }
     
     render(){
-        
+        let redirect_to_home;
+        if(this.state.status) {
+         redirect_to_home=
+                <HashRouter> 
+                        <Switch>
+                            <Redirect from='/' to='/home' />;
+                        </Switch>
+                   </HashRouter>
+        }
         const divStyle={}
         return(   
             <div className='containe'>
-                <div className='row justify-content-center'>
+                <div >
+                    <h3>Creat Users</h3>
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
                             <label>Name</label>
@@ -88,7 +99,7 @@ class RegisterComponent extends Component{
                             <label>Confirm Password</label>
                             <input type="password" className="form-control" placeholder='Confirm Password'  name="confirmPassword" onChange={(e)=>this.handleInputConfirmPassword(e)} />
                         </div>     
-                        <button type="submit" className="btn btn-primary">Creat</button>
+                        <button type="submit" className="btn btn-primary">Creat {redirect_to_home} </button>
                     </form>
                 </div>      
             </div>

@@ -62,14 +62,14 @@ class CompaniesController extends Controller
             }
         }
         $update_company = $this->companies->where('id', $id)->get();
-        dd($update_company);
         return response()->json($update_company, 201);
     }
 
     public function destroy($id)
     {
+        $delete_company=$this->companies->where('id',$id)->get();
         $this->companies->where('id', $id)->delete();
-        return response()->json('Delete', 200);
+        return response()->json($delete_company, 200);
     }
 
     public function show($id)
