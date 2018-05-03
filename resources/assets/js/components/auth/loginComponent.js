@@ -10,13 +10,16 @@ class LoginComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            success: false,
             user: {
                 email: '',
                 password: '',
                 id:null,
+                auth_token:'',
             }
-
         }
+         localStorage.setItem['isLogged']=false
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInput = this.handleInput.bind(this)
         this.login = this.login.bind(this);
@@ -34,10 +37,10 @@ class LoginComponent extends Component {
     }
 
     login(data) {
-        axios.post('/api/login', data).then((response) => {
-            sessionStorage.setItem('id', response.data.user[0].id);
-            sessionStorage.setItem('name', response.data.user[0].name);
-            this.setState({id: response.data.user[0].id});
+        axios.post('/api/login', data).then((response) => { 
+            localStorage['token']=response.data.data['auth_token']
+            localStorage['name']=response.data.data['name']
+            this.setState({success: true});
   
         }).catch((err) => {
 
@@ -45,9 +48,15 @@ class LoginComponent extends Component {
     }
 
     render() {
+        if(this.state.success===true){
+            localStorage['isLogged']=true
+                
+        } else{
+            localStorage['isLogged']=false
+        }
         
         let redirect_to_home
-            if(this.state.id) {
+            if(this.state.success) {
                  redirect_to_home=
                     <HashRouter> 
                         <Switch>
@@ -73,6 +82,10 @@ class LoginComponent extends Component {
                         <div className="form-check">
                             <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
                             <label className="form-check-label"> Remember Me</label>
+                        </div>
+                        <div>
+                            <input type="hidden" name="auth_id" name="auth_id"
+                                onChange={(e) => this.handleInput('auth_id', e)}/>
                         </div>
                         <button type="submit" className="btn btn-primary">Login {redirect_to_home}</button>
                     </form>

@@ -1962,20 +1962,10 @@ var Home = function (_Component) {
     }
 
     _createClass(Home, [{
-        key: 'homet',
-        value: function homet() {
-            var id = sessionStorage.getItem('id');
-            if (id) {
-                return this.render();
-            } else {
-                return 'note Found';
-            }
-        }
-    }, {
         key: 'render',
         value: function render() {
-            var id = sessionStorage.getItem('id');
-            if (id) {
+            var isLogged = localStorage.getItem('isLogged');
+            if (isLogged) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     null,
@@ -2024,7 +2014,7 @@ var Home = function (_Component) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'h1',
                     null,
-                    'Not Found'
+                    'Note Found'
                 );
             }
         }
@@ -16481,8 +16471,8 @@ var ListEmployees = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var id = sessionStorage.getItem('id');
-            if (id) {
+            var isLogged = localStorage.getItem('isLogged');
+            if (isLogged) {
                 var divStyle = {};
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
@@ -16555,7 +16545,7 @@ var ListEmployees = function (_Component) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'h1',
                     null,
-                    'NotFound'
+                    'Note Found'
                 );
             }
         }
@@ -16887,8 +16877,8 @@ var ListCompanies = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var id = sessionStorage.getItem('id');
-            if (id) {
+            var isLogged = localStorage.getItem('isLogged');
+            if (isLogged) {
                 var divStyle = {};
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
@@ -16961,7 +16951,7 @@ var ListCompanies = function (_Component) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'h1',
                     null,
-                    'NotFound'
+                    'Note Found'
                 );
             }
         }
@@ -17046,6 +17036,7 @@ var AddCompany = function (_Component) {
         value: function handelAddCompany(data) {
             var _this2 = this;
 
+            console.log(data.get('name'));
             __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/companies', data).then(function (response) {
                 _this2.props.addCompany(response.data);
             }).catch(function (err) {});
@@ -17066,7 +17057,7 @@ var AddCompany = function (_Component) {
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'form',
-                    { onSubmit: this.handleSubmit, enctype: 'multipart/form-data', id: 'form' },
+                    { onSubmit: this.handleSubmit, encType: 'multipart/form-data', id: 'form' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: 'form-row' },
@@ -17146,6 +17137,8 @@ var AddCompany = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_router_dom__ = __webpack_require__(6);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -17171,13 +17164,16 @@ var RegisterComponent = function (_Component) {
             email: '',
             password: '',
             confirmPassword: '',
-            status: false
+            auth_token: '',
+            success: false
         };
+
         _this.handleSubmit = _this.handleSubmit.bind(_this);
         _this.handleInputName = _this.handleInputName.bind(_this);
         _this.handleInputEmail = _this.handleInputEmail.bind(_this);
         _this.handleInputPassword = _this.handleInputPassword.bind(_this);
         _this.handleInputConfirmPassword = _this.handleInputConfirmPassword.bind(_this);
+        _this.handleInputAuthToken = _this.handleInputAuthToken.bind(_this);
         _this.create = _this.create.bind(_this);
         return _this;
     }
@@ -17211,6 +17207,13 @@ var RegisterComponent = function (_Component) {
             });
         }
     }, {
+        key: 'handleInputAuthToken',
+        value: function handleInputAuthToken(e) {
+            this.setState({
+                auth_token: e.target.value
+            });
+        }
+    }, {
         key: 'handleSubmit',
         value: function handleSubmit(e) {
             e.preventDefault();
@@ -17218,7 +17221,8 @@ var RegisterComponent = function (_Component) {
                 var user = {
                     name: this.state.name,
                     email: this.state.email,
-                    password: this.state.password
+                    password: this.state.password,
+                    auth_token: this.state.auth_token
                 };
                 this.create(user);
             } else {
@@ -17231,13 +17235,15 @@ var RegisterComponent = function (_Component) {
             var _this2 = this;
 
             __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/register', data).then(function (response) {
-                _this2.setState({ status: true });
+
+                _this2.setState({ success: response.data[0] });
             }).catch(function (err) {});
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this3 = this,
+                _React$createElement;
 
             var redirect_to_home = void 0;
             if (this.state.status) {
@@ -17281,7 +17287,7 @@ var RegisterComponent = function (_Component) {
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
-                            { 'class': 'form-group' },
+                            { className: 'form-group' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'label',
                                 null,
@@ -17293,7 +17299,7 @@ var RegisterComponent = function (_Component) {
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
-                            { 'class': 'form-group' },
+                            { className: 'form-group' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'label',
                                 null,
@@ -17305,7 +17311,7 @@ var RegisterComponent = function (_Component) {
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
-                            { 'class': 'form-group' },
+                            { className: 'form-group' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'label',
                                 null,
@@ -17314,6 +17320,13 @@ var RegisterComponent = function (_Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'password', className: 'form-control', placeholder: 'Confirm Password', name: 'confirmPassword', onChange: function onChange(e) {
                                     return _this3.handleInputConfirmPassword(e);
                                 } })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            null,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', (_React$createElement = { type: 'hidden', name: 'auth_id' }, _defineProperty(_React$createElement, 'name', 'auth_id'), _defineProperty(_React$createElement, 'onChange', function onChange(e) {
+                                return _this3.handleInput('auth_id', e);
+                            }), _React$createElement))
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'button',
@@ -62184,6 +62197,7 @@ var UpdateCompany = function (_Component) {
             dataUpdate.append('email', this.state.company.email);
             dataUpdate.append('website', this.state.company.website);
             dataUpdate.append('logo', this.state.company.logo);
+            dataUpdate.append('_method', 'PUT');
 
             this.handelUpdateCompany(this.state.id, dataUpdate);
         }
@@ -62192,7 +62206,7 @@ var UpdateCompany = function (_Component) {
         value: function handelUpdateCompany(id, data) {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/api/companies/' + id, data).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/companies/' + id, data).then(function (response) {
                 _this2.setState({ company: response.data[0] });
                 _this2.props.editCompany(_this2.state.company);
             }).catch(function (err) {});
@@ -62430,12 +62444,12 @@ var LogoutComponent = function (_Component) {
     }, {
         key: 'logout',
         value: function logout() {
-            var _this2 = this;
-
-            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/logout').then(function (response) {
-                sessionStorage.clear();
-                _this2.setState({ status: true });
-            }).catch(function (err) {});
+            // axios.get('/api/logout').then((response)=>{
+            //     localStorage.clear();
+            //     this.setState({status: true});
+            //     }).catch((err) => {
+            //     })
+            localStorage.clear();
         }
     }, {
         key: 'render',
@@ -62462,7 +62476,7 @@ var LogoutComponent = function (_Component) {
                     { onSubmit: this.handleSubmit },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'button',
-                        { type: 'submit', 'class': 'btn btn-primary' },
+                        { type: 'submit', className: 'btn btn-primary' },
                         'logout ',
                         redirect
                     )
@@ -62490,6 +62504,8 @@ var LogoutComponent = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__registerComponent__ = __webpack_require__(52);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -62512,13 +62528,16 @@ var LoginComponent = function (_Component) {
         var _this = _possibleConstructorReturn(this, (LoginComponent.__proto__ || Object.getPrototypeOf(LoginComponent)).call(this, props));
 
         _this.state = {
+            success: false,
             user: {
                 email: '',
                 password: '',
-                id: null
+                id: null,
+                auth_token: ''
             }
-
         };
+        localStorage.setItem['isLogged'] = false;
+
         _this.handleSubmit = _this.handleSubmit.bind(_this);
         _this.handleInput = _this.handleInput.bind(_this);
         _this.login = _this.login.bind(_this);
@@ -62544,18 +62563,25 @@ var LoginComponent = function (_Component) {
             var _this2 = this;
 
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/login', data).then(function (response) {
-                sessionStorage.setItem('id', response.data.user[0].id);
-                sessionStorage.setItem('name', response.data.user[0].name);
-                _this2.setState({ id: response.data.user[0].id });
+                localStorage['token'] = response.data.data['auth_token'];
+                localStorage['name'] = response.data.data['name'];
+                _this2.setState({ success: true });
             }).catch(function (err) {});
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this3 = this,
+                _React$createElement;
+
+            if (this.state.success === true) {
+                localStorage['isLogged'] = true;
+            } else {
+                localStorage['isLogged'] = false;
+            }
 
             var redirect_to_home = void 0;
-            if (this.state.id) {
+            if (this.state.success) {
                 redirect_to_home = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["a" /* HashRouter */],
                     null,
@@ -62616,6 +62642,13 @@ var LoginComponent = function (_Component) {
                                 { className: 'form-check-label' },
                                 ' Remember Me'
                             )
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            null,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', (_React$createElement = { type: 'hidden', name: 'auth_id' }, _defineProperty(_React$createElement, 'name', 'auth_id'), _defineProperty(_React$createElement, 'onChange', function onChange(e) {
+                                return _this3.handleInput('auth_id', e);
+                            }), _React$createElement))
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'button',

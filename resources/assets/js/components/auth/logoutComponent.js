@@ -21,11 +21,12 @@ class LogoutComponent extends Component{
 
     }
     logout(){
-        axios.get('/api/logout').then((response)=>{
-            sessionStorage.clear();
-            this.setState({status: true});
-            }).catch((err) => {
-            })
+        // axios.get('/api/logout').then((response)=>{
+        //     localStorage.clear();
+        //     this.setState({status: true});
+        //     }).catch((err) => {
+        //     })
+        localStorage.clear();
         }
     
     render(){
@@ -42,7 +43,7 @@ class LogoutComponent extends Component{
         return(   
             <div className='containe'>
                 <form onSubmit={this.handleSubmit}>
-                    <button type="submit" class="btn btn-primary">logout {redirect}</button>
+                    <button type="submit" className="btn btn-primary">logout {redirect}</button>
                 </form>
                  
 

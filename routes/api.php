@@ -20,20 +20,33 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Auth::routes();
-Route::post('register', 'Api\AuthController@register');
-Route::post('login', 'Api\AuthController@login');
-Route::get('logout', 'Api\AuthController@logout');
+Route::group(['middleware' => ['jwt.auth','api-header']], function () {
+  
+    // all routes to protected resources are registered here  
+    Route::get('/', function(){
+        $users = App\User::all();
+        
+        $response = ['success'=>true, 'data'=>$users];
+        return response()->json($response, 201);
+    });
+});
 
-Route::get('/employees', 'Api\EmployeesController@index');
-Route::post('employees', 'Api\EmployeesController@store');
-Route::get('/employees/{id}', 'Api\EmployeesController@show');
-Route::put('/employees/{id}', 'Api\EmployeesController@update');
-Route::delete('/employees/{id}', 'Api\EmployeesController@destroy');
+Route::group(['middleware' => 'api-header'], function () {
+    Route::post('/register', 'Api\UserController@register');
+    Route::post('/login', 'Api\UserController@login');
+    Route::get('/logout','Api\UserController@logout');
+    Route::get('/employees', 'Api\EmployeesController@index');
+    Route::post('employees', 'Api\EmployeesController@store');
+    Route::get('/employees/{id}', 'Api\EmployeesController@show');
+    Route::put('/employees/{id}', 'Api\EmployeesController@update');
+    Route::delete('/employees/{id}', 'Api\EmployeesController@destroy');
 
-Route::get('/companies', 'Api\CompaniesController@index');
-Route::post('/companies', 'Api\CompaniesController@store');
-Route::get('/companies/{id}', 'Api\CompaniesController@show');
-Route::put('/companies/{id}', 'Api\CompaniesController@update');
-Route::delete('/companies/{id}', 'Api\CompaniesController@destroy');
+    Route::get('/companies', 'Api\CompaniesController@index');
+    Route::post('/companies', 'Api\CompaniesController@store');
+    Route::get('/companies/{id}', 'Api\CompaniesController@show');
+    Route::put('/companies/{id}', 'Api\CompaniesController@update');
+    Route::delete('/companies/{id}', 'Api\CompaniesController@destroy');
+});
+
+
 

@@ -80,40 +80,41 @@ class ListEmployees extends Component {
     }
 
     render() {
-        let id= sessionStorage.getItem('id');
-        if(id){
-            const divStyle = {};
-            return (
-                <div style={divStyle}>
-                    <Home/>
-                    <AddEmployees addEmployee={this.addEmployee}/>
-                    <div className="container">
-                        <h2>Employees list</h2>
-                        <table className="table">
-                            <thead>
-                            <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                                <th>Show</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                {this.renderEmployees()}
-                            </tbody>
-                        </table>
+        let isLogged=localStorage.getItem('isLogged');
+        if(isLogged){
+                const divStyle = {};
+                return (
+                    <div style={divStyle}>
+                        <Home/>
+                        <AddEmployees addEmployee={this.addEmployee}/>
+                        <div className="container">
+                            <h2>Employees list</h2>
+                            <table className="table">
+                                <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                    <th>Show</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {this.renderEmployees()}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-            );
-          } else {
-                return(
-                    <h1>NotFound</h1>
                 )
-        }
+            } else{
+                return(
+                    <h1>Note Found</h1>
+                )
+                
+            }
+          } 
     }
-}
 
 export default ListEmployees;

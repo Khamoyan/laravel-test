@@ -14,22 +14,15 @@ export default class Home extends Component {
     
        }
     }
-    homet(){
-           let id= sessionStorage.getItem('id');
-           if(id){
-               return this.render()
-           } else {
-               return 'note Found'
-           }
-            
-        }
-   render() {
-            let id= sessionStorage.getItem('id');
-            if(id){
-                return(
-                    <div>
-                         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                                <div className="collapse navbar-collapse" id="navbarNav">
+
+   render() 
+        {
+            let isLogged=localStorage.getItem('isLogged');
+             if(isLogged){ 
+                   return(
+                         <div>
+                              <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                                  <div className="collapse navbar-collapse" id="navbarNav">
                                     <ul className="navbar-nav">
                                         <li className="nav-item active">
                                              <Link to='/home'>Home </Link>
@@ -44,12 +37,12 @@ export default class Home extends Component {
                                 </div>
                              </nav>
                             <LogoutComponent />
-                    </div>
-                );
-            } else{
-                return(
-                    <h1>Not Found</h1>
-                )
+                         </div>
+                    );
+                } else{
+                    return(
+                        <h1>Note Found</h1>
+                    );
             }
+           } 
     }
-}

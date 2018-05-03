@@ -77,10 +77,10 @@ class ListCompanies extends Component {
     }
 
     render() {
-        let id= sessionStorage.getItem('id');
-        if(id){
-            const divStyle = {}
-            return (
+        let isLogged=localStorage.getItem('isLogged');
+          if(isLogged){ 
+             const divStyle = {}
+             return (
                 <div style={divStyle}>
                     <Home/>
                     <AddCompany addCompany={this.addCompany}/>
@@ -104,13 +104,13 @@ class ListCompanies extends Component {
                         </table>
                     </div>
                 </div>
-            );
-          } else{
-                return(
-                    <h1>NotFound</h1>
-                )
-        }
+            )
+             } else{
+                 return( <h1>Note Found</h1>)
+               
+                 }
+            
+          } 
     }
-}
 
 export default ListCompanies;

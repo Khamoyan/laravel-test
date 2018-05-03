@@ -13,13 +13,17 @@ class RegisterComponent extends Component{
             email:'',
             password:'',
             confirmPassword:'',
-            status:false,
+            auth_token:'',
+            success:false,
         }
+    
+
         this.handleSubmit=this.handleSubmit.bind(this);
         this.handleInputName=this.handleInputName.bind(this);
         this.handleInputEmail=this.handleInputEmail.bind(this);
         this.handleInputPassword=this.handleInputPassword.bind(this);
         this.handleInputConfirmPassword=this.handleInputConfirmPassword.bind(this);
+        this.handleInputAuthToken=this.handleInputAuthToken.bind(this)
         this.create=this.create.bind(this);
     }
 
@@ -43,6 +47,11 @@ class RegisterComponent extends Component{
             confirmPassword: e.target.value
         })
     }
+    handleInputAuthToken(e){
+        this.setState({
+            auth_token: e.target.value
+        })
+    }
 
     handleSubmit(e){
         e.preventDefault();
@@ -50,8 +59,9 @@ class RegisterComponent extends Component{
             const user={
                 name:this.state.name,
                 email:this.state.email,
-                password:this.state.password
-            }
+                password:this.state.password,
+                auth_token:this.state.auth_token
+            } 
             this.create(user)
         } else {
             console.log('error');
@@ -61,7 +71,8 @@ class RegisterComponent extends Component{
     create(data){
 
         axios.post('/api/register',data).then((response)=>{
-            this.setState({status: true}); 
+           
+            this.setState({success: response.data[0]}); 
             }).catch((err) => {
                 
             })
@@ -87,17 +98,21 @@ class RegisterComponent extends Component{
                             <label>Name</label>
                             <input type="text" className="form-control" placeholder="User Name" name="name" onChange={(e)=>this.handleInputName(e)} />
                         </div>
-                        <div class="form-group">
+                        <div className="form-group">
                             <label>Email</label>
                             <input type="email" className="form-control" placeholder="Email" name="email" onChange={(e)=>this.handleInputEmail(e)} />
                         </div>
-                        <div class="form-group">
+                        <div className="form-group">
                             <label>Password</label>
                             <input type="password" className="form-control" placeholder='Password'  name="password" onChange={(e)=>this.handleInputPassword(e)} />
                         </div>
-                        <div class="form-group">
+                        <div className="form-group">
                             <label>Confirm Password</label>
                             <input type="password" className="form-control" placeholder='Confirm Password'  name="confirmPassword" onChange={(e)=>this.handleInputConfirmPassword(e)} />
+                        </div>
+                        <div>
+                            <input type="hidden" name="auth_id" name="auth_id"
+                                onChange={(e) => this.handleInput('auth_id', e)}/>
                         </div>     
                         <button type="submit" className="btn btn-primary">Creat {redirect_to_home} </button>
                     </form>

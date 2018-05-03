@@ -40,6 +40,7 @@ class AddCompany extends Component {
     }
 
     handelAddCompany(data) {
+        console.log(data.get('name'));
         axios.post('/api/companies', data).then((response) => {
             this.props.addCompany(response.data);
         }).catch((err) => {
@@ -53,7 +54,7 @@ class AddCompany extends Component {
             <div style={divStyle}>
 
                 <h2>Create</h2>
-                <form onSubmit={this.handleSubmit} enctype="multipart/form-data" id='form'>
+                <form onSubmit={this.handleSubmit} encType="multipart/form-data" id='form'>
                     <div className="form-row">
 
                         <div className="form-group col-md-6">
