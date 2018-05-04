@@ -50,8 +50,6 @@ class ListEmployees extends Component {
 
     componentWillMount() {     
         axios.get('/api/employees').then((response) => {
-            console.log(response.data);
-            
             this.setState({employees: Object.values(response.data[0].data)})
 
         }).catch((err) => {
@@ -81,7 +79,7 @@ class ListEmployees extends Component {
 
     render() {
         let isLogged=localStorage.getItem('isLogged');
-        if(isLogged){
+        if(isLogged==='true'){
                 const divStyle = {};
                 return (
                     <div style={divStyle}>
@@ -90,7 +88,6 @@ class ListEmployees extends Component {
                         <div className="container">
                             <h2>Employees list</h2>
                             <table className="table">
-                                <thead>
                                 <tr>
                                     <th>First Name</th>
                                     <th>Last Name</th>
@@ -100,19 +97,15 @@ class ListEmployees extends Component {
                                     <th>Delete</th>
                                     <th>Show</th>
                                 </tr>
-                                </thead>
-                                <tbody>
                                     {this.renderEmployees()}
-                                </tbody>
                             </table>
                         </div>
                     </div>
                 )
             } else{
                 return(
-                    <h1>Note Found</h1>
+                    <h1>Not Found</h1>
                 )
-                
             }
           } 
     }

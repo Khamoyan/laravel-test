@@ -40,7 +40,6 @@ class AddCompany extends Component {
     }
 
     handelAddCompany(data) {
-        console.log(data.get('name'));
         axios.post('/api/companies', data).then((response) => {
             this.props.addCompany(response.data);
         }).catch((err) => {

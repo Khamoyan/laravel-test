@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use JWTAuth;
 use JWTAuthException;
+use Validator;
 
 class UserController extends Controller
 {
@@ -49,7 +50,8 @@ class UserController extends Controller
             'password'=>\Hash::make($request->password),
             'email'=>$request->email,
             'name'=>$request->name,
-            'auth_token'=> ''
+            'is_admin'=>$request->is_admin,
+            'auth_token'=> '',
         ];
                   
         $user = new \App\User($payload);
@@ -73,6 +75,21 @@ class UserController extends Controller
         
         
         return response()->json($response, 201);
+    }
+
+    public function logout(Request $request)
+    {
+        Validator::make($request->all(), [
+            'auth_token' => 'required'
+        ]);
+        try{
+            JWTAuth::setToken($request->input('auth_token'))->invalidate();
+            return response()->json('ok',200);
+
+        } catch(JWTAuthException $e){
+            return response()->json($e);
+        }
+        
     }
    
 }

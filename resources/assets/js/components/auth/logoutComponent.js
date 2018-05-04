@@ -12,21 +12,24 @@ class LogoutComponent extends Component{
         }
         this.handleSubmit=this.handleSubmit.bind(this);
         this.logout=this.logout.bind(this)
-  
+
     }
 
     handleSubmit(e){
         e.preventDefault();
-        this.logout()
+        let auth_token=localStorage.getItem('token');
+        const token={
+            'auth_token':auth_token,
+        }
+        this.logout(token)
 
     }
-    logout(){
-        // axios.get('/api/logout').then((response)=>{
-        //     localStorage.clear();
-        //     this.setState({status: true});
-        //     }).catch((err) => {
-        //     })
-        localStorage.clear();
+    logout(data){
+        axios.post('/api/logout',data).then((response)=>{
+            localStorage.clear();
+            this.setState({status: true});
+            }).catch((err) => {
+            })
         }
     
     render(){
@@ -45,8 +48,6 @@ class LogoutComponent extends Component{
                 <form onSubmit={this.handleSubmit}>
                     <button type="submit" className="btn btn-primary">logout {redirect}</button>
                 </form>
-                 
-
             </div>
             
         )

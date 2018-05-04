@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\EmployeesRequest;
 use App\Employees;
 use App\Companies;
 
@@ -16,23 +16,8 @@ class EmployeesController extends Controller
     }
 
     /**
-     * @return Illuminate\Http\Request
+     * @return Illuminate\Http\EmployeesRequests
      **/
-
-    public function request(Request $request)
-    {
-        $result = $request->all();
-        $company = $this->companies->where('name', $result['company'])->first();
-        if (!empty($company)) {
-            $result['company_id'] = $company['id'];
-            unset($result['_token'], $result['company'], $result['_method']);
-            return $result;
-        } else {
-            $result['company_id'] = 0;
-            unset($result['_token'], $result['company'], $result['_method']);
-            return $result;
-        }
-    }
 
     public function index()
     {
@@ -40,17 +25,18 @@ class EmployeesController extends Controller
         return response()->json([$lists], 200);
     }
 
-    public function store(Request $request)
+    public function store(EmployeesRequest $request)
     {
-        $result = EmployeesController::request($request);
+        // $result = EmployeesController::request($request);
+        $result=$request->all();
         $this->employees->create($result);
         return response()->json($result, 200);
 
     }
 
-    public function update(Request $request, $id)
+    public function update(EmployeesRequest $request, $id)
     {
-        $result = EmployeesController::request($request);
+        // $result = EmployeesController::request($request);
         $this->employees->where('id', $id)->update($result);
         $employee_update = $this->employees->where('id', $id)->get();
         return response()->json($employee_update, 201);

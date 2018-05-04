@@ -6,6 +6,7 @@ import ShowCompany from './showCompany';
 import UpdateCompany from './updateCompany';
 import AddCompany from './addCompany';
 import Home from '../Home';
+import { exportDefaultSpecifier } from 'babel-types';
 
 class ListCompanies extends Component {
     constructor(props) {
@@ -78,7 +79,8 @@ class ListCompanies extends Component {
 
     render() {
         let isLogged=localStorage.getItem('isLogged');
-          if(isLogged){ 
+        
+          if(isLogged==='true'){ 
              const divStyle = {}
              return (
                 <div style={divStyle}>
@@ -87,7 +89,6 @@ class ListCompanies extends Component {
                     <div className="container">
                         <h2>Companies list</h2>
                         <table className="table">
-                            <thead>
                             <tr>
                                 <th>Company Name</th>
                                 <th>Email</th>
@@ -97,19 +98,15 @@ class ListCompanies extends Component {
                                 <th>Delete</th>
                                 <th>Show</th>
                             </tr>
-                            </thead>
-                            <tbody>
                                 {this.renderCompanies()}
-                            </tbody>
                         </table>
                     </div>
                 </div>
-            )
+               )
              } else{
-                 return( <h1>Note Found</h1>)
-               
-                 }
-            
+                return( <h1>Not Found</h1>)
+              }
+              
           } 
     }
 

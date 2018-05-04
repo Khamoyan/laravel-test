@@ -10,7 +10,7 @@ class LoginComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            success: false,
+            success:false,
             user: {
                 email: '',
                 password: '',
@@ -18,6 +18,7 @@ class LoginComponent extends Component {
                 auth_token:'',
             }
         }
+        
          localStorage.setItem['isLogged']=false
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,15 +41,15 @@ class LoginComponent extends Component {
         axios.post('/api/login', data).then((response) => { 
             localStorage['token']=response.data.data['auth_token']
             localStorage['name']=response.data.data['name']
-            this.setState({success: true});
+            this.setState({success: response.data['success']});
   
         }).catch((err) => {
 
         })
     }
 
-    render() {
-        if(this.state.success===true){
+    render() {    
+        if(this.state.success){
             localStorage['isLogged']=true
                 
         } else{

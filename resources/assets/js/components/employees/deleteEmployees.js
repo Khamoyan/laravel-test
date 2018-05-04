@@ -22,7 +22,6 @@ class DeleteEmployee extends Component {
     }
 
     handelDeleteEmployees(id) {
-
         axios.delete(`/api/employees/${id}`).then((response) => {
             this.props.deleteEmployee(this.props.id);
         }).catch((err) => {

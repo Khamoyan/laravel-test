@@ -26,7 +26,6 @@ class CompaniesController extends Controller
             'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:min_width=100,min_height=100'
         ]);
         $result = $request->all();
-        // dd($result);
         return $result;
     }
 

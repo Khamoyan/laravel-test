@@ -17,7 +17,6 @@ class RegisterComponent extends Component{
             success:false,
         }
     
-
         this.handleSubmit=this.handleSubmit.bind(this);
         this.handleInputName=this.handleInputName.bind(this);
         this.handleInputEmail=this.handleInputEmail.bind(this);
@@ -60,8 +59,11 @@ class RegisterComponent extends Component{
                 name:this.state.name,
                 email:this.state.email,
                 password:this.state.password,
-                auth_token:this.state.auth_token
+                auth_token:this.state.auth_token,
+                is_admin:1
             } 
+            console.log(user);
+            
             this.create(user)
         } else {
             console.log('error');
@@ -71,16 +73,23 @@ class RegisterComponent extends Component{
     create(data){
 
         axios.post('/api/register',data).then((response)=>{
-           
-            this.setState({success: response.data[0]}); 
+            localStorage['token']=response.data.data['auth_token']
+            localStorage['name']=response.data.data['name'] 
+            this.setState({success: response.data['success']}); 
             }).catch((err) => {
                 
             })
         }
     
     render(){
+        if(this.state.success){
+            localStorage['isLogged']=true
+                
+        } else{
+            localStorage['isLogged']=false
+        }
         let redirect_to_home;
-        if(this.state.status) {
+        if(this.state.success) {
          redirect_to_home=
                 <HashRouter> 
                         <Switch>
@@ -111,8 +120,10 @@ class RegisterComponent extends Component{
                             <input type="password" className="form-control" placeholder='Confirm Password'  name="confirmPassword" onChange={(e)=>this.handleInputConfirmPassword(e)} />
                         </div>
                         <div>
-                            <input type="hidden" name="auth_id" name="auth_id"
+                            <input type="hidden"  name="auth_id"
                                 onChange={(e) => this.handleInput('auth_id', e)}/>
+                                {/* <input type="hidden"  name="is_admin"
+                                onChange={(e) => this.handleInput('is_admin', e)}/> */}
                         </div>     
                         <button type="submit" className="btn btn-primary">Creat {redirect_to_home} </button>
                     </form>
