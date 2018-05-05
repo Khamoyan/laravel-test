@@ -1,6 +1,23 @@
 import React, {Component} from 'react';
 
 class UpdateEmployeesModal extends Component {
+    companiesSelect() {
+        return (
+            <div>
+                <label>Company:</label>
+                <select className="form-control" onChange={this.props.handleChange}>
+                    {this.props.companies.map(function (value, index) {
+                        return (
+                            <option value={value.id}>
+                                {value.name}
+                            </option>
+                        )
+                    })}
+                </select>
+            </div>
+        )
+    }
+
     render() {
         return (
             <div>
@@ -40,13 +57,9 @@ class UpdateEmployeesModal extends Component {
                                     <input type="text" className="form-control" placeholder="099******" name="phone"
                                            onChange={(e) => this.props.handleInput('phone', e)}/>
                                 </div>
-                                <div className="form-group">
-                                    <label>Company</label>
-                                    <input type="text" className="form-control" placeholder="Company" name="company"
-                                           onChange={(e) => this.props.handleInput('company', e)}/>
-                                    <input type="hidden" name="company_id" onChange={(e) => this.props.handleInput('company_id', e)} />
-                                </div>
-                                <button type="submit" className="btn btn-primary" onClick={this.props.updateEmployee} data-dismiss="modal">
+                                {this.companiesSelect()}
+                                <button type="submit" className="btn btn-primary" onClick={this.props.updateEmployee}
+                                        data-dismiss="modal">
                                     Edit
                                 </button>
 
@@ -63,5 +76,3 @@ class UpdateEmployeesModal extends Component {
 }
 
 export default UpdateEmployeesModal;
-
-    

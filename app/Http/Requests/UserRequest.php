@@ -1,10 +1,16 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: armenuhi
+ * Date: 05/05/18
+ * Time: 13:37
+ */
 
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EmployeesRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     public function authorize()
     {
@@ -19,10 +25,7 @@ class EmployeesRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required | string',
-            'last_name' => 'required | string',
-//            'phone' => 'required | integer',
-            'email' => 'required|email',
+
         ];
     }
 

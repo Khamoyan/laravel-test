@@ -14,31 +14,34 @@ class UpdateCompanyModal extends Component {
                             <div className="modal-body">
                                 <h4 className="modal-title">Edit Companies</h4>
                                 <form enctype="multipart/form-data">
-                                <div className="form-row">
+                                    <div className="form-row">
 
-                                    <div className="form-group col-md-6">
-                                        <label>Company Name</label>
-                                        <input type="text" className="form-control" placeholder="Name" name="name"
-                                               onChange={(e) => this.props.handleInput('name', e)}/>
-                                    </div>
+                                        <div className="form-group col-md-6">
+                                            <label>Company Name</label>
+                                            <input type="text" className="form-control" placeholder="Name" name="name"
+                                                   onChange={(e) => this.props.handleInput('name', e)}/>
+                                        </div>
 
-                                    <div className="form-group col-md-6">
-                                        <label>Email</label>
-                                        <input type="email" className="form-control" placeholder="Email" name="email"
-                                               onChange={(e) => this.props.handleInput('email', e)}/>
+                                        <div className="form-group col-md-6">
+                                            <label>Email</label>
+                                            <input type="email" className="form-control" placeholder="Email"
+                                                   name="email"
+                                                   onChange={(e) => this.props.handleInput('email', e)}/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="form-group">
-                                    <label>Web Site</label>
-                                    <input type="text" className="form-control" placeholder="websit.com" name="website"
-                                           onChange={(e) => this.props.handleInput('website', e)}/>
-                                </div>
-                                <div className="form-group">
-                                    <input type="file" name="logo" 
-                                           onChange={(e) => this.props.handleInput('logo', e)}/>
-                                </div>
-                                <button type="submit" className="btn btn-primary" onClick={this.props.updateCompany} data-dismiss="modal">Edit
-                                </button>
+                                    <div className="form-group">
+                                        <label>Web Site</label>
+                                        <input type="text" className="form-control" placeholder="websit.com"
+                                               name="website"
+                                               onChange={(e) => this.props.handleInput('website', e)}/>
+                                    </div>
+                                    <div className="form-group">
+                                        <input type="file" name="logo"
+                                               onChange={(e) => this.props.handleInput('logo', e)}/>
+                                    </div>
+                                    <button type="submit" className="btn btn-primary" onClick={this.props.updateCompany}
+                                            data-dismiss="modal">Edit
+                                    </button>
                                 </form>
                             </div>
                             <div className="modal-footer">
@@ -53,5 +56,3 @@ class UpdateCompanyModal extends Component {
 }
 
 export default UpdateCompanyModal;
-
-    

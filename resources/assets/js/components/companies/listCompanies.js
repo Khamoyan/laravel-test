@@ -6,7 +6,7 @@ import ShowCompany from './showCompany';
 import UpdateCompany from './updateCompany';
 import AddCompany from './addCompany';
 import Home from '../Home';
-import { exportDefaultSpecifier } from 'babel-types';
+import {exportDefaultSpecifier} from 'babel-types';
 
 class ListCompanies extends Component {
     constructor(props) {
@@ -30,7 +30,7 @@ class ListCompanies extends Component {
     }
 
     deleteCompany(company) {
-        let companies = this.state.companies 
+        let companies = this.state.companies
         companies.map((value, index) => {
             if (value.id === company) {
                 companies.splice(index, 1);
@@ -45,7 +45,7 @@ class ListCompanies extends Component {
                 value.name = company.name;
                 value.email = company.email;
                 value.logo = company.logo;
-                value.website=company.website;
+                value.website = company.website;
             }
         });
         this.setState(this.state.companies);
@@ -68,7 +68,7 @@ class ListCompanies extends Component {
                     <td> {value.name} </td>
                     <td> {value.email} </td>
                     <td> {value.website} </td>
-                    <td><img src={`http://laravel.development/logos/${value.logo}`} style={{height: 61+'px'}} /></td>
+                    <td><img src={`http://laravel.development/logos/${value.logo}`} style={{height: 61 + 'px'}}/></td>
                     <td><DeleteCompany id={value.id} deleteCompany={deleteCompany}/></td>
                     <td><UpdateCompany id={value.id} editCompany={editCompany}/></td>
                     <td><ShowCompany id={value.id}/></td>
@@ -78,11 +78,11 @@ class ListCompanies extends Component {
     }
 
     render() {
-        let isLogged=localStorage.getItem('isLogged');
-        
-          if(isLogged==='true'){ 
-             const divStyle = {}
-             return (
+        let isLogged = localStorage.getItem('isLogged');
+
+        if (isLogged === 'true') {
+            const divStyle = {}
+            return (
                 <div style={divStyle}>
                     <Home/>
                     <AddCompany addCompany={this.addCompany}/>
@@ -98,16 +98,16 @@ class ListCompanies extends Component {
                                 <th>Delete</th>
                                 <th>Show</th>
                             </tr>
-                                {this.renderCompanies()}
+                            {this.renderCompanies()}
                         </table>
                     </div>
                 </div>
-               )
-             } else{
-                return( <h1>Not Found</h1>)
-              }
-              
-          } 
+            )
+        } else {
+            return ( <h1>Not Found</h1>)
+        }
+
     }
+}
 
 export default ListCompanies;

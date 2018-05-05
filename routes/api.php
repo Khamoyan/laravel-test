@@ -20,12 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => ['jwt.auth','api-header']], function () {
-  
-    Route::get('/', function(){
+Route::group(['middleware' => ['jwt.auth', 'api-header']], function () {
+
+    Route::get('/', function () {
         $users = App\User::all();
-        
-        $response = ['success'=>true, 'data'=>$users];
+
+        $response = ['success' => true, 'data' => $users];
         return response()->json($response, 201);
     });
 });
@@ -33,11 +33,11 @@ Route::group(['middleware' => ['jwt.auth','api-header']], function () {
 Route::group(['middleware' => 'api-header'], function () {
     Route::post('/register', 'Api\UserController@register');
     Route::post('/login', 'Api\UserController@login');
-    Route::post('/logout','Api\UserController@logout');
-    
+    Route::post('/logout', 'Api\UserController@logout');
+
 });
 
-// Route::group(['middleware' => 'admin'], function(){
+//Route::group(['middleware' => 'admin'], function () {
     Route::get('/employees', 'Api\EmployeesController@index');
     Route::post('employees', 'Api\EmployeesController@store');
     Route::get('/employees/{id}', 'Api\EmployeesController@show');
@@ -49,4 +49,4 @@ Route::group(['middleware' => 'api-header'], function () {
     Route::get('/companies/{id}', 'Api\CompaniesController@show');
     Route::put('/companies/{id}', 'Api\CompaniesController@update');
     Route::delete('/companies/{id}', 'Api\CompaniesController@destroy');
-// });
+//});

@@ -31,19 +31,19 @@ class UpdateCompany extends Component {
     }
 
     handleSubmit(e) {
-        e.preventDefault();        
+        e.preventDefault();
         let dataUpdate = new FormData();
         dataUpdate.append('name', this.state.company.name);
         dataUpdate.append('email', this.state.company.email);
         dataUpdate.append('website', this.state.company.website);
         dataUpdate.append('logo', this.state.company.logo);
         dataUpdate.append('_method', 'PUT');
-        
+
         this.handelUpdateCompany(this.state.id, dataUpdate)
     }
 
     handelUpdateCompany(id, data) {
-        axios.post(`/api/companies/${id}`, data).then((response) => { 
+        axios.post(`/api/companies/${id}`, data).then((response) => {
             this.setState({company: response.data[0]});
             this.props.editCompany(this.state.company);
 

@@ -46,5 +46,3 @@ class ShowEmployeeModal extends Component {
 }
 
 export default ShowEmployeeModal;
-
-    

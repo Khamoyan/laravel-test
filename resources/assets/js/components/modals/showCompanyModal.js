@@ -26,7 +26,8 @@ class ShowCompanyModal extends Component {
                                         </tr>
                                         <tr>
                                             <th>Logo:</th>
-                                            <td><img src={`http://laravel.development/logos/${this.props.company[3]}`} style={{height: 61+'px'}}/></td>
+                                            <td><img src={`http://laravel.development/logos/${this.props.company[3]}`}
+                                                     style={{height: 61 + 'px'}}/></td>
                                         </tr>
                                     </table>
                                 </div>

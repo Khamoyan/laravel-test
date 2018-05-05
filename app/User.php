@@ -17,7 +17,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'auth_token'
+        'name', 'email', 'password', 'is_admin', 'auth_token'
     ];
 
     /**
@@ -34,11 +34,20 @@ class User extends Authenticatable implements JWTSubject
      *
      * @return mixed
      */
-   
+    protected $casts = [
+        'is_admin' => 'boolean',
+    ];
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
     }
+
     /**
      * Return a key value array, containing any custom claims to be added to the JWT.
      *

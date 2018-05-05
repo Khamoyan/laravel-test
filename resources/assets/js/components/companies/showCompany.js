@@ -9,14 +9,14 @@ class ShowCompany extends Component {
         this.state = {
             data_target: `show${this.props.id}`,
             companies: [],
-            employees:[],
+            employees: [],
         }
         this.show = this.show.bind(this)
 
     }
 
     componentWillMount() {
-        axios.get(`/api/companies/${this.props.id}`).then((response) => {   
+        axios.get(`/api/companies/${this.props.id}`).then((response) => {
             this.setState({companies: Object.values(response.data[0])});
             // this.setState({employees:Object.values(response.data[0])})
         }).catch((err) => {

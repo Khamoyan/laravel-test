@@ -12,9 +12,10 @@ class UpdateEmployee extends Component {
                 last_name: '',
                 email: '',
                 phone: '',
-                company:'',
                 company_id: ''
             },
+            companies: [],
+            company_id:'',
             id: this.props.id,
             data_target: `update${this.props.id}`
         };
@@ -23,6 +24,7 @@ class UpdateEmployee extends Component {
         this.handelUpdateEmployees = this.handelUpdateEmployees.bind(this)
         this.handleInput = this.handleInput.bind(this);
         this.update = this.update.bind(this)
+        this.handleChange = this.handleChange.bind(this);
 
     }
 
@@ -32,19 +34,33 @@ class UpdateEmployee extends Component {
         this.setState({employee: state});
     }
 
-    handleSubmit(e) {
+    handleChange(event) {
+        this.setState({company_id: event.target.value});
+    }
 
+    handleSubmit(e) {
         e.preventDefault();
+        this.state.employee.company_id = this.state.company_id;
         this.handelUpdateEmployees(this.state.id, this.state.employee)
 
     }
 
     handelUpdateEmployees(id, employees) {
         axios.put(`/api/employees/${id}`, employees).then((response) => {
-            this.setState({employee:response.data[0]});
+            this.setState({employee: response.data[0]});
             this.props.editEmployee(this.state.employee);
 
         }).catch((err) => {
+
+        })
+    }
+
+    componentWillMount() {
+        axios.get('/api/companies').then((response) => {
+            this.setState({companies: Object.values(response.data[0])});
+
+        }).catch((err) => {
+            console.log(err);
 
         })
     }
@@ -62,7 +78,8 @@ class UpdateEmployee extends Component {
                     </button>
                 </td>
                 <UpdateEmployeesModal id={this.state.data_target} updateEmployee={this.handleSubmit}
-                                      handleInput={this.handleInput}/>
+                                      handleInput={this.handleInput} companies={this.state.companies}
+                                      handleChange={this.handleChange}/>
             </div>
         )
     }

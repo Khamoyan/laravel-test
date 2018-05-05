@@ -48,9 +48,9 @@ class ListEmployees extends Component {
         alert('creting');
     }
 
-    componentWillMount() {     
+    componentWillMount() {
         axios.get('/api/employees').then((response) => {
-            this.setState({employees: Object.values(response.data[0].data)})
+            this.setState({employees: Object.values(response.data[0])})
 
         }).catch((err) => {
             console.log(err);
@@ -63,7 +63,7 @@ class ListEmployees extends Component {
         const editEmployee = this.editEmployee;
 
         return this.state.employees.map(function (value, index) {
-            return (             
+            return (
                 <tr>
                     <td> {value.first_name}</td>
                     <td> {value.last_name} </td>
@@ -78,36 +78,36 @@ class ListEmployees extends Component {
     }
 
     render() {
-        let isLogged=localStorage.getItem('isLogged');
-        if(isLogged==='true'){
-                const divStyle = {};
-                return (
-                    <div style={divStyle}>
-                        <Home/>
-                        <AddEmployees addEmployee={this.addEmployee}/>
-                        <div className="container">
-                            <h2>Employees list</h2>
-                            <table className="table">
-                                <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
-                                    <th>Show</th>
-                                </tr>
-                                    {this.renderEmployees()}
-                            </table>
-                        </div>
+        let isLogged = localStorage.getItem('isLogged');
+        if (isLogged === 'true') {
+            const divStyle = {};
+            return (
+                <div style={divStyle}>
+                    <Home/>
+                    <AddEmployees addEmployee={this.addEmployee}/>
+                    <div className="container">
+                        <h2>Employees list</h2>
+                        <table className="table">
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                                <th>Show</th>
+                            </tr>
+                            {this.renderEmployees()}
+                        </table>
                     </div>
-                )
-            } else{
-                return(
-                    <h1>Not Found</h1>
-                )
-            }
-          } 
+                </div>
+            )
+        } else {
+            return (
+                <h1>Not Found</h1>
+            )
+        }
     }
+}
 
 export default ListEmployees;

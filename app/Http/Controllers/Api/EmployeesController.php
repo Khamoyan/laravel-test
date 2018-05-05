@@ -15,20 +15,16 @@ class EmployeesController extends Controller
         $this->companies = $companies;
     }
 
-    /**
-     * @return Illuminate\Http\EmployeesRequests
-     **/
 
     public function index()
     {
-        $lists = $this->employees->paginate(4);
+        $lists = $this->employees->get();
         return response()->json([$lists], 200);
     }
 
     public function store(EmployeesRequest $request)
     {
-        // $result = EmployeesController::request($request);
-        $result=$request->all();
+        $result = $request->inputs();
         $this->employees->create($result);
         return response()->json($result, 200);
 
@@ -36,7 +32,7 @@ class EmployeesController extends Controller
 
     public function update(EmployeesRequest $request, $id)
     {
-        // $result = EmployeesController::request($request);
+        $result = $request->inputs();
         $this->employees->where('id', $id)->update($result);
         $employee_update = $this->employees->where('id', $id)->get();
         return response()->json($employee_update, 201);
@@ -44,7 +40,7 @@ class EmployeesController extends Controller
 
     public function destroy($id)
     {
-        $delete_employee=$this->employees->where('id', $id)->get();
+        $delete_employee = $this->employees->where('id', $id)->get();
         $this->employees->where('id', $id)->delete();
         return response()->json($delete_employee, 200);
     }

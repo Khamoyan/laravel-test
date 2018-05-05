@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CompaniesRequest;
 use App\Http\Controllers\Controller;
 use App\Companies;
 use App\Employees;
@@ -15,19 +15,6 @@ class CompaniesController extends Controller
         $this->employees = $employees;
     }
 
-    /**
-     * @return Illuminate\Http\Request
-     **/
-
-    public function request(Request $request)
-    {
-        $this->validate($request, [
-            'logo' => 'required',
-            'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:min_width=100,min_height=100'
-        ]);
-        $result = $request->all();
-        return $result;
-    }
 
     public function index()
     {
@@ -35,9 +22,9 @@ class CompaniesController extends Controller
         return response()->json([$lists], 200);
     }
 
-    public function store(Request $request)
+    public function store(CompaniesRequest $request)
     {
-        $result = CompaniesController::request($request);
+        $result = $request->all();
         if ($request->hasfile('logo')) {
             $image = $request->file('logo');
             $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
@@ -49,9 +36,9 @@ class CompaniesController extends Controller
         return response()->json($result, 201);
     }
 
-    public function update(Request $request, $id)
+    public function update(CompaniesRequest $request, $id)
     {
-        $result = CompaniesController::request($request);
+        $result = $request->all();
         if ($request->hasfile('logo')) {
             $image = $request->file('logo');
             $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
@@ -66,7 +53,7 @@ class CompaniesController extends Controller
 
     public function destroy($id)
     {
-        $delete_company=$this->companies->where('id',$id)->get();
+        $delete_company = $this->companies->where('id', $id)->get();
         $this->companies->where('id', $id)->delete();
         return response()->json($delete_company, 200);
     }

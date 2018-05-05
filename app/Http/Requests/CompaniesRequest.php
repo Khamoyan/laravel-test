@@ -1,10 +1,16 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: armenuhi
+ * Date: 05/05/18
+ * Time: 01:19
+ */
 
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EmployeesRequest extends FormRequest
+class CompaniesRequest extends FormRequest
 {
     public function authorize()
     {
@@ -19,9 +25,8 @@ class EmployeesRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required | string',
-            'last_name' => 'required | string',
-//            'phone' => 'required | integer',
+            'name' => 'required|string',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:min_width=100,min_height=100',
             'email' => 'required|email',
         ];
     }
@@ -29,6 +34,6 @@ class EmployeesRequest extends FormRequest
     public function inputs()
     {
         return $this->all();
-    }
 
+    }
 }

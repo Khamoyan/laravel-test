@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Redirect, HashRouter,Route,Router,Switch} from 'react-router-dom'
+import {Redirect, HashRouter, Route, Router, Switch} from 'react-router-dom'
 import {Link} from 'react-router-dom';
 import Main from '../Main';
 import RegisterComponent from './registerComponent';
@@ -10,16 +10,16 @@ class LoginComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            success:false,
+            success: false,
             user: {
                 email: '',
                 password: '',
-                id:null,
-                auth_token:'',
+                id: null,
+                auth_token: '',
             }
         }
-        
-         localStorage.setItem['isLogged']=false
+
+        localStorage.setItem['isLogged'] = false
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInput = this.handleInput.bind(this)
@@ -38,33 +38,33 @@ class LoginComponent extends Component {
     }
 
     login(data) {
-        axios.post('/api/login', data).then((response) => { 
-            localStorage['token']=response.data.data['auth_token']
-            localStorage['name']=response.data.data['name']
+        axios.post('/api/login', data).then((response) => {
+            localStorage['token'] = response.data.data['auth_token']
+            localStorage['name'] = response.data.data['name']
             this.setState({success: response.data['success']});
-  
+
         }).catch((err) => {
 
         })
     }
 
-    render() {    
-        if(this.state.success){
-            localStorage['isLogged']=true
-                
-        } else{
-            localStorage['isLogged']=false
+    render() {
+        if (this.state.success) {
+            localStorage['isLogged'] = true
+
+        } else {
+            localStorage['isLogged'] = false
         }
-        
+
         let redirect_to_home
-            if(this.state.success) {
-                 redirect_to_home=
-                    <HashRouter> 
-                        <Switch>
-                            <Redirect from='/' to='/home' />;
-                        </Switch>
-                   </HashRouter>
-              }
+        if (this.state.success) {
+            redirect_to_home =
+                <HashRouter>
+                    <Switch>
+                        <Redirect from='/' to='/home'/>;
+                    </Switch>
+                </HashRouter>
+        }
         return (
             <div className='containe'>
                 <div>
@@ -85,8 +85,8 @@ class LoginComponent extends Component {
                             <label className="form-check-label"> Remember Me</label>
                         </div>
                         <div>
-                            <input type="hidden" name="auth_id" name="auth_id"
-                                onChange={(e) => this.handleInput('auth_id', e)}/>
+                            <input type="hidden" name="auth_id"
+                                   onChange={(e) => this.handleInput('auth_id', e)}/>
                         </div>
                         <button type="submit" className="btn btn-primary">Login {redirect_to_home}</button>
                     </form>

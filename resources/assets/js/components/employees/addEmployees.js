@@ -9,15 +9,17 @@ class AddEmployees extends Component {
             addEmployees: {
                 first_name: '',
                 last_name: '',
+                company_id: '',
                 email: '',
                 phone: '',
-                company: '',
-                company_id: ''
-            }
+            },
+            id: '',
+            companies: [],
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInput = this.handleInput.bind(this)
         this.handelAddEmployees = this.handelAddEmployees.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleInput(key, e) {
@@ -26,8 +28,13 @@ class AddEmployees extends Component {
         this.setState({addEmployees: state});
     }
 
+    handleChange(event) {
+        this.setState({id: event.target.value});
+    }
+
     handleSubmit(e) {
         e.preventDefault();
+        this.state.addEmployees.company_id = this.state.id;
         this.handelAddEmployees(this.state.addEmployees)
 
     }
@@ -40,6 +47,33 @@ class AddEmployees extends Component {
         }).catch((err) => {
 
         })
+    }
+
+    componentWillMount() {
+        axios.get('/api/companies').then((response) => {
+            this.setState({companies: Object.values(response.data[0])});
+
+        }).catch((err) => {
+            console.log(err);
+
+        })
+    }
+
+    companiesSelect() {
+        return (
+            <div>
+                <label>Company:</label>
+                <select className="form-control" onChange={this.handleChange}>
+                    {this.state.companies.map(function (value, index) {
+                        return (
+                            <option value={value.id}>
+                                {value.name}
+                            </option>
+                        )
+                    })}
+                </select>
+            </div>
+        )
     }
 
     render() {
@@ -73,13 +107,7 @@ class AddEmployees extends Component {
                                onChange={(e) => this.handleInput('phone', e)}/>
                     </div>
 
-                    <div className="form-group">
-                        <label>Company</label>
-                        <input type="text" className="form-control" placeholder="Company" name="company"
-                               onChange={(e) => this.handleInput('company', e)}/>
-                        <input type="hidden" name="company_id" name="company_id"
-                               onChange={(e) => this.handleInput('company_id', e)}/>
-                    </div>
+                    {this.companiesSelect()}
                     <button type="submit" className="btn btn-primary" onSubmit={this.handleSubmit}>Create</button>
                 </form>
             </div>
