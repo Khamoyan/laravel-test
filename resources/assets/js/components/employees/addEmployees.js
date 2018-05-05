@@ -64,6 +64,7 @@ class AddEmployees extends Component {
             <div>
                 <label>Company:</label>
                 <select className="form-control" onChange={this.handleChange}>
+                    <option>Choose a company </option>
                     {this.state.companies.map(function (value, index) {
                         return (
                             <option value={value.id}>

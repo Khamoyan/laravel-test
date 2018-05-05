@@ -19,10 +19,9 @@ class ShowEmployees extends Component {
     componentWillMount() {
         axios.get(`/api/employees/${this.props.id}`).then((response) => {
             this.setState({company: response.data[0]})
-            this.setState({employee: Object.values(response.data[1])});
+            this.setState({employee: Object.values(response.data[1])});    
         }).catch((err) => {
             console.log(err);
-
         })
     }
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 class ShowEmployeeModal extends Component {
-    render() {
+    render() {     
         return (
             <div className="modal fade" id={this.props.id} role="dialog">
                 <div className="modal-dialog">
@@ -30,7 +30,7 @@ class ShowEmployeeModal extends Component {
                                         </tr>
                                         <tr>
                                             <th>Phone:</th>
-                                            <td>{this.props.list[3]}</td>
+                                            <td>{this.props.list[5]}</td>
                                         </tr>
 
                                     </table>
