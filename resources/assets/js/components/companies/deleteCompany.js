@@ -23,11 +23,14 @@ class DeleteCompany extends Component {
     }
 
     handelDeleteEmployees(id) {
-        axios.delete(`/api/companies/${id}`).then((response) => {
-            this.props.deleteCompany(response.data[0].id);
-        }).catch((err) => {
+        axios.delete(`/api/companies/${id}\?token=${localStorage.getItem('token')}`,    
+                    { headers: { 'Authorization': localStorage.getItem('token'),
+                                'Content-Type': 'application/json' }})
+                    .then((response) => {
+                        this.props.deleteCompany(response.data[0].id);
+                    }).catch((err) => {
 
-        })
+                    })
     }
 
     deleteModal() {

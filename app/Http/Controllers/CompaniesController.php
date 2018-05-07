@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Companies;
 use App\Employees;
 use App\Http\Request\CompaniesRequest;
@@ -19,18 +18,6 @@ class CompaniesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function request(Request $request)
-    {
-        $result = $request->all();
-        $this->validate($request, [
-            'logo' => 'required',
-            'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:min_width=100,min_height=100'
-        ]);
-        unset($result['_token'],$result['_method']);
-
-        return $result;
-    }
-
     public function index()
     {
         $lists = $this->companies->get();
@@ -38,9 +25,9 @@ class CompaniesController extends Controller
         return view('companies.index',['lists'=>$lists]);
     }
 
-    public function store(Request $request)
+    public function store(CompaniesRequest $request)
     {
-        $result = CompaniesController::request($request);
+        $result = $request->all();
         if ($request->hasfile('logo')) {
             $image = $request->file('logo');
             $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
@@ -53,10 +40,9 @@ class CompaniesController extends Controller
         return back();
     }
 
-    public function update(Request $request, $id)
+    public function update(CompaniesRequest $request, $id)
     {
-        dd($request);
-        $result = CompaniesController::request($request);
+        $result = $request->all();
         if ($request->hasfile('logo')) {
 
             $image = $request->file('logo');
@@ -66,7 +52,6 @@ class CompaniesController extends Controller
                 $image->move($destinationPath, $result['logo']);
             }
         }
-        return response()->json(201);
         return back();
     }
 

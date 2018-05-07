@@ -43,13 +43,16 @@ class UpdateCompany extends Component {
     }
 
     handelUpdateCompany(id, data) {
-        axios.post(`/api/companies/${id}`, data).then((response) => {
-            this.setState({company: response.data[0]});
-            this.props.editCompany(this.state.company);
+        axios.post(`/api/companies/${id}/${localStorage.getItem('token')}`,
+                    data, 
+                    { headers: {'Authorization': localStorage.getItem('token'), 
+                            'Content-Type': 'application/json' }})  
+                .then((response) => {
+                            this.setState({company: response.data[0]});
+                            this.props.editCompany(this.state.company);
+                }).catch((err) => {
 
-        }).catch((err) => {
-
-        })
+                })
     }
 
     update() {

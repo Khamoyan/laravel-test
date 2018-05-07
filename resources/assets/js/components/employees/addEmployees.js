@@ -40,17 +40,19 @@ class AddEmployees extends Component {
     }
 
     handelAddEmployees(employees) {
+        axios.post(`/api/employees/?token=${localStorage.getItem('token')}`,    
+                    employees,
+                    { headers: { 'Authorization': localStorage.getItem('token'),
+                                'Content-Type': 'application/json' }})
+                .then((response) => {
+                     this.props.addEmployee(response.data);
+                }).catch((err) => {
 
-        axios.post('/api/employees', employees).then((response) => {
-            this.props.addEmployee(response.data);
-
-        }).catch((err) => {
-
-        })
+                })
     }
 
     componentWillMount() {
-        axios.get('/api/companies').then((response) => {
+        axios.get(`/api/companies/?token=${localStorage.getItem('token')}`).then((response) => {
             this.setState({companies: Object.values(response.data[0])});
 
         }).catch((err) => {

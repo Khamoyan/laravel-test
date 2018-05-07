@@ -16,12 +16,13 @@ class ShowCompany extends Component {
     }
 
     componentWillMount() {
-        axios.get(`/api/companies/${this.props.id}`).then((response) => {
-            this.setState({companies: Object.values(response.data[0])});
-            // this.setState({employees:Object.values(response.data[0])})
-        }).catch((err) => {
-            console.log(err);
-        })
+        axios.get(`/api/companies/${this.props.id}/?token=${localStorage.getItem('token')}`,
+                { headers: { 'Authorization': localStorage.getItem('token') }})
+            .then((response) => {
+                this.setState({companies: Object.values(response.data[0])});
+            }).catch((err) => {
+                console.log(err);
+            })
     }
 
     show() {

@@ -17764,9 +17764,6 @@ var Main = function (_Component) {
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Route */], { exact: true, path: '/', render: function render() {
                                         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__auth_loginComponent__["a" /* default */], null);
                                     } }),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Route */], { exact: true, path: '/', render: function render() {
-                                        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__auth_registerComponent__["a" /* default */], null);
-                                    } }),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Route */], { path: '/employees', render: function render() {
                                         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__employees_listEmployees__["a" /* default */], null);
                                     } }),
@@ -18835,7 +18832,8 @@ var ListEmployees = function (_Component) {
 
         _this.state = {
             employees: [],
-            activePage: null
+            showEmployee: [],
+            status: false
         };
 
         _this.deleteEmployee = _this.deleteEmployee.bind(_this);
@@ -18866,13 +18864,14 @@ var ListEmployees = function (_Component) {
                 }
             });
             this.setState({ employee: employee });
-            this.props.editEmployee(employee);
         }
     }, {
         key: 'addEmployee',
         value: function addEmployee(employee) {
             this.state.employees.push(employee);
             this.setState({ employees: this.state.employees });
+            this.setState({ showEmployee: employee });
+            this.setState({ status: true });
             alert('creting');
         }
     }, {
@@ -18880,7 +18879,8 @@ var ListEmployees = function (_Component) {
         value: function componentWillMount() {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/employees').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/employees/?token=' + localStorage.getItem('token'), { headers: { Authorizatio: localStorage.getItem('token'),
+                    'Content-Type': 'application/json' } }).then(function (response) {
                 _this2.setState({ employees: Object.values(response.data[0]) });
             }).catch(function (err) {
                 console.log(err);
@@ -18891,6 +18891,8 @@ var ListEmployees = function (_Component) {
         value: function renderEmployees() {
             var deleteEmployee = this.deleteEmployee;
             var editEmployee = this.editEmployee;
+            var showEmployee = this.state.showEmployee;
+            var status = this.state.status;
 
             return this.state.employees.map(function (value, index) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -18936,7 +18938,7 @@ var ListEmployees = function (_Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'td',
                         null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__showEmployee__["a" /* default */], { id: value.id })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__showEmployee__["a" /* default */], { id: value.id, showEmployee: showEmployee, status: true })
                     )
                 );
             });
@@ -19091,7 +19093,8 @@ var AddEmployees = function (_Component) {
         value: function handelAddEmployees(employees) {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/employees', employees).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/employees/?token=' + localStorage.getItem('token'), employees, { headers: { 'Authorization': localStorage.getItem('token'),
+                    'Content-Type': 'application/json' } }).then(function (response) {
                 _this2.props.addEmployee(response.data);
             }).catch(function (err) {});
         }
@@ -19100,7 +19103,7 @@ var AddEmployees = function (_Component) {
         value: function componentWillMount() {
             var _this3 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies/?token=' + localStorage.getItem('token')).then(function (response) {
                 _this3.setState({ companies: Object.values(response.data[0]) });
             }).catch(function (err) {
                 console.log(err);
@@ -19281,7 +19284,8 @@ var ListCompanies = function (_Component) {
         value: function componentWillMount() {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/companies').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/companies/?token=' + localStorage.getItem('token'), { headers: { Authorizatio: localStorage.getItem('token'),
+                    'Content-Type': 'application/json' } }).then(function (response) {
                 _this2.setState({ companies: Object.values(response.data[0]) });
             }).catch(function (err) {
                 console.log(err);
@@ -19527,7 +19531,8 @@ var AddCompany = function (_Component) {
         value: function handelAddCompany(data) {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/companies', data).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/companies/?token=' + localStorage.getItem('token'), data, { headers: { 'Authorization': localStorage.getItem('token'),
+                    'Content-Type': 'application/json' } }).then(function (response) {
                 _this2.props.addCompany(response.data);
             }).catch(function (err) {});
         }
@@ -20968,7 +20973,7 @@ var RegisterComponent = function (_Component) {
     return RegisterComponent;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-/* harmony default export */ __webpack_exports__["a"] = (RegisterComponent);
+/* unused harmony default export */ var _unused_webpack_default_export = (RegisterComponent);
 
 /***/ }),
 /* 143 */
@@ -64723,7 +64728,8 @@ var DeleteEmployee = function (_Component) {
         value: function handelDeleteEmployees(id) {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/employees/' + id).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/employees/' + id + '?token=' + localStorage.getItem('token'), { headers: { 'Authorization': localStorage.getItem('token'),
+                    'Content-Type': 'application/json' } }).then(function (response) {
                 _this2.props.deleteEmployee(_this2.props.id);
             }).catch(function (err) {});
         }
@@ -64908,7 +64914,8 @@ var UpdateEmployee = function (_Component) {
         value: function handelUpdateEmployees(id, employees) {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/api/employees/' + id, employees).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/api/employees/' + id + '/' + localStorage.getItem('token'), employees, { headers: { 'Authorization': localStorage.getItem('token'),
+                    'Content-Type': 'application/json' } }).then(function (response) {
                 _this2.setState({ employee: response.data[0] });
                 _this2.props.editEmployee(_this2.state.employee);
             }).catch(function (err) {});
@@ -64918,7 +64925,7 @@ var UpdateEmployee = function (_Component) {
         value: function componentWillMount() {
             var _this3 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies/?token=' + localStorage.getItem('token')).then(function (response) {
                 _this3.setState({ companies: Object.values(response.data[0]) });
             }).catch(function (err) {
                 console.log(err);
@@ -65169,7 +65176,6 @@ var ShowEmployees = function (_Component) {
             employee: []
         };
         _this.show = _this.show.bind(_this);
-
         return _this;
     }
 
@@ -65178,7 +65184,7 @@ var ShowEmployees = function (_Component) {
         value: function componentWillMount() {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/employees/' + this.props.id).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/employees/' + this.props.id + '/?token=' + localStorage.getItem('token'), { headers: { 'Authorization': localStorage.getItem('token') } }).then(function (response) {
                 _this2.setState({ company: response.data[0] });
                 _this2.setState({ employee: Object.values(response.data[1]) });
             }).catch(function (err) {
@@ -65447,7 +65453,8 @@ var DeleteCompany = function (_Component) {
         value: function handelDeleteEmployees(id) {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/companies/' + id).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/companies/' + id + '?token=' + localStorage.getItem('token'), { headers: { 'Authorization': localStorage.getItem('token'),
+                    'Content-Type': 'application/json' } }).then(function (response) {
                 _this2.props.deleteCompany(response.data[0].id);
             }).catch(function (err) {});
         }
@@ -65600,9 +65607,8 @@ var ShowCompany = function (_Component) {
         value: function componentWillMount() {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies/' + this.props.id).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies/' + this.props.id + '/?token=' + localStorage.getItem('token'), { headers: { 'Authorization': localStorage.getItem('token') } }).then(function (response) {
                 _this2.setState({ companies: Object.values(response.data[0]) });
-                // this.setState({employees:Object.values(response.data[0])})
             }).catch(function (err) {
                 console.log(err);
             });
@@ -65837,7 +65843,8 @@ var UpdateCompany = function (_Component) {
         value: function handelUpdateCompany(id, data) {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/companies/' + id, data).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/companies/' + id + '/' + localStorage.getItem('token'), data, { headers: { 'Authorization': localStorage.getItem('token'),
+                    'Content-Type': 'application/json' } }).then(function (response) {
                 _this2.setState({ company: response.data[0] });
                 _this2.props.editCompany(_this2.state.company);
             }).catch(function (err) {});

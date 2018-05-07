@@ -19,9 +19,6 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
-        // Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class
-        // Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-        
     ];
 
     /**
@@ -62,8 +59,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'api-header' => \App\Http\Middleware\API::class,
-        'jwt-auth' => \App\Http\Middleware\jwtMiddleware::class,
-        'admin' => \App\Http\Middleware\Admin::class,
+        'jwt.auth' => '\Tymon\JWTAuth\Middleware\GetUserFromToken',
+        'jwt.refresh' => '\Tymon\JWTAuth\Middleware\RefreshToken',
     ];
 }

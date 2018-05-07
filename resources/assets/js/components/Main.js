@@ -23,7 +23,7 @@ class Main extends Component {
                         <Switch>
                             <div>
                                 <Route exact path='/' render={() => <LoginComponent/>}/>
-                                <Route exact path='/' render={() => <RegisterComponent/>}/>
+                                {/* <Route exact path='/' render={() => <RegisterComponent/>}/> */}
                                 <Route path='/employees' render={() => <ListEmployees/>}/>
                                 <Route path='/companies' render={() => <ListCompanies/>}/>
                                 <Route path='/home' render={() => <Home/>}/>

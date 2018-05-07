@@ -22,11 +22,14 @@ class DeleteEmployee extends Component {
     }
 
     handelDeleteEmployees(id) {
-        axios.delete(`/api/employees/${id}`).then((response) => {
-            this.props.deleteEmployee(this.props.id);
-        }).catch((err) => {
+        axios.delete(`/api/employees/${id}\?token=${localStorage.getItem('token')}`,    
+                    { headers: { 'Authorization': localStorage.getItem('token'),
+                                'Content-Type': 'application/json' }})
+                    .then((response) => {
+                            this.props.deleteEmployee(this.props.id);
+                    }).catch((err) => {
 
-        })
+                    })
     }
 
     deleteModal() {

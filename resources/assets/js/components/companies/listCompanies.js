@@ -20,13 +20,15 @@ class ListCompanies extends Component {
     }
 
     componentWillMount() {
-        axios.get('/api/companies').then((response) => {
-            this.setState({companies: Object.values(response.data[0])});
+        axios.get(`/api/companies/?token=${localStorage.getItem('token')}`, 
+                        { headers: { Authorizatio: localStorage.getItem('token'),    
+                                    'Content-Type': 'application/json'}})
+                    .then((response) => {
+                        this.setState({companies: Object.values(response.data[0])});
+                    }).catch((err) => {
+                        console.log(err);
 
-        }).catch((err) => {
-            console.log(err);
-
-        })
+                    })
     }
 
     deleteCompany(company) {

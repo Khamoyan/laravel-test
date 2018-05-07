@@ -13,22 +13,22 @@ class ShowEmployees extends Component {
             employee: []
         };
         this.show = this.show.bind(this)
-
     }
 
     componentWillMount() {
-        axios.get(`/api/employees/${this.props.id}`).then((response) => {
-            this.setState({company: response.data[0]})
-            this.setState({employee: Object.values(response.data[1])});    
-        }).catch((err) => {
-            console.log(err);
-        })
+        axios.get(`/api/employees/${this.props.id}/?token=${localStorage.getItem('token')}`,
+                { headers: { 'Authorization': localStorage.getItem('token') }})
+            .then((response) => {
+                this.setState({company: response.data[0]})
+                this.setState({employee: Object.values(response.data[1])});
+            }).catch((err) => {
+                console.log(err);
+            })
     }
 
-    show() {
+    show() {    
         $(`#${this.state.data_target}`).modal();
     }
-
 
     render() {
         const divStyle = {}

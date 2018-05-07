@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Employees;
 
 class Employees extends Model
 {
@@ -17,7 +18,7 @@ class Employees extends Model
     	'phone'
     ];
 
-    public function companies()
+    public function company()
     {
     	$this->belongsTo('App\Employees');
     }

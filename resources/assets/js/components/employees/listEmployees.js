@@ -12,7 +12,8 @@ class ListEmployees extends Component {
         super(props);
         this.state = {
             employees: [],
-            activePage: null
+            showEmployee:[],
+            status:false,
         };
 
         this.deleteEmployee = this.deleteEmployee.bind(this);
@@ -39,28 +40,33 @@ class ListEmployees extends Component {
             }
         });
         this.setState({employee});
-        this.props.editEmployee(employee)
     }
 
     addEmployee(employee) {
         this.state.employees.push(employee);
         this.setState({employees: this.state.employees});
+        this.setState({showEmployee:employee})
+        this.setState({status:true})
         alert('creting');
     }
 
     componentWillMount() {
-        axios.get('/api/employees').then((response) => {
-            this.setState({employees: Object.values(response.data[0])})
+        axios.get(`/api/employees/?token=${localStorage.getItem('token')}`, 
+                    { headers: { Authorizatio: localStorage.getItem('token'),    
+                                'Content-Type': 'application/json'}})
+                .then((response) => {
+                        this.setState({employees: Object.values(response.data[0])})
+                }).catch((err) => {
+                    console.log(err);
 
-        }).catch((err) => {
-            console.log(err);
-
-        })
+                })
     }
 
     renderEmployees() {
         const deleteEmployee = this.deleteEmployee;
         const editEmployee = this.editEmployee;
+        const showEmployee=this.state.showEmployee;
+        const status=this.state.status;
 
         return this.state.employees.map(function (value, index) {
             return (
@@ -71,7 +77,7 @@ class ListEmployees extends Component {
                     <td> {value.phone} </td>
                     <td><DeleteEmployee id={value.id} deleteEmployee={deleteEmployee}/></td>
                     <td><UpdateEmployee id={value.id} editEmployee={editEmployee}/></td>
-                    <td><ShowEmployees id={value.id}/></td>
+                    <td><ShowEmployees id={value.id} showEmployee={showEmployee} status={true}/></td>
                 </tr>
             )
         })

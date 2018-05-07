@@ -42,23 +42,24 @@ class UpdateEmployee extends Component {
         e.preventDefault();
         this.state.employee.company_id = this.state.company_id;
         this.handelUpdateEmployees(this.state.id, this.state.employee)
-
     }
 
     handelUpdateEmployees(id, employees) {
-        axios.put(`/api/employees/${id}`, employees).then((response) => {
-            this.setState({employee: response.data[0]});
-            this.props.editEmployee(this.state.employee);
+        axios.put(`/api/employees/${id}/${localStorage.getItem('token')}`,
+                     employees, 
+                     { headers: {'Authorization': localStorage.getItem('token'), 
+                                'Content-Type': 'application/json' }})  
+                    .then((response) => {
+                        this.setState({employee: response.data[0]});
+                        this.props.editEmployee(this.state.employee);
+                    }).catch((err) => {
 
-        }).catch((err) => {
-
-        })
+                    })
     }
 
     componentWillMount() {
-        axios.get('/api/companies').then((response) => {
+        axios.get(`/api/companies/?token=${localStorage.getItem('token')}`).then((response) => {
             this.setState({companies: Object.values(response.data[0])});
-
         }).catch((err) => {
             console.log(err);
 

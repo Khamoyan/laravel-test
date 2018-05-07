@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use JWTAuth;
 use JWTAuthException;
+use Exception;
 
 class UserController extends Controller
 {
@@ -29,14 +30,18 @@ class UserController extends Controller
                                         'message' => 'Token creation failed',
                                     ]);
         }
+        catch(Exception $e) {
+            dd('stegh mtav');
+        }
         return $token;
     }
 
     public function login(UserRequest $request)
     {
+    
         $user = User::where('email', $request->email)->get()->first();
         if ($user && Hash::check($request->password, $user->password)) {
-            $token = self::getToken($request->email, $request->password);
+            $token = $this->getToken($request->email, $request->password);
             $user->auth_token = $token;
             $user->save();
             $response = ['success' => true,
@@ -62,7 +67,7 @@ class UserController extends Controller
         $user = new User($payload);
         if ($user->save()) {
 
-            $token = self::getToken($request->email, $request->password);
+            $token = $this->getToken($request->email, $request->password);
 
             if (!is_string($token)) {
                 return response()->json(['success' => false, 'data' => 'Token generation failed'], 201);

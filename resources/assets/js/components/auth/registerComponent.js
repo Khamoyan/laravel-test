@@ -130,8 +130,6 @@ class RegisterComponent extends Component {
                         <div>
                             <input type="hidden" name="auth_id"
                                    onChange={(e) => this.handleInput('auth_id', e)}/>
-                            {/* <input type="hidden"  name="is_admin"
-                                onChange={(e) => this.handleInput('is_admin', e)}/> */}
                         </div>
                         <button type="submit" className="btn btn-primary">Creat {redirect_to_home} </button>
                     </form>
