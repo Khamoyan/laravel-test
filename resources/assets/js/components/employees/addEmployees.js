@@ -113,7 +113,7 @@ class AddEmployees extends Component {
                     {this.companiesSelect()}
                     <button type="submit" className="btn btn-primary" onSubmit={this.handleSubmit}>Create</button>
                 </form>
-            </div>
+            </div>     
         )
     }
 }

@@ -3,9 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Employees;
 
-class Employees extends Model
+class Employee extends Model
 {
     //
     protected $table='employees';
@@ -20,7 +19,7 @@ class Employees extends Model
 
     public function company()
     {
-    	$this->belongsTo(Employees);
+    	$this->belongsTo('App\Company');
     }
     
 }

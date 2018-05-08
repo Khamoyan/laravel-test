@@ -36,4 +36,3 @@ Route::post('/employees','EmployeesController@store');
 Route::get('/employees/{id}','EmployeesController@show');
 Route::put('/employees/{id}','EmployeesController@update');
 Route::delete('/employees/{id}','EmployeesController@destroy');
-

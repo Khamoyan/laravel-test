@@ -4,28 +4,25 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployeesRequest;
-use App\Employees;
-use App\Companies;
+use App\Employee;
+use App\Company;
 
 class EmployeesController extends Controller
 {
-    public function __construct(Employees $employees, Companies $companies)
+    public function __construct()
     {
-        $this->employees = $employees;
-        $this->companies = $companies;
     }
-
 
     public function index()
     {
-        $lists = $this->employees->get();
-        return response()->json([$lists], 200);
+        $lists = Employee::with('employees')->get();
+        return response()->json($lists, 200);
     }
 
     public function store(EmployeesRequest $request)
     {
         $result = $request->inputs();
-        $this->employees->create($result);
+        Employee::create($result);
         return response()->json($result, 200);
 
     }
@@ -34,23 +31,23 @@ class EmployeesController extends Controller
     {
         $result = $request->inputs();
         unset($result['_method'],$result['token']);
-        $this->employees->where('id', $id)->update($result);
-        $employee_update = $this->employees->where('id', $id)->get();
-        return response()->json($employee_update, 201);
+        Employee::where('id', $id)->update($result);
+        $employee =Employee::where('id', $id)->get();
+        return response()->json($employee, 201);
     }
 
     public function destroy($id)
     {
-        $delete_employee = $this->employees->where('id', $id)->get();
-        $this->employees->where('id', $id)->delete();
-        return response()->json($delete_employee, 200);
+        $employee = Employee::where('id', $id)->get();
+        Employee::where('id', $id)->delete();
+        return response()->json($employee, 200);
     }
 
     public function show($id)
     {
-        $employee = $this->employees->where('id', $id)->first();
-        $company = $this->companies->where('id', $employee['company_id'])->first();
-        return response()->json([$company['name'], $employee], 200);
+        $employee = Employee::where('id', $id)->first();
+        $company = Company::where('id', $employee['company_id'])->first();
+        return response()->json($company['name'], $employee, 200);
     }
 
 }

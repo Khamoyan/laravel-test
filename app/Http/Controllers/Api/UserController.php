@@ -39,7 +39,7 @@ class UserController extends Controller
     {
     
         $user = User::where('email', $request->email)->get()->first();
-        if ($user && Hash::check($request->password, $user->password)) {
+        if ($user) {
             $token = $this->getToken($request->email, $request->password);
             $user->auth_token = $token;
             $user->save();
@@ -49,42 +49,6 @@ class UserController extends Controller
         } else {
             $response = ['success' => false, 'data' => 'Record doesnt exists'];
         }
-
-        return response()->json($response, 201);
-    }
-
-    public function register(UserRequest $request)
-    {
-        $payload = [
-            'password' => Hash::make($request->password),
-            'email' => $request->email,
-            'name' => $request->name,
-            'is_admin' => $request->is_admin,
-            'auth_token' => '',
-        ];
-
-        $user = new User($payload);
-        if ($user->save()) {
-
-            $token = $this->getToken($request->email, $request->password);
-
-            if (!is_string($token)) {
-                return response()->json(['success' => false, 'data' => 'Token generation failed'], 201);
-            }
-
-            $user = User::where('email', $request->email)->get()->first();
-
-            $user->auth_token = $token;
-
-            $user->save();
-
-            $response = ['success' => true,
-                         'data' => ['name' => $user->name, 'id' => $user->id, 'email' => $request->email,
-                                    'auth_token' => $token]];
-        } else {
-            $response = ['success' => false, 'data' => 'Couldnt register user'];
-        }
-
 
         return response()->json($response, 201);
     }

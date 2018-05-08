@@ -18832,8 +18832,7 @@ var ListEmployees = function (_Component) {
 
         _this.state = {
             employees: [],
-            showEmployee: [],
-            status: false
+            showEmployee: []
         };
 
         _this.deleteEmployee = _this.deleteEmployee.bind(_this);
@@ -18872,7 +18871,6 @@ var ListEmployees = function (_Component) {
             this.state.employees.push(employee);
             this.setState({ employees: this.state.employees });
             this.setState({ showEmployee: employee });
-            this.setState({ status: true });
             alert('creting');
         }
     }, {
@@ -18882,7 +18880,7 @@ var ListEmployees = function (_Component) {
 
             __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/employees/?token=' + localStorage.getItem('token'), { headers: { Authorizatio: localStorage.getItem('token'),
                     'Content-Type': 'application/json' } }).then(function (response) {
-                _this2.setState({ employees: Object.values(response.data[0]) });
+                _this2.setState({ employees: Object.values(response.data) });
             }).catch(function (err) {
                 console.log(err);
             });
@@ -18897,49 +18895,53 @@ var ListEmployees = function (_Component) {
 
             return this.state.employees.map(function (value, index) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'tr',
+                    'tbody',
                     null,
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'td',
+                        'tr',
                         null,
-                        ' ',
-                        value.first_name
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'td',
-                        null,
-                        ' ',
-                        value.last_name,
-                        ' '
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'td',
-                        null,
-                        ' ',
-                        value.email,
-                        ' '
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'td',
-                        null,
-                        ' ',
-                        value.phone,
-                        ' '
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'td',
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__deleteEmployees__["a" /* default */], { id: value.id, deleteEmployee: deleteEmployee })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'td',
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__updateEmployees__["a" /* default */], { id: value.id, editEmployee: editEmployee })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'td',
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__showEmployee__["a" /* default */], { id: value.id, showEmployee: showEmployee, status: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'td',
+                            null,
+                            ' ',
+                            value.first_name
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'td',
+                            null,
+                            ' ',
+                            value.last_name,
+                            ' '
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'td',
+                            null,
+                            ' ',
+                            value.email,
+                            ' '
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'td',
+                            null,
+                            ' ',
+                            value.phone,
+                            ' '
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'td',
+                            null,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__deleteEmployees__["a" /* default */], { id: value.id, deleteEmployee: deleteEmployee })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'td',
+                            null,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__updateEmployees__["a" /* default */], { id: value.id, editEmployee: editEmployee })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'td',
+                            null,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__showEmployee__["a" /* default */], { id: value.id })
+                        )
                     )
                 );
             });
@@ -18967,42 +18969,46 @@ var ListEmployees = function (_Component) {
                             'table',
                             { className: 'table' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'tr',
+                                'thead',
                                 null,
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'th',
+                                    'tr',
                                     null,
-                                    'First Name'
-                                ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'th',
-                                    null,
-                                    'Last Name'
-                                ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'th',
-                                    null,
-                                    'Email'
-                                ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'th',
-                                    null,
-                                    'Phone'
-                                ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'th',
-                                    null,
-                                    'Edit'
-                                ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'th',
-                                    null,
-                                    'Delete'
-                                ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'th',
-                                    null,
-                                    'Show'
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'First Name'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Last Name'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Email'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Phone'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Edit'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Delete'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Show'
+                                    )
                                 )
                             ),
                             this.renderEmployees()
@@ -65285,59 +65291,63 @@ var ShowEmployeeModal = function (_Component) {
                                         "table",
                                         { className: "table" },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "tr",
+                                            "tbody",
                                             null,
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "th",
+                                                "tr",
                                                 null,
-                                                "Name:"
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    "th",
+                                                    null,
+                                                    "Name:"
+                                                ),
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    "td",
+                                                    null,
+                                                    this.props.company
+                                                )
                                             ),
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "td",
+                                                "tr",
                                                 null,
-                                                this.props.company
-                                            )
-                                        ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "tr",
-                                            null,
-                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "th",
-                                                null,
-                                                "Last Name:"
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    "th",
+                                                    null,
+                                                    "Last Name:"
+                                                ),
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    "td",
+                                                    null,
+                                                    this.props.list[2]
+                                                )
                                             ),
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "td",
+                                                "tr",
                                                 null,
-                                                this.props.list[2]
-                                            )
-                                        ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "tr",
-                                            null,
-                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "th",
-                                                null,
-                                                "Email:"
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    "th",
+                                                    null,
+                                                    "Email:"
+                                                ),
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    "td",
+                                                    null,
+                                                    this.props.list[4]
+                                                )
                                             ),
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "td",
+                                                "tr",
                                                 null,
-                                                this.props.list[4]
-                                            )
-                                        ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "tr",
-                                            null,
-                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "th",
-                                                null,
-                                                "Phone:"
-                                            ),
-                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "td",
-                                                null,
-                                                this.props.list[5]
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    "th",
+                                                    null,
+                                                    "Phone:"
+                                                ),
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    "td",
+                                                    null,
+                                                    this.props.list[5]
+                                                )
                                             )
                                         )
                                     )

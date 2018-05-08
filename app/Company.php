@@ -3,9 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Companies;
 
-class Companies extends Model
+class Company extends Model
 {
     //
     protected $table='companies';
@@ -19,6 +18,6 @@ class Companies extends Model
 
      public function employees()
      {
-    	$this->hasMany(Companies);
+    	$this->hasMany('App\Employee');
      }
 }

@@ -13,7 +13,6 @@ class ListEmployees extends Component {
         this.state = {
             employees: [],
             showEmployee:[],
-            status:false,
         };
 
         this.deleteEmployee = this.deleteEmployee.bind(this);
@@ -47,7 +46,6 @@ class ListEmployees extends Component {
         this.state.employees.push(employee);
         this.setState({employees: this.state.employees});
         this.setState({showEmployee:employee})
-        this.setState({status:true})
         alert('creting');
     }
 
@@ -56,7 +54,7 @@ class ListEmployees extends Component {
                     { headers: { Authorizatio: localStorage.getItem('token'),    
                                 'Content-Type': 'application/json'}})
                 .then((response) => {
-                        this.setState({employees: Object.values(response.data[0])})
+                        this.setState({employees: Object.values(response.data)})
                 }).catch((err) => {
                     console.log(err);
                 })
@@ -70,15 +68,17 @@ class ListEmployees extends Component {
 
         return this.state.employees.map(function (value, index) {
             return (
-                <tr>
-                    <td> {value.first_name}</td>
-                    <td> {value.last_name} </td>
-                    <td> {value.email} </td>
-                    <td> {value.phone} </td>
-                    <td><DeleteEmployee id={value.id} deleteEmployee={deleteEmployee}/></td>
-                    <td><UpdateEmployee id={value.id} editEmployee={editEmployee}/></td>
-                    <td><ShowEmployees id={value.id} showEmployee={showEmployee} status={true}/></td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td> {value.first_name}</td>
+                        <td> {value.last_name} </td>
+                        <td> {value.email} </td>
+                        <td> {value.phone} </td>
+                        <td><DeleteEmployee id={value.id} deleteEmployee={deleteEmployee}/></td>
+                        <td><UpdateEmployee id={value.id} editEmployee={editEmployee}/></td>
+                        <td><ShowEmployees id={value.id}/></td>
+                    </tr>
+                </tbody>
             )
         })
     }
@@ -94,15 +94,17 @@ class ListEmployees extends Component {
                     <div className="container">
                         <h2>Employees list</h2>
                         <table className="table">
-                            <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                                <th>Show</th>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                    <th>Show</th>
+                                </tr>
+                            </thead>
                             {this.renderEmployees()}
                         </table>
                     </div>

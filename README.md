@@ -8,5 +8,3 @@
 7) php artisan migrate
 8) npm install
 9) npm run watch
-10) composer require tymon/jwt-auth
-11) php artisan vendor:publish

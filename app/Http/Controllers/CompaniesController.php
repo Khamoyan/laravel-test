@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Companies;
-use App\Employees;
+use App\Company;
+use App\Employee;
 use App\Http\Request\CompaniesRequest;
 
 class CompaniesController extends Controller
 {
-    public function __construct(Companies $companies, Employees $employees)
+    public function __construct()
     {
-        $this->companies = $companies;
-        $this->employees = $employees;
     }
 
     /**
@@ -20,8 +18,7 @@ class CompaniesController extends Controller
 
     public function index()
     {
-        $lists = $this->companies->get();
-        $lists=$this->companies->paginate(10);
+        $lists=Company::paginate(10);
         return view('companies.index',['lists'=>$lists]);
     }
 

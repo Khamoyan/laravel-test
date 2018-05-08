@@ -16,20 +16,19 @@ class ShowEmployees extends Component {
     }
 
     componentWillMount() {
-        axios.get(`/api/employees/${this.props.id}/?token=${localStorage.getItem('token')}`,
+            axios.get(`/api/employees/${this.props.id}/?token=${localStorage.getItem('token')}`,
                 { headers: { 'Authorization': localStorage.getItem('token') }})
-            .then((response) => {
-                this.setState({company: response.data[0]})
-                this.setState({employee: Object.values(response.data[1])});
-            }).catch((err) => {
-                console.log(err);
-            })
+                    .then((response) => {
+                        this.setState({company: response.data[0]})
+                        this.setState({employee: Object.values(response.data[1])});
+                    }).catch((err) => {
+                        console.log(err);
+                    })
     }
 
-    show() {    
+    show() {           
         $(`#${this.state.data_target}`).modal();
     }
-
     render() {
         const divStyle = {}
         return (

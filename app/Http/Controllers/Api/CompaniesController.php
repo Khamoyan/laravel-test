@@ -4,22 +4,20 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\CompaniesRequest;
 use App\Http\Controllers\Controller;
-use App\Companies;
-use App\Employees;
+use App\Company;
+use App\Employee;
 
 class CompaniesController extends Controller
 {
-    public function __construct(Companies $companies, Employees $employees)
+    public function __construct()
     {
-        $this->companies = $companies;
-        $this->employees = $employees;
     }
-
 
     public function index()
     {
-        $lists = $this->companies->get();
-        return response()->json([$lists], 200);
+        $lists = Company::with('companies')->get();
+        dd('asas', $lists);
+        return response()->json($lists, 200);
     }
 
     public function store(CompaniesRequest $request)
@@ -28,8 +26,8 @@ class CompaniesController extends Controller
         if ($request->hasfile('logo')) {
             $image = $request->file('logo');
             $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('/logos');
-            if ($this->companies->create($result)) {
+            $destinationPath = storage_path('app/public//logos');
+            if (Company::create($result)) {
                 $image->move($destinationPath, $result['logo']);
             }
         }
@@ -43,26 +41,26 @@ class CompaniesController extends Controller
         if ($request->hasfile('logo')) {
             $image = $request->file('logo');
             $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('/logos');
-            if ($this->companies->where('id', $id)->update($result)) {
+            $destinationPath = public_path('storage/logos');
+            if (Company::where('id', $id)->update($result)) {
                 $image->move($destinationPath, $result['logo']);
             }
         }
-        $update_company = $this->companies->where('id', $id)->get();
-        return response()->json($update_company, 201);
+        $company = $this->companies->where('id', $id)->get();
+        return response()->json($company, 201);
     }
 
     public function destroy($id)
     {
-        $delete_company = $this->companies->where('id', $id)->get();
-        $this->companies->where('id', $id)->delete();
-        return response()->json($delete_company, 200);
+        $company = Company::where('id', $id)->first();
+        Company::where('id', $id)->delete();
+        return response()->json($company, 200);
     }
 
     public function show($id)
     {
-        $company = $this->companies->where('id', $id)->first();
-        $employees = $this->employees->where('company_id', $id)->get();
-        return response()->json([$company], 200);
+        $company = Company::where('id', $id)->first();
+        $employees =Employee::where('company_id', $id)->first();
+        return response()->json($company, 200);
     }
 }

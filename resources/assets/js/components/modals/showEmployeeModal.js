@@ -15,24 +15,24 @@ class ShowEmployeeModal extends Component {
                                 <h3>{this.props.list[1]}</h3>
                                 <div className="container">
                                     <table className="table">
-
-                                        <tr>
-                                            <th>Name:</th>
-                                            <td>{this.props.company}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Last Name:</th>
-                                            <td>{this.props.list[2]}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Email:</th>
-                                            <td>{this.props.list[4]}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Phone:</th>
-                                            <td>{this.props.list[5]}</td>
-                                        </tr>
-
+                                        <tbody>
+                                            <tr>
+                                                <th>Name:</th>
+                                                <td>{this.props.company}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Last Name:</th>
+                                                <td>{this.props.list[2]}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Email:</th>
+                                                <td>{this.props.list[4]}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Phone:</th>
+                                                <td>{this.props.list[5]}</td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
