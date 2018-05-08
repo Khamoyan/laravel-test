@@ -31,7 +31,6 @@ class UserController extends Controller
                                     ]);
         }
         catch(Exception $e) {
-            dd('stegh mtav');
         }
         return $token;
     }

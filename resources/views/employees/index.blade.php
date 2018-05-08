@@ -31,8 +31,12 @@
 
         <div class="form-group">
           <label for="inputPhone">Company</label>
-          <input type="text" class="form-control" placeholder="Company" name="company">
-          <input type="hidden" name="company_id">
+          <select  name='company_id' class="form-control">
+              <option>Choose a company </option>
+              @foreach($companiesLists as $company)
+                 <option value={{$company->id }}> {{ $company->name }}</option>
+               @endforeach
+           </select>
         </div>
 
          <button type="submit" class="btn btn-primary">Create</button>
@@ -108,8 +112,12 @@
             </div>
             <div class="form-group">
               <label for="inputPhone">Company</label>
-              <input type="text" class="form-control" placeholder="Company" name="company">
-              <input type="hidden" name="company_id">
+              <select  name='company_id' class="form-control">
+                    <option>Choose a company </option>
+                  @foreach($companiesLists as $company)
+                    <option name='company_id' value={{$company->id }}> {{ $company->name }}</option>
+                  @endforeach
+              </select>
             </div>    
             <button type="submit" class="btn btn-primary">Edit</button>
           </form>

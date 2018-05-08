@@ -127,10 +127,6 @@ class RegisterComponent extends Component {
                             <input type="password" className="form-control" placeholder='Confirm Password'
                                    name="confirmPassword" onChange={(e) => this.handleInputConfirmPassword(e)}/>
                         </div>
-                        <div>
-                            <input type="hidden" name="auth_id"
-                                   onChange={(e) => this.handleInput('auth_id', e)}/>
-                        </div>
                         <button type="submit" className="btn btn-primary">Creat {redirect_to_home} </button>
                     </form>
                 </div>

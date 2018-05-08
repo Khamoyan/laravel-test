@@ -37,6 +37,7 @@ class ListEmployees extends Component {
                 value.first_name = employee.first_name;
                 value.last_name = employee.last_name;
                 value.email = employee.email;
+                value.phone=employee.phone
             }
         });
         this.setState({employee});
@@ -58,7 +59,6 @@ class ListEmployees extends Component {
                         this.setState({employees: Object.values(response.data[0])})
                 }).catch((err) => {
                     console.log(err);
-
                 })
     }
 

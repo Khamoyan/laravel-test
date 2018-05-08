@@ -20,7 +20,7 @@ class Employees extends Model
 
     public function company()
     {
-    	$this->belongsTo('App\Employees');
+    	$this->belongsTo(Employees);
     }
     
 }

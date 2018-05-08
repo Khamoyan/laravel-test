@@ -18861,6 +18861,7 @@ var ListEmployees = function (_Component) {
                     value.first_name = employee.first_name;
                     value.last_name = employee.last_name;
                     value.email = employee.email;
+                    value.phone = employee.phone;
                 }
             });
             this.setState({ employee: employee });
@@ -20947,14 +20948,6 @@ var RegisterComponent = function (_Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'password', className: 'form-control', placeholder: 'Confirm Password',
                                 name: 'confirmPassword', onChange: function onChange(e) {
                                     return _this3.handleInputConfirmPassword(e);
-                                } })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            null,
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'hidden', name: 'auth_id',
-                                onChange: function onChange(e) {
-                                    return _this3.handleInput('auth_id', e);
                                 } })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -64873,7 +64866,8 @@ var UpdateEmployee = function (_Component) {
                 last_name: '',
                 email: '',
                 phone: '',
-                company_id: ''
+                company_id: '',
+                _method: 'PUT'
             },
             companies: [],
             company_id: '',
@@ -64914,8 +64908,10 @@ var UpdateEmployee = function (_Component) {
         value: function handelUpdateEmployees(id, employees) {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/api/employees/' + id + '/' + localStorage.getItem('token'), employees, { headers: { 'Authorization': localStorage.getItem('token'),
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/employees/' + id + '/?token=' + localStorage.getItem('token'), employees, { headers: { 'Authorization': localStorage.getItem('token'),
                     'Content-Type': 'application/json' } }).then(function (response) {
+                console.log(545454);
+
                 _this2.setState({ employee: response.data[0] });
                 _this2.props.editEmployee(_this2.state.employee);
             }).catch(function (err) {});
@@ -65843,7 +65839,9 @@ var UpdateCompany = function (_Component) {
         value: function handelUpdateCompany(id, data) {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/companies/' + id + '/' + localStorage.getItem('token'), data, { headers: { 'Authorization': localStorage.getItem('token'),
+            console.log(id);
+
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/companies/' + id + '?token=' + localStorage.getItem('token'), data, { headers: { 'Authorization': localStorage.getItem('token'),
                     'Content-Type': 'application/json' } }).then(function (response) {
                 _this2.setState({ company: response.data[0] });
                 _this2.props.editCompany(_this2.state.company);
@@ -72417,14 +72415,6 @@ var LoginComponent = function (_Component) {
                                 { className: 'form-check-label' },
                                 ' Remember Me'
                             )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            null,
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'hidden', name: 'auth_id',
-                                onChange: function onChange(e) {
-                                    return _this3.handleInput('auth_id', e);
-                                } })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'button',

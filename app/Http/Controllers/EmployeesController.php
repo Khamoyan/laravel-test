@@ -22,7 +22,8 @@ class EmployeesController extends Controller
     public function index()
     {
         $lists=$this->employees->paginate(4);
-        return view('employees.index',compact('lists'));
+        $companiesLists=$this->companies->all();
+        return view('employees.index',compact('lists','companiesLists'));
     }
 
     public function store(EmployeesRequest $request)

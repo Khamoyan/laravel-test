@@ -24,7 +24,7 @@ class CompaniesController extends Controller
 
     public function store(CompaniesRequest $request)
     {
-        $result = $request->all();
+        $result = $request->inputs();
         if ($request->hasfile('logo')) {
             $image = $request->file('logo');
             $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
@@ -38,7 +38,8 @@ class CompaniesController extends Controller
 
     public function update(CompaniesRequest $request, $id)
     {
-        $result = $request->all();
+        $result = $request->inputs();
+        unset($result['_method'],$result['token']);
         if ($request->hasfile('logo')) {
             $image = $request->file('logo');
             $result['logo'] = time() . '.' . $image->getClientOriginalExtension();

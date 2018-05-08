@@ -84,10 +84,6 @@ class LoginComponent extends Component {
                             <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
                             <label className="form-check-label"> Remember Me</label>
                         </div>
-                        <div>
-                            <input type="hidden" name="auth_id"
-                                   onChange={(e) => this.handleInput('auth_id', e)}/>
-                        </div>
                         <button type="submit" className="btn btn-primary">Login {redirect_to_home}</button>
                     </form>
                 </div>

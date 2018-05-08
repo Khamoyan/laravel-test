@@ -34,6 +34,5 @@ class CompaniesRequest extends FormRequest
     public function inputs()
     {
         return $this->all();
-
     }
 }

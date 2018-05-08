@@ -19,6 +19,6 @@ class Companies extends Model
 
      public function employees()
      {
-    	$this->hasMany('App\Companies');
+    	$this->hasMany(Companies);
      }
 }

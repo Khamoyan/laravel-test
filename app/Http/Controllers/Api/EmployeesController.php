@@ -33,6 +33,7 @@ class EmployeesController extends Controller
     public function update(EmployeesRequest $request, $id)
     {
         $result = $request->inputs();
+        unset($result['_method'],$result['token']);
         $this->employees->where('id', $id)->update($result);
         $employee_update = $this->employees->where('id', $id)->get();
         return response()->json($employee_update, 201);

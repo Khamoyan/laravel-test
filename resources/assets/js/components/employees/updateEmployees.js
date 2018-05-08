@@ -12,7 +12,8 @@ class UpdateEmployee extends Component {
                 last_name: '',
                 email: '',
                 phone: '',
-                company_id: ''
+                company_id: '',
+                _method:'PUT'
             },
             companies: [],
             company_id:'',
@@ -45,15 +46,17 @@ class UpdateEmployee extends Component {
     }
 
     handelUpdateEmployees(id, employees) {
-        axios.put(`/api/employees/${id}/${localStorage.getItem('token')}`,
+      axios.post(`/api/employees/${id}/?token=${localStorage.getItem('token')}`,
                      employees, 
                      { headers: {'Authorization': localStorage.getItem('token'), 
                                 'Content-Type': 'application/json' }})  
                     .then((response) => {
+                        console.log(545454);
+                        
                         this.setState({employee: response.data[0]});
                         this.props.editEmployee(this.state.employee);
                     }).catch((err) => {
-
+                        
                     })
     }
 
