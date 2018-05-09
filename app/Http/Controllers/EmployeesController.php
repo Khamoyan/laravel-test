@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Employees;
-use App\Companies;
+use App\Models\Employee;
+use App\Models\Company;
 use App\Http\Requests\EmployeesRequest;
 
 class EmployeesController extends Controller
 {
-    
-    public function __construct(Employees $employees, Companies $companies)
-    {
-        $this->employees = $employees;
-        $this->companies = $companies;
-    }
 
     /**
      * @return Illuminate\Http\Request
@@ -21,15 +15,15 @@ class EmployeesController extends Controller
 
     public function index()
     {
-        $lists=$this->employees->paginate(4);
-        $companiesLists=$this->companies->all();
-        return view('employees.index',compact('lists','companiesLists'));
+        $lists=Employee::paginate(4);
+        // $companiesLists=$this->companies->all();
+        return view('employees.index',compact('lists'));
     }
 
     public function store(EmployeesRequest $request)
     {
         $result = $request->inputs();
-        $this->employees->create($result);
+        Employee::create($result);
         return back();        
     }
 
@@ -37,21 +31,19 @@ class EmployeesController extends Controller
     {
 
         $result = $request->inputs();
-        $this->employees->where('id', $id)->update($result);
+        Employee::where('id', $id)->update($result);
         return back();   
     }
 
     public function destroy($id)
     {
-        $this->employees->where('id', $id)->delete();
-    
+        Employee::where('id', $id)->delete();
         return redirect('/employeess');
     }
 
     public function show($id)
     {
-        $employee = $this->employees->where('id', $id)->first();
-        $company = $this->companies->where('id', $employee['company_id'])->first();
-        return view('employees.show',['employee'=>$employee, 'company'=>$company,]);
+        $employee = Employee::with('company')->where('id',$id)->first();
+        return view('employees.show',['employee'=>$employee]);
     }
 }

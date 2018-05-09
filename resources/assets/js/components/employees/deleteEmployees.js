@@ -22,8 +22,8 @@ class DeleteEmployee extends Component {
     }
 
     handelDeleteEmployees(id) {
-        axios.delete(`/api/employees/${id}\?token=${localStorage.getItem('token')}`,    
-                    { headers: { 'Authorization': localStorage.getItem('token'),
+        axios.delete(`/api/employees/${id}`,    
+                    { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,
                                 'Content-Type': 'application/json' }})
                     .then((response) => {
                             this.props.deleteEmployee(this.props.id);

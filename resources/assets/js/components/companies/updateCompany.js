@@ -6,12 +6,7 @@ class UpdateCompany extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            company: {
-                name: '',
-                email: '',
-                logo: '',
-                website: ''
-            },
+            company: [],
             id: this.props.id,
             data_target: `update${this.props.id}`
         };
@@ -46,12 +41,12 @@ class UpdateCompany extends Component {
     handelUpdateCompany(id, data) {  
         console.log(id);
         
-        axios.post(`/api/companies/${id}?token=${localStorage.getItem('token')}`,
+        axios.post(`/api/companies/${id}`,
                     data, 
-                    { headers: {'Authorization': localStorage.getItem('token'), 
-                            'Content-Type': 'application/json' }})  
+                    { headers: {Authorization:`Bearer ${localStorage.getItem('token')}`, 
+                                'Content-Type': 'application/json' }})  
                 .then((response) => {
-                            this.setState({company: response.data[0]});
+                            this.setState({company: response.data});
                             this.props.editCompany(this.state.company);
                 }).catch((err) => {
 

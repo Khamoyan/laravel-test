@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\CompaniesRequest;
 use App\Http\Controllers\Controller;
-use App\Company;
-use App\Employee;
+use App\Models\Company;
 
 class CompaniesController extends Controller
 {
@@ -15,9 +14,8 @@ class CompaniesController extends Controller
 
     public function index()
     {
-        $lists = Company::with('companies')->get();
-        dd('asas', $lists);
-        return response()->json($lists, 200);
+        $lists = Company::all();
+        return response()->json($lists);
     }
 
     public function store(CompaniesRequest $request)
@@ -26,7 +24,7 @@ class CompaniesController extends Controller
         if ($request->hasfile('logo')) {
             $image = $request->file('logo');
             $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = storage_path('app/public//logos');
+            $destinationPath = '../storage/logos';
             if (Company::create($result)) {
                 $image->move($destinationPath, $result['logo']);
             }
@@ -41,12 +39,12 @@ class CompaniesController extends Controller
         if ($request->hasfile('logo')) {
             $image = $request->file('logo');
             $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('storage/logos');
+            $destinationPath = '../storage/logos';
             if (Company::where('id', $id)->update($result)) {
                 $image->move($destinationPath, $result['logo']);
             }
         }
-        $company = $this->companies->where('id', $id)->get();
+        $company = Company::where('id', $id)->get();
         return response()->json($company, 201);
     }
 
@@ -59,8 +57,7 @@ class CompaniesController extends Controller
 
     public function show($id)
     {
-        $company = Company::where('id', $id)->first();
-        $employees =Employee::where('company_id', $id)->first();
+        $company=Company::with('employees')->where('id',$id)->first();
         return response()->json($company, 200);
     }
 }

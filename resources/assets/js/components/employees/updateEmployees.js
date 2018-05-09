@@ -46,14 +46,12 @@ class UpdateEmployee extends Component {
     }
 
     handelUpdateEmployees(id, employees) {
-      axios.post(`/api/employees/${id}/?token=${localStorage.getItem('token')}`,
+      axios.post(`/api/employees/${id}`,
                      employees, 
-                     { headers: {'Authorization': localStorage.getItem('token'), 
+                     { headers: {Authorization:`Bearer ${localStorage.getItem('token')}`, 
                                 'Content-Type': 'application/json' }})  
-                    .then((response) => {
-                        console.log(545454);
-                        
-                        this.setState({employee: response.data[0]});
+                    .then((response) => { 
+                        this.setState({employee: response.data});
                         this.props.editEmployee(this.state.employee);
                     }).catch((err) => {
                         
@@ -62,7 +60,7 @@ class UpdateEmployee extends Component {
 
     componentWillMount() {
         axios.get(`/api/companies/?token=${localStorage.getItem('token')}`).then((response) => {
-            this.setState({companies: Object.values(response.data[0])});
+            this.setState({companies: Object.values(response.data)});
         }).catch((err) => {
             console.log(err);
 

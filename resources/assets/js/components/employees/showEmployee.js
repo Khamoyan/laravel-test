@@ -9,24 +9,25 @@ class ShowEmployees extends Component {
         super(props);
         this.state = {
             data_target: `show${this.props.id}`,
-            company: '',
-            employee: []
+            employee:{},
+            company:{},
         };
         this.show = this.show.bind(this)
     }
 
     componentWillMount() {
-            axios.get(`/api/employees/${this.props.id}/?token=${localStorage.getItem('token')}`,
-                { headers: { 'Authorization': localStorage.getItem('token') }})
-                    .then((response) => {
-                        this.setState({company: response.data[0]})
-                        this.setState({employee: Object.values(response.data[1])});
+            axios.get(`/api/employees/${this.props.id}`,
+                { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,
+                            'Content-Type': 'application/json'}})
+                    .then((response) => {  
+                        this.setState({employee:response.data});
+                        this.setState({company:response.data.company})
                     }).catch((err) => {
                         console.log(err);
                     })
     }
 
-    show() {           
+    show() {                      
         $(`#${this.state.data_target}`).modal();
     }
     render() {
@@ -36,7 +37,7 @@ class ShowEmployees extends Component {
                 <button type="button" className="btn btn-info btn-lg edit" data-toggle="modal"
                         data-target={this.state.data_target} onClick={this.show}>Show Employee
                 </button>
-                <ShowEmployeeModal id={this.state.data_target} list={this.state.employee} company={this.state.company}/>
+                <ShowEmployeeModal id={this.state.data_target} list={this.state.employee} company={this.state.company} />
             </div>
         )
     }

@@ -12,25 +12,25 @@ class ShowEmployeeModal extends Component {
                         <div className="modal-body">
                             <h4 className="modal-title">Show Employee</h4>
                             <div className="container">
-                                <h3>{this.props.list[1]}</h3>
+                                <h3>{this.props.list['first_name']}</h3>
                                 <div className="container">
                                     <table className="table">
                                         <tbody>
                                             <tr>
-                                                <th>Name:</th>
-                                                <td>{this.props.company}</td>
+                                                <th>Company Name:</th>
+                                                <td>{this.props.company['name']}</td>
                                             </tr>
                                             <tr>
                                                 <th>Last Name:</th>
-                                                <td>{this.props.list[2]}</td>
+                                                <td>{this.props.list['last_name']}</td>
                                             </tr>
                                             <tr>
                                                 <th>Email:</th>
-                                                <td>{this.props.list[4]}</td>
+                                                <td>{this.props.list['email']}</td>
                                             </tr>
                                             <tr>
                                                 <th>Phone:</th>
-                                                <td>{this.props.list[5]}</td>
+                                                <td>{this.props.list['phone']}</td>
                                             </tr>
                                         </tbody>
                                     </table>

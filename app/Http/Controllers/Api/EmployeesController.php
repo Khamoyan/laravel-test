@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployeesRequest;
-use App\Employee;
-use App\Company;
+use App\Models\Employee;
 
 class EmployeesController extends Controller
 {
@@ -15,7 +14,7 @@ class EmployeesController extends Controller
 
     public function index()
     {
-        $lists = Employee::with('employees')->get();
+        $lists = Employee::all();
         return response()->json($lists, 200);
     }
 
@@ -32,22 +31,21 @@ class EmployeesController extends Controller
         $result = $request->inputs();
         unset($result['_method'],$result['token']);
         Employee::where('id', $id)->update($result);
-        $employee =Employee::where('id', $id)->get();
+        $employee =Employee::where('id', $id)->first();
         return response()->json($employee, 201);
     }
 
     public function destroy($id)
     {
-        $employee = Employee::where('id', $id)->get();
+        $employee = Employee::where('id', $id)->first();
         Employee::where('id', $id)->delete();
         return response()->json($employee, 200);
     }
 
     public function show($id)
     {
-        $employee = Employee::where('id', $id)->first();
-        $company = Company::where('id', $employee['company_id'])->first();
-        return response()->json($company['name'], $employee, 200);
+        $employee = Employee::with('company')->where('id',$id)->first();   
+        return response()->json($employee, 200);
     }
 
 }

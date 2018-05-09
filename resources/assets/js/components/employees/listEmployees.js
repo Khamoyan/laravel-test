@@ -12,7 +12,6 @@ class ListEmployees extends Component {
         super(props);
         this.state = {
             employees: [],
-            showEmployee:[],
         };
 
         this.deleteEmployee = this.deleteEmployee.bind(this);
@@ -45,17 +44,18 @@ class ListEmployees extends Component {
     addEmployee(employee) {
         this.state.employees.push(employee);
         this.setState({employees: this.state.employees});
-        this.setState({showEmployee:employee})
         alert('creting');
     }
 
     componentWillMount() {
-        axios.get(`/api/employees/?token=${localStorage.getItem('token')}`, 
-                    { headers: { Authorizatio: localStorage.getItem('token'),    
+        axios.get(`/api/employees`, 
+                    { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,    
                                 'Content-Type': 'application/json'}})
                 .then((response) => {
-                        this.setState({employees: Object.values(response.data)})
+                        this.setState({employees: response.data})
                 }).catch((err) => {
+                    console.log('asas');
+                    
                     console.log(err);
                 })
     }

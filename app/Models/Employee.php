@@ -1,8 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Company;
 
 class Employee extends Model
 {
@@ -19,7 +20,7 @@ class Employee extends Model
 
     public function company()
     {
-    	$this->belongsTo('App\Company');
+    	return $this->belongsTo(Company::class);
     }
     
 }

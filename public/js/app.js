@@ -18831,8 +18831,7 @@ var ListEmployees = function (_Component) {
         var _this = _possibleConstructorReturn(this, (ListEmployees.__proto__ || Object.getPrototypeOf(ListEmployees)).call(this, props));
 
         _this.state = {
-            employees: [],
-            showEmployee: []
+            employees: []
         };
 
         _this.deleteEmployee = _this.deleteEmployee.bind(_this);
@@ -18870,7 +18869,6 @@ var ListEmployees = function (_Component) {
         value: function addEmployee(employee) {
             this.state.employees.push(employee);
             this.setState({ employees: this.state.employees });
-            this.setState({ showEmployee: employee });
             alert('creting');
         }
     }, {
@@ -18878,10 +18876,12 @@ var ListEmployees = function (_Component) {
         value: function componentWillMount() {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/employees/?token=' + localStorage.getItem('token'), { headers: { Authorizatio: localStorage.getItem('token'),
+            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/employees', { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
                     'Content-Type': 'application/json' } }).then(function (response) {
-                _this2.setState({ employees: Object.values(response.data) });
+                _this2.setState({ employees: response.data });
             }).catch(function (err) {
+                console.log('asas');
+
                 console.log(err);
             });
         }
@@ -19100,7 +19100,7 @@ var AddEmployees = function (_Component) {
         value: function handelAddEmployees(employees) {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/employees/?token=' + localStorage.getItem('token'), employees, { headers: { 'Authorization': localStorage.getItem('token'),
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/employees', employees, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
                     'Content-Type': 'application/json' } }).then(function (response) {
                 _this2.props.addEmployee(response.data);
             }).catch(function (err) {});
@@ -19111,7 +19111,7 @@ var AddEmployees = function (_Component) {
             var _this3 = this;
 
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies/?token=' + localStorage.getItem('token')).then(function (response) {
-                _this3.setState({ companies: Object.values(response.data[0]) });
+                _this3.setState({ companies: Object.values(response.data) });
             }).catch(function (err) {
                 console.log(err);
             });
@@ -19291,9 +19291,9 @@ var ListCompanies = function (_Component) {
         value: function componentWillMount() {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/companies/?token=' + localStorage.getItem('token'), { headers: { Authorizatio: localStorage.getItem('token'),
+            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/companies/', { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
                     'Content-Type': 'application/json' } }).then(function (response) {
-                _this2.setState({ companies: Object.values(response.data[0]) });
+                _this2.setState({ companies: Object.values(response.data) });
             }).catch(function (err) {
                 console.log(err);
             });
@@ -19363,7 +19363,7 @@ var ListCompanies = function (_Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'td',
                         null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'http://laravel.development/logos/' + value.logo, style: { height: 61 + 'px' } })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'storage/public/logos/' + value.logo, style: { height: 61 + 'px' } })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'td',
@@ -19387,7 +19387,6 @@ var ListCompanies = function (_Component) {
         key: 'render',
         value: function render() {
             var isLogged = localStorage.getItem('isLogged');
-
             if (isLogged === 'true') {
                 var divStyle = {};
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -19538,7 +19537,7 @@ var AddCompany = function (_Component) {
         value: function handelAddCompany(data) {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/companies/?token=' + localStorage.getItem('token'), data, { headers: { 'Authorization': localStorage.getItem('token'),
+            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/api/companies', data, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
                     'Content-Type': 'application/json' } }).then(function (response) {
                 _this2.props.addCompany(response.data);
             }).catch(function (err) {});
@@ -64727,7 +64726,7 @@ var DeleteEmployee = function (_Component) {
         value: function handelDeleteEmployees(id) {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/employees/' + id + '?token=' + localStorage.getItem('token'), { headers: { 'Authorization': localStorage.getItem('token'),
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/employees/' + id, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
                     'Content-Type': 'application/json' } }).then(function (response) {
                 _this2.props.deleteEmployee(_this2.props.id);
             }).catch(function (err) {});
@@ -64914,11 +64913,9 @@ var UpdateEmployee = function (_Component) {
         value: function handelUpdateEmployees(id, employees) {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/employees/' + id + '/?token=' + localStorage.getItem('token'), employees, { headers: { 'Authorization': localStorage.getItem('token'),
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/employees/' + id, employees, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
                     'Content-Type': 'application/json' } }).then(function (response) {
-                console.log(545454);
-
-                _this2.setState({ employee: response.data[0] });
+                _this2.setState({ employee: response.data });
                 _this2.props.editEmployee(_this2.state.employee);
             }).catch(function (err) {});
         }
@@ -64928,7 +64925,7 @@ var UpdateEmployee = function (_Component) {
             var _this3 = this;
 
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies/?token=' + localStorage.getItem('token')).then(function (response) {
-                _this3.setState({ companies: Object.values(response.data[0]) });
+                _this3.setState({ companies: Object.values(response.data) });
             }).catch(function (err) {
                 console.log(err);
             });
@@ -65174,8 +65171,8 @@ var ShowEmployees = function (_Component) {
 
         _this.state = {
             data_target: 'show' + _this.props.id,
-            company: '',
-            employee: []
+            employee: {},
+            company: {}
         };
         _this.show = _this.show.bind(_this);
         return _this;
@@ -65186,9 +65183,10 @@ var ShowEmployees = function (_Component) {
         value: function componentWillMount() {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/employees/' + this.props.id + '/?token=' + localStorage.getItem('token'), { headers: { 'Authorization': localStorage.getItem('token') } }).then(function (response) {
-                _this2.setState({ company: response.data[0] });
-                _this2.setState({ employee: Object.values(response.data[1]) });
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/employees/' + this.props.id, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
+                    'Content-Type': 'application/json' } }).then(function (response) {
+                _this2.setState({ employee: response.data });
+                _this2.setState({ company: response.data.company });
             }).catch(function (err) {
                 console.log(err);
             });
@@ -65282,7 +65280,7 @@ var ShowEmployeeModal = function (_Component) {
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     "h3",
                                     null,
-                                    this.props.list[1]
+                                    this.props.list['first_name']
                                 ),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     "div",
@@ -65299,12 +65297,12 @@ var ShowEmployeeModal = function (_Component) {
                                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                     "th",
                                                     null,
-                                                    "Name:"
+                                                    "Company Name:"
                                                 ),
                                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                     "td",
                                                     null,
-                                                    this.props.company
+                                                    this.props.company['name']
                                                 )
                                             ),
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -65318,7 +65316,7 @@ var ShowEmployeeModal = function (_Component) {
                                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                     "td",
                                                     null,
-                                                    this.props.list[2]
+                                                    this.props.list['last_name']
                                                 )
                                             ),
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -65332,7 +65330,7 @@ var ShowEmployeeModal = function (_Component) {
                                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                     "td",
                                                     null,
-                                                    this.props.list[4]
+                                                    this.props.list['email']
                                                 )
                                             ),
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -65346,7 +65344,7 @@ var ShowEmployeeModal = function (_Component) {
                                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                     "td",
                                                     null,
-                                                    this.props.list[5]
+                                                    this.props.list['phone']
                                                 )
                                             )
                                         )
@@ -65459,9 +65457,9 @@ var DeleteCompany = function (_Component) {
         value: function handelDeleteEmployees(id) {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/companies/' + id + '?token=' + localStorage.getItem('token'), { headers: { 'Authorization': localStorage.getItem('token'),
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/companies/' + id, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
                     'Content-Type': 'application/json' } }).then(function (response) {
-                _this2.props.deleteCompany(response.data[0].id);
+                _this2.props.deleteCompany(response.data.id);
             }).catch(function (err) {});
         }
     }, {
@@ -65613,8 +65611,9 @@ var ShowCompany = function (_Component) {
         value: function componentWillMount() {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies/' + this.props.id + '/?token=' + localStorage.getItem('token'), { headers: { 'Authorization': localStorage.getItem('token') } }).then(function (response) {
-                _this2.setState({ companies: Object.values(response.data[0]) });
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies/' + this.props.id, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
+                    'Content-Type': 'application/json' } }).then(function (response) {
+                _this2.setState({ companies: Object.values(response.data) });
             }).catch(function (err) {
                 console.log(err);
             });
@@ -65805,12 +65804,7 @@ var UpdateCompany = function (_Component) {
         var _this = _possibleConstructorReturn(this, (UpdateCompany.__proto__ || Object.getPrototypeOf(UpdateCompany)).call(this, props));
 
         _this.state = {
-            company: {
-                name: '',
-                email: '',
-                logo: '',
-                website: ''
-            },
+            company: [],
             id: _this.props.id,
             data_target: 'update' + _this.props.id
         };
@@ -65851,9 +65845,9 @@ var UpdateCompany = function (_Component) {
 
             console.log(id);
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/companies/' + id + '?token=' + localStorage.getItem('token'), data, { headers: { 'Authorization': localStorage.getItem('token'),
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/companies/' + id, data, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
                     'Content-Type': 'application/json' } }).then(function (response) {
-                _this2.setState({ company: response.data[0] });
+                _this2.setState({ company: response.data });
                 _this2.props.editCompany(_this2.state.company);
             }).catch(function (err) {});
         }

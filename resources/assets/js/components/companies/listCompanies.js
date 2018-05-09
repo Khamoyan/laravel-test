@@ -20,11 +20,11 @@ class ListCompanies extends Component {
     }
 
     componentWillMount() {
-        axios.get(`/api/companies/?token=${localStorage.getItem('token')}`, 
-                        { headers: { Authorizatio: localStorage.getItem('token'),    
+        axios.get(`/api/companies/`, 
+                        { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,    
                                     'Content-Type': 'application/json'}})
                     .then((response) => {
-                        this.setState({companies: Object.values(response.data[0])});
+                        this.setState({companies: Object.values(response.data)});
                     }).catch((err) => {
                         console.log(err);
 
@@ -70,7 +70,7 @@ class ListCompanies extends Component {
                     <td> {value.name} </td>
                     <td> {value.email} </td>
                     <td> {value.website} </td>
-                    <td><img src={`http://laravel.development/logos/${value.logo}`} style={{height: 61 + 'px'}}/></td>
+                    <td><img src={`storage/public/logos/${value.logo}`} style={{height: 61 + 'px'}}/></td>
                     <td><DeleteCompany id={value.id} deleteCompany={deleteCompany}/></td>
                     <td><UpdateCompany id={value.id} editCompany={editCompany}/></td>
                     <td><ShowCompany id={value.id}/></td>
@@ -81,7 +81,6 @@ class ListCompanies extends Component {
 
     render() {
         let isLogged = localStorage.getItem('isLogged');
-
         if (isLogged === 'true') {
             const divStyle = {}
             return (
@@ -108,7 +107,6 @@ class ListCompanies extends Component {
         } else {
             return ( <h1>Not Found</h1>)
         }
-
     }
 }
 

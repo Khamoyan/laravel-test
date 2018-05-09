@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Company;
-use App\Employee;
-use App\Http\Request\CompaniesRequest;
+use App\Models\Company;
+use App\Moels\Employee;
+use App\Http\Requests\CompaniesRequest;
 
 class CompaniesController extends Controller
 {
@@ -28,9 +28,9 @@ class CompaniesController extends Controller
         if ($request->hasfile('logo')) {
             $image = $request->file('logo');
             $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('/logos');
-            $this->companies->create($result);
-            if ($this->companies->create($result)) {
+            $destinationPath = storage_path('app/public/logos');
+            Company::create($result);
+            if (Company::create($result)) {
                 $image->move($destinationPath, $result['logo']);
             }
         }
@@ -44,8 +44,8 @@ class CompaniesController extends Controller
 
             $image = $request->file('logo');
             $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('/logos');
-            if ($this->companies->where('id', $id)->update($result)) {
+            $destinationPath = storage_path('app/public/logos');
+            if (Company::where('id', $id)->update($result)) {
                 $image->move($destinationPath, $result['logo']);
             }
         }
@@ -54,14 +54,13 @@ class CompaniesController extends Controller
 
     public function destroy($id)
     {
-        $this->companies->where('id', $id)->delete();
+        Company::where('id', $id)->delete();
         return back();
     }
 
     public function show($id)
     {
-        $company = $this->companies->where('id', $id)->first();
-        $employees = $this->employees->where('company_id', $id)->get();
-        return view('companies.show',['company'=>$company,'employees'=>$employees]);
+        $company=Company::with('employees')->where('id',$id)->first();
+        return view('companies.show',['company'=>$company]);
     }
 }

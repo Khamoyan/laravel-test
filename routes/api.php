@@ -15,8 +15,8 @@ use Illuminate\Http\Request;
 
 // Route::post('/register', 'Api\UserController@register');
 
-Route::post('/login', 'Api\UserController@login');
-Route::post('/logout', 'Api\UserController@logout');
+Route::post('/login', 'Api\LoginController@login');
+Route::post('/logout', 'Api\LoginController@logout');
 
 Route::group(['middleware' => ['before' => 'jwt.auth']], function () {
     Route::get('/employees', 'Api\EmployeesController@index');
