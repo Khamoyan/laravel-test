@@ -15,8 +15,8 @@ Route::get('/home', function () {
      return view('home');
  });
 
-Route::get('/', function () {
-    return view('loginSPA');
+Route::get('/api', function () {
+    return view('api');
 });
 
 Route::get('/home', 'HomeController@index');

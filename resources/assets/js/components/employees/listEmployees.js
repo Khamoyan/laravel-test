@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import DeleteEmployee from './deleteEmployees';
-import UpdateEmployee from './updateEmployees';
-import ShowEmployees from './showEmployee';
-import AddEmployees from './addEmployees';
+import DeleteEmployee from './deleteEmployee';
+import UpdateEmployee from './updateEmployee';
+import ShowEmployee from './showEmployee';
+import AddEmployee from './addEmployee';
 import Home from '../Home';
 
 class ListEmployees extends Component {
@@ -52,7 +52,7 @@ class ListEmployees extends Component {
                     { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,    
                                 'Content-Type': 'application/json'}})
                 .then((response) => {
-                        this.setState({employees: response.data})
+                        this.setState({employees: response.data})  
                 }).catch((err) => {
                     console.log('asas');
                     
@@ -76,7 +76,7 @@ class ListEmployees extends Component {
                         <td> {value.phone} </td>
                         <td><DeleteEmployee id={value.id} deleteEmployee={deleteEmployee}/></td>
                         <td><UpdateEmployee id={value.id} editEmployee={editEmployee}/></td>
-                        <td><ShowEmployees id={value.id}/></td>
+                        <td><ShowEmployee id={value.id}/></td>
                     </tr>
                 </tbody>
             )
@@ -90,7 +90,7 @@ class ListEmployees extends Component {
             return (
                 <div style={divStyle}>
                     <Home/>
-                    <AddEmployees addEmployee={this.addEmployee}/>
+                    <AddEmployee addEmployee={this.addEmployee}/>
                     <div className="container">
                         <h2>Employees list</h2>
                         <table className="table">

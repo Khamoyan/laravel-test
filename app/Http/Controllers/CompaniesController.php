@@ -4,13 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Moels\Employee;
-use App\Http\Requests\CompaniesRequest;
+use App\Http\Requests\CompanyRequest;
 
 class CompaniesController extends Controller
 {
-    public function __construct()
-    {
-    }
 
     /**
      * @return \Illuminate\Http\Response
@@ -22,9 +19,10 @@ class CompaniesController extends Controller
         return view('companies.index',['lists'=>$lists]);
     }
 
-    public function store(CompaniesRequest $request)
+    public function store(CompanyRequest $request)
     {
         $result = $request->all();
+        unset($result['_method'],$result['_token']);
         if ($request->hasfile('logo')) {
             $image = $request->file('logo');
             $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
@@ -37,11 +35,11 @@ class CompaniesController extends Controller
         return back();
     }
 
-    public function update(CompaniesRequest $request, $id)
+    public function update(CompanyRequest $request, $id)
     {
         $result = $request->all();
+        unset($result['_method'],$result['_token']);
         if ($request->hasfile('logo')) {
-
             $image = $request->file('logo');
             $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
             $destinationPath = storage_path('app/public/logos');

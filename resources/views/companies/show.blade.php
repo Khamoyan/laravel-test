@@ -25,7 +25,7 @@
 
     <ul class="list-group">
       <h4>Employees</h4>
-      @foreach($employees as $employee)
+      @foreach($company['employees'] as $employee)
         <li class="list-group-item">{{$employee->first_name}} {{$employee->last_name}}
         </li>
       @endforeach  

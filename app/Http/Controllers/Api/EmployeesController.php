@@ -3,22 +3,19 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\EmployeesRequest;
+use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
 
 class EmployeesController extends Controller
 {
-    public function __construct()
-    {
-    }
-
+    
     public function index()
     {
         $lists = Employee::all();
         return response()->json($lists, 200);
     }
 
-    public function store(EmployeesRequest $request)
+    public function store(EmployeeRequest $request)
     {
         $result = $request->inputs();
         Employee::create($result);
@@ -26,7 +23,7 @@ class EmployeesController extends Controller
 
     }
 
-    public function update(EmployeesRequest $request, $id)
+    public function update(EmployeeRequest $request, $id)
     {
         $result = $request->inputs();
         unset($result['_method'],$result['token']);

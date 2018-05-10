@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class UpdateEmployeesModal extends Component {
+class UpdateEmployeeModal extends Component {
     companiesSelect() {
         return (
             <div>
@@ -76,4 +76,4 @@ class UpdateEmployeesModal extends Component {
     }
 }
 
-export default UpdateEmployeesModal;
+export default UpdateEmployeeModal;

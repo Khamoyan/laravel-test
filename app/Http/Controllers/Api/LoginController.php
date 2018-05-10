@@ -12,6 +12,7 @@ use Exception;
 
 class LoginController extends Controller
 {
+    
     public function login(UserRequest $request)
     {
         $token = null;

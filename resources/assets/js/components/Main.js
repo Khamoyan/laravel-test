@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter, Switch, Route, Link} from 'react-router-dom';
+import {HashRouter, Switch, Route, Link,Router} from 'react-router-dom';
 import ListEmployees from './employees/listEmployees'
-import AddEmployees from './employees/addEmployees';
 import ListCompanies from './companies/listCompanies';
-import AddCompany from './companies/addCompany';
 import Home from './Home';
 import LoginComponent from './auth/loginComponent'
-import RegisterComponent from './auth/registerComponent'
 
 class Main extends Component {
     constructor(props) {
@@ -20,15 +17,12 @@ class Main extends Component {
             <div className="container">
                 <div>
                     <HashRouter>
-                        <Switch>
                             <div>
                                 <Route exact path='/' render={() => <LoginComponent/>}/>
-                                {/* <Route exact path='/' render={() => <RegisterComponent/>}/> */}
-                                <Route path='/employees' render={() => <ListEmployees/>}/>
-                                <Route path='/companies' render={() => <ListCompanies/>}/>
-                                <Route path='/home' render={() => <Home/>}/>
+                                <Route exact path='/employees' render={() => <ListEmployees/>}/>
+                                <Route exact path='/companies' render={() => <ListCompanies/>}/>
+                                <Route exact path='/home' render={() => <Home/>}/>
                             </div>
-                        </Switch>
                     </HashRouter>
                 </div>
 

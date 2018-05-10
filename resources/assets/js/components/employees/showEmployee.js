@@ -3,14 +3,14 @@ import axios from 'axios';
 import ShowEmployeeModal from '../modals/showEmployeeModal';
 
 
-class ShowEmployees extends Component {
+class ShowEmployee extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             data_target: `show${this.props.id}`,
             employee:{},
-            company:{},
+            company:[],
         };
         this.show = this.show.bind(this)
     }
@@ -21,7 +21,7 @@ class ShowEmployees extends Component {
                             'Content-Type': 'application/json'}})
                     .then((response) => {  
                         this.setState({employee:response.data});
-                        this.setState({company:response.data.company})
+                        this.setState({company: response.data.compan})
                     }).catch((err) => {
                         console.log(err);
                     })
@@ -43,4 +43,4 @@ class ShowEmployees extends Component {
     }
 }
 
-export default ShowEmployees;
+export default ShowEmployee;

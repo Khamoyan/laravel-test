@@ -33,9 +33,9 @@
           <label for="inputPhone">Company</label>
           <select  name='company_id' class="form-control">
               <option>Choose a company </option>
-              @foreach($companiesLists as $company)
-                 <option value={{$company->id }}> {{ $company->name }}</option>
-               @endforeach
+                @foreach($companies as $company)
+                  <option value={{$company->id }}> {{ $company->name }}</option>
+                @endforeach
            </select>
         </div>
 
@@ -114,7 +114,7 @@
               <label for="inputPhone">Company</label>
               <select  name='company_id' class="form-control">
                     <option>Choose a company </option>
-                  @foreach($companiesLists as $company)
+                  @foreach($companies as $company)
                     <option name='company_id' value={{$company->id }}> {{ $company->name }}</option>
                   @endforeach
               </select>

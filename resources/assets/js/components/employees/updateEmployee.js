@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import UpdateEmployeesModal from '../modals/updateEmployeeModal';
+import UpdateEmployeeModal from '../modals/updateEmployeeModal';
 
 
 class UpdateEmployee extends Component {
@@ -79,7 +79,7 @@ class UpdateEmployee extends Component {
                             data-target={this.state.data_target} onClick={this.update}> Edit
                     </button>
                 </td>
-                <UpdateEmployeesModal id={this.state.data_target} updateEmployee={this.handleSubmit}
+                <UpdateEmployeeModal id={this.state.data_target} updateEmployee={this.handleSubmit}
                                       handleInput={this.handleInput} companies={this.state.companies}
                                       handleChange={this.handleChange}/>
             </div>

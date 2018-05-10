@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import DeleteEmployeesModal from '../modals/deleteEmployeeModal';
+import DeleteEmployeeModal from '../modals/deleteEmployeeModal';
 
 class DeleteEmployee extends Component {
     constructor(props) {
@@ -44,7 +44,7 @@ class DeleteEmployee extends Component {
                             data-target={this.state.data_target} onClick={this.deleteModal}> Delete
                     </button>
                 </td>
-                <DeleteEmployeesModal id={this.state.data_target} delete={this.handleSubmit}/>
+                <DeleteEmployeeModal id={this.state.data_target} delete={this.handleSubmit}/>
             </div>
         )
     }

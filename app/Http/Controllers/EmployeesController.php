@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use App\Models\Company;
-use App\Http\Requests\EmployeesRequest;
+use App\Http\Requests\EmployeeRequest;
 
 class EmployeesController extends Controller
 {
@@ -16,21 +16,23 @@ class EmployeesController extends Controller
     public function index()
     {
         $lists=Employee::paginate(4);
-        // $companiesLists=$this->companies->all();
-        return view('employees.index',compact('lists'));
+        $companies=Company::all();
+        return view('employees.index',compact('lists','companies'));
     }
 
-    public function store(EmployeesRequest $request)
+    public function store(EmployeeRequest $request)
     {
         $result = $request->inputs();
+        unset($result['_method'],$result['_token']);
         Employee::create($result);
         return back();        
     }
 
-    public function update(EmployeesRequest $request, $id)
+    public function update(EmployeeRequest $request, $id)
     {
 
         $result = $request->inputs();
+        unset($result['_method'],$result['_token']);
         Employee::where('id', $id)->update($result);
         return back();   
     }
@@ -38,7 +40,7 @@ class EmployeesController extends Controller
     public function destroy($id)
     {
         Employee::where('id', $id)->delete();
-        return redirect('/employeess');
+        return redirect('/employees');
     }
 
     public function show($id)

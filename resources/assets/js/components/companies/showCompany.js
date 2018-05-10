@@ -8,8 +8,8 @@ class ShowCompany extends Component {
         super(props);
         this.state = {
             data_target: `show${this.props.id}`,
-            companies: [],
-            employees: [],
+            company: {},
+            employees: {},
         }
         this.show = this.show.bind(this)
 
@@ -20,16 +20,17 @@ class ShowCompany extends Component {
                 { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,
                             'Content-Type': 'application/json' }})
             .then((response) => {
-                this.setState({companies: Object.values(response.data)});
+                this.setState({company:response.data});
+                this.setState({employees:response.data.employees})
             }).catch((err) => {
                 console.log(err);
             })
     }
 
-    show() {
+    show() { 
+
         $(`#${this.state.data_target}`).modal();
     }
-
 
     render() {
         const divStyle = {}
@@ -38,7 +39,7 @@ class ShowCompany extends Component {
                 <button type="button" className="btn btn-info btn-lg edit" data-toggle="modal"
                         data-target={this.state.data_target} onClick={this.show}>Show Employee
                 </button>
-                <ShowCompanyModal id={this.state.data_target} company={this.state.companies}/>
+                <ShowCompanyModal id={this.state.data_target} company={this.state.company} employees={this.state.employees}/>
             </div>
         )
     }

@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-class AddEmployees extends Component {
+class AddEmployee extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            addEmployees: {
+            addEmployee: {
                 first_name: '',
                 last_name: '',
                 company_id: '',
@@ -18,14 +18,14 @@ class AddEmployees extends Component {
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInput = this.handleInput.bind(this)
-        this.handelAddEmployees = this.handelAddEmployees.bind(this);
+        this.handelAddEmployee = this.handelAddEmployee.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleInput(key, e) {
-        let state = Object.assign({}, this.state.addEmployees);
+        let state = Object.assign({}, this.state.addEmployee);
         state[key] = e.target.value;
-        this.setState({addEmployees: state});
+        this.setState({addEmployee: state});
     }
 
     handleChange(event) {
@@ -34,12 +34,12 @@ class AddEmployees extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.state.addEmployees.company_id = this.state.id;
-        this.handelAddEmployees(this.state.addEmployees)
+        this.state.addEmployee.company_id = this.state.id;
+        this.handelAddEmployee(this.state.addEmployee)
 
     }
 
-    handelAddEmployees(employees) {
+    handelAddEmployee(employees) {
         axios.post(`/api/employees`,    
                     employees,
                     { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,
@@ -118,4 +118,4 @@ class AddEmployees extends Component {
     }
 }
 
-export default AddEmployees;
+export default AddEmployee;

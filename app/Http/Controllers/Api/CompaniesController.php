@@ -2,23 +2,20 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\CompaniesRequest;
+use App\Http\Requests\CompanyRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 
 class CompaniesController extends Controller
 {
-    public function __construct()
-    {
-    }
-
+    
     public function index()
     {
         $lists = Company::all();
         return response()->json($lists);
     }
 
-    public function store(CompaniesRequest $request)
+    public function store(CompanyRequest $request)
     {
         $result = $request->inputs();
         if ($request->hasfile('logo')) {
@@ -32,7 +29,7 @@ class CompaniesController extends Controller
         return response()->json($result, 201);
     }
 
-    public function update(CompaniesRequest $request, $id)
+    public function update(CompanyRequest $request, $id)
     {
         $result = $request->inputs();
         unset($result['_method'],$result['token']);

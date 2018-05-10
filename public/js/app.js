@@ -17706,12 +17706,9 @@ module.exports = Cancel;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__employees_listEmployees__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__employees_addEmployees__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__companies_listCompanies__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__companies_addCompany__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Home__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__auth_loginComponent__ = __webpack_require__(360);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__auth_registerComponent__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__companies_listCompanies__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Home__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__auth_loginComponent__ = __webpack_require__(360);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -17719,9 +17716,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
 
 
 
@@ -17756,24 +17750,20 @@ var Main = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["a" /* HashRouter */],
                         null,
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["e" /* Switch */],
+                            'div',
                             null,
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                null,
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Route */], { exact: true, path: '/', render: function render() {
-                                        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__auth_loginComponent__["a" /* default */], null);
-                                    } }),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Route */], { path: '/employees', render: function render() {
-                                        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__employees_listEmployees__["a" /* default */], null);
-                                    } }),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Route */], { path: '/companies', render: function render() {
-                                        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__companies_listCompanies__["a" /* default */], null);
-                                    } }),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Route */], { path: '/home', render: function render() {
-                                        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__Home__["a" /* default */], null);
-                                    } })
-                            )
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Route */], { exact: true, path: '/', render: function render() {
+                                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__auth_loginComponent__["a" /* default */], null);
+                                } }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Route */], { exact: true, path: '/employees', render: function render() {
+                                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__employees_listEmployees__["a" /* default */], null);
+                                } }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Route */], { exact: true, path: '/companies', render: function render() {
+                                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__companies_listCompanies__["a" /* default */], null);
+                                } }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Route */], { exact: true, path: '/home', render: function render() {
+                                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Home__["a" /* default */], null);
+                                } })
                         )
                     )
                 )
@@ -18800,10 +18790,10 @@ var withRouter = function withRouter(Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__deleteEmployees__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__updateEmployees__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__deleteEmployee__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__updateEmployee__ = __webpack_require__(367);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__showEmployee__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__addEmployees__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__addEmployee__ = __webpack_require__(368);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Home__ = __webpack_require__(57);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -18930,12 +18920,12 @@ var ListEmployees = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'td',
                             null,
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__deleteEmployees__["a" /* default */], { id: value.id, deleteEmployee: deleteEmployee })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__deleteEmployee__["a" /* default */], { id: value.id, deleteEmployee: deleteEmployee })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'td',
                             null,
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__updateEmployees__["a" /* default */], { id: value.id, editEmployee: editEmployee })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__updateEmployee__["a" /* default */], { id: value.id, editEmployee: editEmployee })
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'td',
@@ -18956,7 +18946,7 @@ var ListEmployees = function (_Component) {
                     'div',
                     { style: divStyle },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__Home__["a" /* default */], null),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__addEmployees__["a" /* default */], { addEmployee: this.addEmployee }),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__addEmployee__["a" /* default */], { addEmployee: this.addEmployee }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: 'container' },
@@ -19031,210 +19021,7 @@ var ListEmployees = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (ListEmployees);
 
 /***/ }),
-/* 106 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-var AddEmployees = function (_Component) {
-    _inherits(AddEmployees, _Component);
-
-    function AddEmployees(props) {
-        _classCallCheck(this, AddEmployees);
-
-        var _this = _possibleConstructorReturn(this, (AddEmployees.__proto__ || Object.getPrototypeOf(AddEmployees)).call(this, props));
-
-        _this.state = {
-            addEmployees: {
-                first_name: '',
-                last_name: '',
-                company_id: '',
-                email: '',
-                phone: ''
-            },
-            id: '',
-            companies: []
-        };
-        _this.handleSubmit = _this.handleSubmit.bind(_this);
-        _this.handleInput = _this.handleInput.bind(_this);
-        _this.handelAddEmployees = _this.handelAddEmployees.bind(_this);
-        _this.handleChange = _this.handleChange.bind(_this);
-        return _this;
-    }
-
-    _createClass(AddEmployees, [{
-        key: 'handleInput',
-        value: function handleInput(key, e) {
-            var state = Object.assign({}, this.state.addEmployees);
-            state[key] = e.target.value;
-            this.setState({ addEmployees: state });
-        }
-    }, {
-        key: 'handleChange',
-        value: function handleChange(event) {
-            this.setState({ id: event.target.value });
-        }
-    }, {
-        key: 'handleSubmit',
-        value: function handleSubmit(e) {
-            e.preventDefault();
-            this.state.addEmployees.company_id = this.state.id;
-            this.handelAddEmployees(this.state.addEmployees);
-        }
-    }, {
-        key: 'handelAddEmployees',
-        value: function handelAddEmployees(employees) {
-            var _this2 = this;
-
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/employees', employees, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
-                    'Content-Type': 'application/json' } }).then(function (response) {
-                _this2.props.addEmployee(response.data);
-            }).catch(function (err) {});
-        }
-    }, {
-        key: 'componentWillMount',
-        value: function componentWillMount() {
-            var _this3 = this;
-
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies/?token=' + localStorage.getItem('token')).then(function (response) {
-                _this3.setState({ companies: Object.values(response.data) });
-            }).catch(function (err) {
-                console.log(err);
-            });
-        }
-    }, {
-        key: 'companiesSelect',
-        value: function companiesSelect() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'label',
-                    null,
-                    'Company:'
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'select',
-                    { className: 'form-control', onChange: this.handleChange },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'option',
-                        null,
-                        'Choose a company '
-                    ),
-                    this.state.companies.map(function (value, index) {
-                        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'option',
-                            { value: value.id },
-                            value.name
-                        );
-                    })
-                )
-            );
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _this4 = this;
-
-            var divStyle = {};
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { style: divStyle },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'h2',
-                    null,
-                    'Create'
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'form',
-                    { onSubmit: this.handleSubmit },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'form-row' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'form-group col-md-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'label',
-                                null,
-                                'First Name'
-                            ),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', placeholder: 'First Name', name: 'first_name',
-                                onChange: function onChange(e) {
-                                    return _this4.handleInput('first_name', e);
-                                } })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'form-group col-md-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'label',
-                                null,
-                                'Last Name'
-                            ),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Last Name', name: 'last_name',
-                                onChange: function onChange(e) {
-                                    return _this4.handleInput('last_name', e);
-                                } })
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'form-group' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'label',
-                            null,
-                            'Email'
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'email', className: 'form-control', placeholder: 'email@gmail.com', name: 'email',
-                            onChange: function onChange(e) {
-                                return _this4.handleInput('email', e);
-                            } })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'form-group' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'label',
-                            null,
-                            'Phon'
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', placeholder: '099******', name: 'phone',
-                            onChange: function onChange(e) {
-                                return _this4.handleInput('phone', e);
-                            } })
-                    ),
-                    this.companiesSelect(),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'button',
-                        { type: 'submit', className: 'btn btn-primary', onSubmit: this.handleSubmit },
-                        'Create'
-                    )
-                )
-            );
-        }
-    }]);
-
-    return AddEmployees;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
-
-/* harmony default export */ __webpack_exports__["a"] = (AddEmployees);
-
-/***/ }),
+/* 106 */,
 /* 107 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -19320,7 +19107,7 @@ var ListCompanies = function (_Component) {
                     value.website = company.website;
                 }
             });
-            this.setState(this.state.companies);
+            this.setState({ companies: companies });
         }
     }, {
         key: 'addCompany',
@@ -64675,94 +64462,7 @@ var createMemoryHistory = function createMemoryHistory() {
 
 
 /***/ }),
-/* 200 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modals_deleteEmployeeModal__ = __webpack_require__(201);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-var DeleteEmployee = function (_Component) {
-    _inherits(DeleteEmployee, _Component);
-
-    function DeleteEmployee(props) {
-        _classCallCheck(this, DeleteEmployee);
-
-        var _this = _possibleConstructorReturn(this, (DeleteEmployee.__proto__ || Object.getPrototypeOf(DeleteEmployee)).call(this, props));
-
-        _this.state = {
-            id: _this.props.id,
-            data_target: 'delete' + _this.props.id
-        };
-        _this.handleSubmit = _this.handleSubmit.bind(_this);
-        _this.handelDeleteEmployees = _this.handelDeleteEmployees.bind(_this);
-        _this.deleteModal = _this.deleteModal.bind(_this);
-
-        return _this;
-    }
-
-    _createClass(DeleteEmployee, [{
-        key: 'handleSubmit',
-        value: function handleSubmit(e) {
-            e.preventDefault();
-            this.handelDeleteEmployees(this.state.id);
-        }
-    }, {
-        key: 'handelDeleteEmployees',
-        value: function handelDeleteEmployees(id) {
-            var _this2 = this;
-
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/employees/' + id, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
-                    'Content-Type': 'application/json' } }).then(function (response) {
-                _this2.props.deleteEmployee(_this2.props.id);
-            }).catch(function (err) {});
-        }
-    }, {
-        key: 'deleteModal',
-        value: function deleteModal() {
-            $('#' + this.state.data_target).modal();
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'td',
-                    null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'button',
-                        { type: 'button', className: 'btn btn-info btn-lg delete', 'data-toggle': 'modal',
-                            'data-target': this.state.data_target, onClick: this.deleteModal },
-                        ' Delete'
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__modals_deleteEmployeeModal__["a" /* default */], { id: this.state.data_target, 'delete': this.handleSubmit })
-            );
-        }
-    }]);
-
-    return DeleteEmployee;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
-
-/* harmony default export */ __webpack_exports__["a"] = (DeleteEmployee);
-
-/***/ }),
+/* 200 */,
 /* 201 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64779,16 +64479,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var DeleteEmployeesModal = function (_Component) {
-    _inherits(DeleteEmployeesModal, _Component);
+var DeleteEmployeeModal = function (_Component) {
+    _inherits(DeleteEmployeeModal, _Component);
 
-    function DeleteEmployeesModal() {
-        _classCallCheck(this, DeleteEmployeesModal);
+    function DeleteEmployeeModal() {
+        _classCallCheck(this, DeleteEmployeeModal);
 
-        return _possibleConstructorReturn(this, (DeleteEmployeesModal.__proto__ || Object.getPrototypeOf(DeleteEmployeesModal)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (DeleteEmployeeModal.__proto__ || Object.getPrototypeOf(DeleteEmployeeModal)).apply(this, arguments));
     }
 
-    _createClass(DeleteEmployeesModal, [{
+    _createClass(DeleteEmployeeModal, [{
         key: "render",
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -64830,140 +64530,13 @@ var DeleteEmployeesModal = function (_Component) {
         }
     }]);
 
-    return DeleteEmployeesModal;
+    return DeleteEmployeeModal;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-/* harmony default export */ __webpack_exports__["a"] = (DeleteEmployeesModal);
+/* harmony default export */ __webpack_exports__["a"] = (DeleteEmployeeModal);
 
 /***/ }),
-/* 202 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modals_updateEmployeeModal__ = __webpack_require__(203);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-var UpdateEmployee = function (_Component) {
-    _inherits(UpdateEmployee, _Component);
-
-    function UpdateEmployee(props) {
-        _classCallCheck(this, UpdateEmployee);
-
-        var _this = _possibleConstructorReturn(this, (UpdateEmployee.__proto__ || Object.getPrototypeOf(UpdateEmployee)).call(this, props));
-
-        _this.state = {
-            employee: {
-                first_name: '',
-                last_name: '',
-                email: '',
-                phone: '',
-                company_id: '',
-                _method: 'PUT'
-            },
-            companies: [],
-            company_id: '',
-            id: _this.props.id,
-            data_target: 'update' + _this.props.id
-        };
-
-        _this.handleSubmit = _this.handleSubmit.bind(_this);
-        _this.handelUpdateEmployees = _this.handelUpdateEmployees.bind(_this);
-        _this.handleInput = _this.handleInput.bind(_this);
-        _this.update = _this.update.bind(_this);
-        _this.handleChange = _this.handleChange.bind(_this);
-
-        return _this;
-    }
-
-    _createClass(UpdateEmployee, [{
-        key: 'handleInput',
-        value: function handleInput(key, e) {
-            var state = Object.assign({}, this.state.employee);
-            state[key] = e.target.value;
-            this.setState({ employee: state });
-        }
-    }, {
-        key: 'handleChange',
-        value: function handleChange(event) {
-            this.setState({ company_id: event.target.value });
-        }
-    }, {
-        key: 'handleSubmit',
-        value: function handleSubmit(e) {
-            e.preventDefault();
-            this.state.employee.company_id = this.state.company_id;
-            this.handelUpdateEmployees(this.state.id, this.state.employee);
-        }
-    }, {
-        key: 'handelUpdateEmployees',
-        value: function handelUpdateEmployees(id, employees) {
-            var _this2 = this;
-
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/employees/' + id, employees, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
-                    'Content-Type': 'application/json' } }).then(function (response) {
-                _this2.setState({ employee: response.data });
-                _this2.props.editEmployee(_this2.state.employee);
-            }).catch(function (err) {});
-        }
-    }, {
-        key: 'componentWillMount',
-        value: function componentWillMount() {
-            var _this3 = this;
-
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies/?token=' + localStorage.getItem('token')).then(function (response) {
-                _this3.setState({ companies: Object.values(response.data) });
-            }).catch(function (err) {
-                console.log(err);
-            });
-        }
-    }, {
-        key: 'update',
-        value: function update() {
-            $('#' + this.state.data_target).modal();
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'td',
-                    null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'button',
-                        { type: 'button', className: 'btn btn-info btn-lg edit', 'data-toggle': 'modal',
-                            'data-target': this.state.data_target, onClick: this.update },
-                        ' Edit'
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__modals_updateEmployeeModal__["a" /* default */], { id: this.state.data_target, updateEmployee: this.handleSubmit,
-                    handleInput: this.handleInput, companies: this.state.companies,
-                    handleChange: this.handleChange })
-            );
-        }
-    }]);
-
-    return UpdateEmployee;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
-
-/* harmony default export */ __webpack_exports__["a"] = (UpdateEmployee);
-
-/***/ }),
+/* 202 */,
 /* 203 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64980,16 +64553,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var UpdateEmployeesModal = function (_Component) {
-    _inherits(UpdateEmployeesModal, _Component);
+var UpdateEmployeeModal = function (_Component) {
+    _inherits(UpdateEmployeeModal, _Component);
 
-    function UpdateEmployeesModal() {
-        _classCallCheck(this, UpdateEmployeesModal);
+    function UpdateEmployeeModal() {
+        _classCallCheck(this, UpdateEmployeeModal);
 
-        return _possibleConstructorReturn(this, (UpdateEmployeesModal.__proto__ || Object.getPrototypeOf(UpdateEmployeesModal)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (UpdateEmployeeModal.__proto__ || Object.getPrototypeOf(UpdateEmployeeModal)).apply(this, arguments));
     }
 
-    _createClass(UpdateEmployeesModal, [{
+    _createClass(UpdateEmployeeModal, [{
         key: "companiesSelect",
         value: function companiesSelect() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -65134,10 +64707,10 @@ var UpdateEmployeesModal = function (_Component) {
         }
     }]);
 
-    return UpdateEmployeesModal;
+    return UpdateEmployeeModal;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-/* harmony default export */ __webpack_exports__["a"] = (UpdateEmployeesModal);
+/* harmony default export */ __webpack_exports__["a"] = (UpdateEmployeeModal);
 
 /***/ }),
 /* 204 */
@@ -65161,24 +64734,24 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var ShowEmployees = function (_Component) {
-    _inherits(ShowEmployees, _Component);
+var ShowEmployee = function (_Component) {
+    _inherits(ShowEmployee, _Component);
 
-    function ShowEmployees(props) {
-        _classCallCheck(this, ShowEmployees);
+    function ShowEmployee(props) {
+        _classCallCheck(this, ShowEmployee);
 
-        var _this = _possibleConstructorReturn(this, (ShowEmployees.__proto__ || Object.getPrototypeOf(ShowEmployees)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (ShowEmployee.__proto__ || Object.getPrototypeOf(ShowEmployee)).call(this, props));
 
         _this.state = {
             data_target: 'show' + _this.props.id,
             employee: {},
-            company: {}
+            company: []
         };
         _this.show = _this.show.bind(_this);
         return _this;
     }
 
-    _createClass(ShowEmployees, [{
+    _createClass(ShowEmployee, [{
         key: 'componentWillMount',
         value: function componentWillMount() {
             var _this2 = this;
@@ -65186,7 +64759,7 @@ var ShowEmployees = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/employees/' + this.props.id, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
                     'Content-Type': 'application/json' } }).then(function (response) {
                 _this2.setState({ employee: response.data });
-                _this2.setState({ company: response.data.company });
+                _this2.setState({ company: response.data.compan });
             }).catch(function (err) {
                 console.log(err);
             });
@@ -65214,10 +64787,10 @@ var ShowEmployees = function (_Component) {
         }
     }]);
 
-    return ShowEmployees;
+    return ShowEmployee;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-/* harmony default export */ __webpack_exports__["a"] = (ShowEmployees);
+/* harmony default export */ __webpack_exports__["a"] = (ShowEmployee);
 
 /***/ }),
 /* 205 */
@@ -65598,8 +65171,8 @@ var ShowCompany = function (_Component) {
 
         _this.state = {
             data_target: 'show' + _this.props.id,
-            companies: [],
-            employees: []
+            company: {},
+            employees: {}
         };
         _this.show = _this.show.bind(_this);
 
@@ -65613,7 +65186,8 @@ var ShowCompany = function (_Component) {
 
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies/' + this.props.id, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
                     'Content-Type': 'application/json' } }).then(function (response) {
-                _this2.setState({ companies: Object.values(response.data) });
+                _this2.setState({ company: response.data });
+                _this2.setState({ employees: response.data.employees });
             }).catch(function (err) {
                 console.log(err);
             });
@@ -65621,6 +65195,7 @@ var ShowCompany = function (_Component) {
     }, {
         key: 'show',
         value: function show() {
+
             $('#' + this.state.data_target).modal();
         }
     }, {
@@ -65636,7 +65211,7 @@ var ShowCompany = function (_Component) {
                         'data-target': this.state.data_target, onClick: this.show },
                     'Show Employee'
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__modals_showCompanyModal__["a" /* default */], { id: this.state.data_target, company: this.state.companies })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__modals_showCompanyModal__["a" /* default */], { id: this.state.data_target, company: this.state.company, employees: this.state.employees })
             );
         }
     }]);
@@ -65674,6 +65249,20 @@ var ShowCompanyModal = function (_Component) {
 
     _createClass(ShowCompanyModal, [{
         key: "render",
+
+
+        // renderEmployees() {
+        //     return this.props.employees.map(function (value, index) {
+        //         return (
+        //                 <tr>
+        //                     <td> {value.first_name}</td>
+        //                     <td> {value.last_name} </td>
+        //                     <td> {value.email} </td>
+        //                     <td> {value.phone} </td>
+        //                 </tr>
+        //         )
+        //     })
+        // }
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "div",
@@ -65707,7 +65296,7 @@ var ShowCompanyModal = function (_Component) {
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     "h3",
                                     null,
-                                    this.props.company[1]
+                                    this.props.company[name]
                                 ),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     "div",
@@ -65726,7 +65315,7 @@ var ShowCompanyModal = function (_Component) {
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                 "td",
                                                 null,
-                                                this.props.company[2]
+                                                this.props.company['email']
                                             )
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -65740,7 +65329,7 @@ var ShowCompanyModal = function (_Component) {
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                 "td",
                                                 null,
-                                                this.props.company[4]
+                                                this.props.company['website']
                                             )
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -65754,7 +65343,7 @@ var ShowCompanyModal = function (_Component) {
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                 "td",
                                                 null,
-                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: "http://laravel.development/logos/" + this.props.company[3],
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: "http://laravel.development/logos/" + this.props.company['logo'],
                                                     style: { height: 61 + 'px' } })
                                             )
                                         )
@@ -65804,7 +65393,12 @@ var UpdateCompany = function (_Component) {
         var _this = _possibleConstructorReturn(this, (UpdateCompany.__proto__ || Object.getPrototypeOf(UpdateCompany)).call(this, props));
 
         _this.state = {
-            company: [],
+            company: {
+                name: '',
+                email: '',
+                logo: '',
+                website: ''
+            },
             id: _this.props.id,
             data_target: 'update' + _this.props.id
         };
@@ -72442,6 +72036,430 @@ var LoginComponent = function (_Component) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 362 */,
+/* 363 */,
+/* 364 */,
+/* 365 */,
+/* 366 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modals_deleteEmployeeModal__ = __webpack_require__(201);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+var DeleteEmployee = function (_Component) {
+    _inherits(DeleteEmployee, _Component);
+
+    function DeleteEmployee(props) {
+        _classCallCheck(this, DeleteEmployee);
+
+        var _this = _possibleConstructorReturn(this, (DeleteEmployee.__proto__ || Object.getPrototypeOf(DeleteEmployee)).call(this, props));
+
+        _this.state = {
+            id: _this.props.id,
+            data_target: 'delete' + _this.props.id
+        };
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        _this.handelDeleteEmployees = _this.handelDeleteEmployees.bind(_this);
+        _this.deleteModal = _this.deleteModal.bind(_this);
+
+        return _this;
+    }
+
+    _createClass(DeleteEmployee, [{
+        key: 'handleSubmit',
+        value: function handleSubmit(e) {
+            e.preventDefault();
+            this.handelDeleteEmployees(this.state.id);
+        }
+    }, {
+        key: 'handelDeleteEmployees',
+        value: function handelDeleteEmployees(id) {
+            var _this2 = this;
+
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/employees/' + id, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
+                    'Content-Type': 'application/json' } }).then(function (response) {
+                _this2.props.deleteEmployee(_this2.props.id);
+            }).catch(function (err) {});
+        }
+    }, {
+        key: 'deleteModal',
+        value: function deleteModal() {
+            $('#' + this.state.data_target).modal();
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'td',
+                    null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'button',
+                        { type: 'button', className: 'btn btn-info btn-lg delete', 'data-toggle': 'modal',
+                            'data-target': this.state.data_target, onClick: this.deleteModal },
+                        ' Delete'
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__modals_deleteEmployeeModal__["a" /* default */], { id: this.state.data_target, 'delete': this.handleSubmit })
+            );
+        }
+    }]);
+
+    return DeleteEmployee;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (DeleteEmployee);
+
+/***/ }),
+/* 367 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modals_updateEmployeeModal__ = __webpack_require__(203);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+var UpdateEmployee = function (_Component) {
+    _inherits(UpdateEmployee, _Component);
+
+    function UpdateEmployee(props) {
+        _classCallCheck(this, UpdateEmployee);
+
+        var _this = _possibleConstructorReturn(this, (UpdateEmployee.__proto__ || Object.getPrototypeOf(UpdateEmployee)).call(this, props));
+
+        _this.state = {
+            employee: {
+                first_name: '',
+                last_name: '',
+                email: '',
+                phone: '',
+                company_id: '',
+                _method: 'PUT'
+            },
+            companies: [],
+            company_id: '',
+            id: _this.props.id,
+            data_target: 'update' + _this.props.id
+        };
+
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        _this.handelUpdateEmployees = _this.handelUpdateEmployees.bind(_this);
+        _this.handleInput = _this.handleInput.bind(_this);
+        _this.update = _this.update.bind(_this);
+        _this.handleChange = _this.handleChange.bind(_this);
+
+        return _this;
+    }
+
+    _createClass(UpdateEmployee, [{
+        key: 'handleInput',
+        value: function handleInput(key, e) {
+            var state = Object.assign({}, this.state.employee);
+            state[key] = e.target.value;
+            this.setState({ employee: state });
+        }
+    }, {
+        key: 'handleChange',
+        value: function handleChange(event) {
+            this.setState({ company_id: event.target.value });
+        }
+    }, {
+        key: 'handleSubmit',
+        value: function handleSubmit(e) {
+            e.preventDefault();
+            this.state.employee.company_id = this.state.company_id;
+            this.handelUpdateEmployees(this.state.id, this.state.employee);
+        }
+    }, {
+        key: 'handelUpdateEmployees',
+        value: function handelUpdateEmployees(id, employees) {
+            var _this2 = this;
+
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/employees/' + id, employees, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
+                    'Content-Type': 'application/json' } }).then(function (response) {
+                _this2.setState({ employee: response.data });
+                _this2.props.editEmployee(_this2.state.employee);
+            }).catch(function (err) {});
+        }
+    }, {
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var _this3 = this;
+
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies/?token=' + localStorage.getItem('token')).then(function (response) {
+                _this3.setState({ companies: Object.values(response.data) });
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }
+    }, {
+        key: 'update',
+        value: function update() {
+            $('#' + this.state.data_target).modal();
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'td',
+                    null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'button',
+                        { type: 'button', className: 'btn btn-info btn-lg edit', 'data-toggle': 'modal',
+                            'data-target': this.state.data_target, onClick: this.update },
+                        ' Edit'
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__modals_updateEmployeeModal__["a" /* default */], { id: this.state.data_target, updateEmployee: this.handleSubmit,
+                    handleInput: this.handleInput, companies: this.state.companies,
+                    handleChange: this.handleChange })
+            );
+        }
+    }]);
+
+    return UpdateEmployee;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (UpdateEmployee);
+
+/***/ }),
+/* 368 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var AddEmployee = function (_Component) {
+    _inherits(AddEmployee, _Component);
+
+    function AddEmployee(props) {
+        _classCallCheck(this, AddEmployee);
+
+        var _this = _possibleConstructorReturn(this, (AddEmployee.__proto__ || Object.getPrototypeOf(AddEmployee)).call(this, props));
+
+        _this.state = {
+            addEmployee: {
+                first_name: '',
+                last_name: '',
+                company_id: '',
+                email: '',
+                phone: ''
+            },
+            id: '',
+            companies: []
+        };
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        _this.handleInput = _this.handleInput.bind(_this);
+        _this.handelAddEmployee = _this.handelAddEmployee.bind(_this);
+        _this.handleChange = _this.handleChange.bind(_this);
+        return _this;
+    }
+
+    _createClass(AddEmployee, [{
+        key: 'handleInput',
+        value: function handleInput(key, e) {
+            var state = Object.assign({}, this.state.addEmployee);
+            state[key] = e.target.value;
+            this.setState({ addEmployee: state });
+        }
+    }, {
+        key: 'handleChange',
+        value: function handleChange(event) {
+            this.setState({ id: event.target.value });
+        }
+    }, {
+        key: 'handleSubmit',
+        value: function handleSubmit(e) {
+            e.preventDefault();
+            this.state.addEmployee.company_id = this.state.id;
+            this.handelAddEmployee(this.state.addEmployee);
+        }
+    }, {
+        key: 'handelAddEmployee',
+        value: function handelAddEmployee(employees) {
+            var _this2 = this;
+
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/employees', employees, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
+                    'Content-Type': 'application/json' } }).then(function (response) {
+                _this2.props.addEmployee(response.data);
+            }).catch(function (err) {});
+        }
+    }, {
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var _this3 = this;
+
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies/?token=' + localStorage.getItem('token')).then(function (response) {
+                _this3.setState({ companies: Object.values(response.data) });
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }
+    }, {
+        key: 'companiesSelect',
+        value: function companiesSelect() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'label',
+                    null,
+                    'Company:'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'select',
+                    { className: 'form-control', onChange: this.handleChange },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'option',
+                        null,
+                        'Choose a company '
+                    ),
+                    this.state.companies.map(function (value, index) {
+                        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'option',
+                            { value: value.id },
+                            value.name
+                        );
+                    })
+                )
+            );
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this4 = this;
+
+            var divStyle = {};
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { style: divStyle },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'h2',
+                    null,
+                    'Create'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'form',
+                    { onSubmit: this.handleSubmit },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'form-row' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'form-group col-md-6' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                null,
+                                'First Name'
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', placeholder: 'First Name', name: 'first_name',
+                                onChange: function onChange(e) {
+                                    return _this4.handleInput('first_name', e);
+                                } })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'form-group col-md-6' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'label',
+                                null,
+                                'Last Name'
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Last Name', name: 'last_name',
+                                onChange: function onChange(e) {
+                                    return _this4.handleInput('last_name', e);
+                                } })
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'form-group' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'label',
+                            null,
+                            'Email'
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'email', className: 'form-control', placeholder: 'email@gmail.com', name: 'email',
+                            onChange: function onChange(e) {
+                                return _this4.handleInput('email', e);
+                            } })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'form-group' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'label',
+                            null,
+                            'Phon'
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', placeholder: '099******', name: 'phone',
+                            onChange: function onChange(e) {
+                                return _this4.handleInput('phone', e);
+                            } })
+                    ),
+                    this.companiesSelect(),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'button',
+                        { type: 'submit', className: 'btn btn-primary', onSubmit: this.handleSubmit },
+                        'Create'
+                    )
+                )
+            );
+        }
+    }]);
+
+    return AddEmployee;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (AddEmployee);
 
 /***/ })
 /******/ ]);

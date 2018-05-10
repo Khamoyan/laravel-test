@@ -50,7 +50,7 @@ class ListCompanies extends Component {
                 value.website = company.website;
             }
         });
-        this.setState(this.state.companies);
+        this.setState({companies});
     }
 
     addCompany(company) {

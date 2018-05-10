@@ -5,15 +5,9 @@
   <h3>{{$employee->first_name}}</h3>
   <div class="container">
     <table class="table"> 
-
      <tr>
         <th>Company Name:</th>
-        @if(!empty($company->name))
-        <td>{{$company->name}}</td>
-        @else
-        <td>No Company</td>
-        @endif
-        
+        <td>{{$employee['company']->name}}</td>  
       </tr>
       <tr>
         <th>Last Name:</th>

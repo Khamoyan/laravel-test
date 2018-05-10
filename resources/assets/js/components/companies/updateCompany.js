@@ -6,7 +6,12 @@ class UpdateCompany extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            company: [],
+            company: {
+                name: '',
+                email: '',
+                logo: '',
+                website: ''
+            },
             id: this.props.id,
             data_target: `update${this.props.id}`
         };
