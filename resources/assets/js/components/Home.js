@@ -6,6 +6,7 @@ import ListEmployees from './employees/listEmployees';
 import ListCompanies from './companies/listCompanies';
 import LogoutComponent from './auth/logoutComponent';
 import {isIfStatement} from 'babel-types';
+import NotFound from './Err404';
 
 class Home extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class Home extends Component {
         if (isLogged === 'true') {
             return (
                 <div>
-                    <h3> {name}</h3>
+                    <h3>Hello {name}</h3>
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
                         <div className="collapse navbar-collapse" id="navbarNav">
                             <ul className="navbar-nav">
@@ -40,7 +41,7 @@ class Home extends Component {
                 </div>
             )
         } else {
-            return ( <h1>Not Found</h1>  )
+            return ( <NotFound />  )
         }
     }
 

@@ -19,14 +19,13 @@ class EmployeesController extends Controller
     {
         $result = $request->inputs();
         Employee::create($result);
-        return response()->json($result, 200);
+        return response()->json($result, 201);
 
     }
 
     public function update(EmployeeRequest $request, $id)
     {
         $result = $request->inputs();
-        unset($result['_method'],$result['token']);
         Employee::where('id', $id)->update($result);
         $employee =Employee::where('id', $id)->first();
         return response()->json($employee, 201);

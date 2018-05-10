@@ -1,19 +1,6 @@
 import React, {Component} from 'react';
 
 class ShowCompanyModal extends Component {
-
-    // renderEmployees() {
-    //     return this.props.employees.map(function (value, index) {
-    //         return (
-    //                 <tr>
-    //                     <td> {value.first_name}</td>
-    //                     <td> {value.last_name} </td>
-    //                     <td> {value.email} </td>
-    //                     <td> {value.phone} </td>
-    //                 </tr>
-    //         )
-    //     })
-    // }
     render() {
         return (
             <div className="modal fade" id={this.props.id} role="dialog">
@@ -39,10 +26,9 @@ class ShowCompanyModal extends Component {
                                         </tr>
                                         <tr>
                                             <th>Logo:</th>
-                                            <td><img src={`http://laravel.development/logos/${this.props.company['logo']}`}
+                                            <td><img src={`http://laravel.development/storage/logos/${this.props.company['logo']}`}
                                                      style={{height: 61 + 'px'}}/></td>
                                         </tr>
-                                        {/* {this.renderEmployees()} */}
                                     </table>
                                 </div>
                             </div>

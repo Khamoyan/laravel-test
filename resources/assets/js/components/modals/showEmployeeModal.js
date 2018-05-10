@@ -18,7 +18,7 @@ class ShowEmployeeModal extends Component {
                                         <tbody>
                                             <tr>
                                                 <th>Company Name:</th>
-                                                <td>{this.props.company['name']}</td>
+                                                <td>{this.props.company}</td>
                                             </tr>
                                             <tr>
                                                 <th>Last Name:</th>

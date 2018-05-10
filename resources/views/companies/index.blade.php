@@ -54,7 +54,7 @@
               <td><a href="/companies/{{$list->id}}">{{ $list->name }}</a></td>
               <td>{{ $list->email }}</td> 
               <td><a href="https://{{($list->website) }}">{{ $list->website }}</a></td>
-              <td><img src="{{asset('logos/'.$list->logo)}}" style="height: 100px;width: 100px"></td>
+              <td><img src="http://laravel.development/storage/logos/{{$list->logo}}" style="height: 100px;width: 100px"></td>
               <td><button type="button" class="btn btn-info btn-lg edit" data-toggle="modal" data-target="#myModal" data-id={{$list->id}}> Edit</button></td>  
               <td><button type="button" class="btn btn-info btn-lg delete" data-toggle="modal" data-target="#myModalDelete" data-id={{$list->id}}> Delete</button></td>
             </tr> 

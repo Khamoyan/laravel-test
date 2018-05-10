@@ -18,7 +18,7 @@
       </tr>
       <tr>
         <th>Logo:</th>
-        <td><img src="{{asset('logos/'.$company->logo)}}" style="height: 100px;width: 100px"></td>
+        <td><img src="http://laravel.development/storage/logos/{{$company->logo}}" style="height: 100px;width: 100px"></td>
       </tr>
 
     </table>

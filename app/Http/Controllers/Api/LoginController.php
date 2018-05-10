@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Hash;
@@ -13,7 +13,7 @@ use Exception;
 class LoginController extends Controller
 {
     
-    public function login(UserRequest $request)
+    public function login(LoginRequest $request)
     {
         $token = null;
         $credentials = $request->only('email', 'password');
@@ -38,12 +38,11 @@ class LoginController extends Controller
         }
     }
 
-    public function logout(UserRequest $request)
+    public function logout(LoginRequest $request)
     {
         try {
             JWTAuth::setToken($request->input('auth_token'))->invalidate();
             return response()->json(['message'=>'ok'], 200);
-
         }
         catch (JWTAuthException $e) {
             return response()->json(['response' => $e, 'message' => 'Token creation failed']);

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Company;
 
 class Employee extends Model
 {
@@ -20,7 +19,7 @@ class Employee extends Model
 
     public function company()
     {
-    	return $this->belongsTo(Company::class);
+    	return $this->belongsTo('App\Models\Company','company_id');
     }
     
 }

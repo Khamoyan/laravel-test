@@ -9,7 +9,6 @@ class ShowCompany extends Component {
         this.state = {
             data_target: `show${this.props.id}`,
             company: {},
-            employees: {},
         }
         this.show = this.show.bind(this)
 
@@ -21,7 +20,6 @@ class ShowCompany extends Component {
                             'Content-Type': 'application/json' }})
             .then((response) => {
                 this.setState({company:response.data});
-                this.setState({employees:response.data.employees})
             }).catch((err) => {
                 console.log(err);
             })
@@ -39,7 +37,7 @@ class ShowCompany extends Component {
                 <button type="button" className="btn btn-info btn-lg edit" data-toggle="modal"
                         data-target={this.state.data_target} onClick={this.show}>Show Employee
                 </button>
-                <ShowCompanyModal id={this.state.data_target} company={this.state.company} employees={this.state.employees}/>
+                <ShowCompanyModal id={this.state.data_target} company={this.state.company}/>
             </div>
         )
     }

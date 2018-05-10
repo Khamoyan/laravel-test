@@ -12,16 +12,19 @@ class CompaniesController extends Controller
     public function index()
     {
         $lists = Company::all();
-        return response()->json($lists);
+        return response()->json($lists,200);
     }
 
     public function store(CompanyRequest $request)
     {
         $result = $request->inputs();
         if ($request->hasfile('logo')) {
+            $destinationPath = storage_path('app/public/logos');
+            if (!file_exists($destinationPath)) {
+                File::makeDirectory($destinationPath);
+            }
             $image = $request->file('logo');
             $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = '../storage/logos';
             if (Company::create($result)) {
                 $image->move($destinationPath, $result['logo']);
             }
@@ -32,11 +35,13 @@ class CompaniesController extends Controller
     public function update(CompanyRequest $request, $id)
     {
         $result = $request->inputs();
-        unset($result['_method'],$result['token']);
         if ($request->hasfile('logo')) {
+            $destinationPath = storage_path('app/public/logos');
+            if (!file_exists($destinationPath)) {
+                File::makeDirectory($destinationPath);
+            }
             $image = $request->file('logo');
             $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = '../storage/logos';
             if (Company::where('id', $id)->update($result)) {
                 $image->move($destinationPath, $result['logo']);
             }

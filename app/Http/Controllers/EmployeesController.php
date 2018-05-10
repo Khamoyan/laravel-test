@@ -23,7 +23,6 @@ class EmployeesController extends Controller
     public function store(EmployeeRequest $request)
     {
         $result = $request->inputs();
-        unset($result['_method'],$result['_token']);
         Employee::create($result);
         return back();        
     }
@@ -32,7 +31,6 @@ class EmployeesController extends Controller
     {
 
         $result = $request->inputs();
-        unset($result['_method'],$result['_token']);
         Employee::where('id', $id)->update($result);
         return back();   
     }

@@ -7,6 +7,7 @@ import UpdateCompany from './updateCompany';
 import AddCompany from './addCompany';
 import Home from '../Home';
 import {exportDefaultSpecifier} from 'babel-types';
+import NotFound from '../Err404';
 
 class ListCompanies extends Component {
     constructor(props) {
@@ -24,7 +25,7 @@ class ListCompanies extends Component {
                         { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,    
                                     'Content-Type': 'application/json'}})
                     .then((response) => {
-                        this.setState({companies: Object.values(response.data)});
+                        this.setState({companies: response.data});
                     }).catch((err) => {
                         console.log(err);
 
@@ -38,7 +39,7 @@ class ListCompanies extends Component {
                 companies.splice(index, 1);
             }
         });
-        this.setState({companies});
+        this.setState({companies:this.state.companies});
     }
 
     editCompany(company) {
@@ -50,7 +51,7 @@ class ListCompanies extends Component {
                 value.website = company.website;
             }
         });
-        this.setState({companies});
+        this.setState({companies:this.state.companies});
     }
 
     addCompany(company) {
@@ -58,7 +59,6 @@ class ListCompanies extends Component {
         this.setState({companies: this.state.companies});
         alert('creting');
     }
-
 
     renderCompanies() {
         let deleteCompany = this.deleteCompany;
@@ -70,7 +70,7 @@ class ListCompanies extends Component {
                     <td> {value.name} </td>
                     <td> {value.email} </td>
                     <td> {value.website} </td>
-                    <td><img src={`storage/public/logos/${value.logo}`} style={{height: 61 + 'px'}}/></td>
+                    <td><img src={`http://laravel.development/storage/logos/${value.logo}`} style={{height: 61 + 'px'}}/></td>
                     <td><DeleteCompany id={value.id} deleteCompany={deleteCompany}/></td>
                     <td><UpdateCompany id={value.id} editCompany={editCompany}/></td>
                     <td><ShowCompany id={value.id}/></td>
@@ -105,7 +105,7 @@ class ListCompanies extends Component {
                 </div>
             )
         } else {
-            return ( <h1>Not Found</h1>)
+            return ( <NotFound />)
         }
     }
 }

@@ -44,8 +44,6 @@ class UpdateCompany extends Component {
     }
 
     handelUpdateCompany(id, data) {  
-        console.log(id);
-        
         axios.post(`/api/companies/${id}`,
                     data, 
                     { headers: {Authorization:`Bearer ${localStorage.getItem('token')}`, 

@@ -69,6 +69,7 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+        
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -76,9 +77,9 @@
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     @endauth
+                    <a href={{url('/api')}}>Api</a>
                 </div>
             @endif
-
         </div>
         
     </body>

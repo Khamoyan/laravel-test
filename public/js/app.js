@@ -3691,6 +3691,7 @@ var createTransitionManager = function createTransitionManager() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__auth_logoutComponent__ = __webpack_require__(359);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_babel_types__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_babel_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_babel_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Err404__ = __webpack_require__(370);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3698,6 +3699,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -3733,7 +3735,7 @@ var Home = function (_Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'h3',
                         null,
-                        ' ',
+                        'Hello ',
                         name
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -3778,11 +3780,7 @@ var Home = function (_Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__auth_logoutComponent__["a" /* default */], null)
                 );
             } else {
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'h1',
-                    null,
-                    'Not Found'
-                );
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__Err404__["a" /* default */], null);
             }
         }
     }, {
@@ -18795,6 +18793,7 @@ var withRouter = function withRouter(Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__showEmployee__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__addEmployee__ = __webpack_require__(368);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Home__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Err404__ = __webpack_require__(370);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18802,6 +18801,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -18852,7 +18852,7 @@ var ListEmployees = function (_Component) {
                     value.phone = employee.phone;
                 }
             });
-            this.setState({ employee: employee });
+            this.setState({ employees: this.state.employees });
         }
     }, {
         key: 'addEmployee',
@@ -18870,8 +18870,6 @@ var ListEmployees = function (_Component) {
                     'Content-Type': 'application/json' } }).then(function (response) {
                 _this2.setState({ employees: response.data });
             }).catch(function (err) {
-                console.log('asas');
-
                 console.log(err);
             });
         }
@@ -19006,11 +19004,7 @@ var ListEmployees = function (_Component) {
                     )
                 );
             } else {
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'h1',
-                    null,
-                    'Not Found'
-                );
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__Err404__["a" /* default */], null);
             }
         }
     }]);
@@ -19038,6 +19032,7 @@ var ListEmployees = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Home__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_babel_types__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_babel_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_babel_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Err404__ = __webpack_require__(370);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -19045,6 +19040,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -19080,7 +19076,7 @@ var ListCompanies = function (_Component) {
 
             __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/companies/', { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
                     'Content-Type': 'application/json' } }).then(function (response) {
-                _this2.setState({ companies: Object.values(response.data) });
+                _this2.setState({ companies: response.data });
             }).catch(function (err) {
                 console.log(err);
             });
@@ -19094,7 +19090,7 @@ var ListCompanies = function (_Component) {
                     companies.splice(index, 1);
                 }
             });
-            this.setState({ companies: companies });
+            this.setState({ companies: this.state.companies });
         }
     }, {
         key: 'editCompany',
@@ -19107,7 +19103,7 @@ var ListCompanies = function (_Component) {
                     value.website = company.website;
                 }
             });
-            this.setState({ companies: companies });
+            this.setState({ companies: this.state.companies });
         }
     }, {
         key: 'addCompany',
@@ -19150,7 +19146,7 @@ var ListCompanies = function (_Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'td',
                         null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'storage/public/logos/' + value.logo, style: { height: 61 + 'px' } })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'http://laravel.development/storage/logos/' + value.logo, style: { height: 61 + 'px' } })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'td',
@@ -19236,11 +19232,7 @@ var ListCompanies = function (_Component) {
                     )
                 );
             } else {
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'h1',
-                    null,
-                    'Not Found'
-                );
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__Err404__["a" /* default */], null);
             }
         }
     }]);
@@ -64745,7 +64737,7 @@ var ShowEmployee = function (_Component) {
         _this.state = {
             data_target: 'show' + _this.props.id,
             employee: {},
-            company: []
+            company: ''
         };
         _this.show = _this.show.bind(_this);
         return _this;
@@ -64759,7 +64751,7 @@ var ShowEmployee = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/employees/' + this.props.id, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
                     'Content-Type': 'application/json' } }).then(function (response) {
                 _this2.setState({ employee: response.data });
-                _this2.setState({ company: response.data.compan });
+                _this2.setState({ company: response.data.company['name'] });
             }).catch(function (err) {
                 console.log(err);
             });
@@ -64875,7 +64867,7 @@ var ShowEmployeeModal = function (_Component) {
                                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                     "td",
                                                     null,
-                                                    this.props.company['name']
+                                                    this.props.company
                                                 )
                                             ),
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -65171,8 +65163,7 @@ var ShowCompany = function (_Component) {
 
         _this.state = {
             data_target: 'show' + _this.props.id,
-            company: {},
-            employees: {}
+            company: {}
         };
         _this.show = _this.show.bind(_this);
 
@@ -65187,7 +65178,6 @@ var ShowCompany = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies/' + this.props.id, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
                     'Content-Type': 'application/json' } }).then(function (response) {
                 _this2.setState({ company: response.data });
-                _this2.setState({ employees: response.data.employees });
             }).catch(function (err) {
                 console.log(err);
             });
@@ -65211,7 +65201,7 @@ var ShowCompany = function (_Component) {
                         'data-target': this.state.data_target, onClick: this.show },
                     'Show Employee'
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__modals_showCompanyModal__["a" /* default */], { id: this.state.data_target, company: this.state.company, employees: this.state.employees })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__modals_showCompanyModal__["a" /* default */], { id: this.state.data_target, company: this.state.company })
             );
         }
     }]);
@@ -65249,20 +65239,6 @@ var ShowCompanyModal = function (_Component) {
 
     _createClass(ShowCompanyModal, [{
         key: "render",
-
-
-        // renderEmployees() {
-        //     return this.props.employees.map(function (value, index) {
-        //         return (
-        //                 <tr>
-        //                     <td> {value.first_name}</td>
-        //                     <td> {value.last_name} </td>
-        //                     <td> {value.email} </td>
-        //                     <td> {value.phone} </td>
-        //                 </tr>
-        //         )
-        //     })
-        // }
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "div",
@@ -65343,7 +65319,7 @@ var ShowCompanyModal = function (_Component) {
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                 "td",
                                                 null,
-                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: "http://laravel.development/logos/" + this.props.company['logo'],
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: "http://laravel.development/storage/logos/" + this.props.company['logo'],
                                                     style: { height: 61 + 'px' } })
                                             )
                                         )
@@ -65436,8 +65412,6 @@ var UpdateCompany = function (_Component) {
         key: 'handelUpdateCompany',
         value: function handelUpdateCompany(id, data) {
             var _this2 = this;
-
-            console.log(id);
 
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/companies/' + id, data, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
                     'Content-Type': 'application/json' } }).then(function (response) {
@@ -72460,6 +72434,53 @@ var AddEmployee = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (AddEmployee);
+
+/***/ }),
+/* 369 */,
+/* 370 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var NotFound = function (_Component) {
+    _inherits(NotFound, _Component);
+
+    function NotFound() {
+        _classCallCheck(this, NotFound);
+
+        return _possibleConstructorReturn(this, (NotFound.__proto__ || Object.getPrototypeOf(NotFound)).apply(this, arguments));
+    }
+
+    _createClass(NotFound, [{
+        key: 'render',
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'h1',
+                    null,
+                    'NOT FOUND :('
+                )
+            );
+        }
+    }]);
+
+    return NotFound;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (NotFound);
 
 /***/ })
 /******/ ]);

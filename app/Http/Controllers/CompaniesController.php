@@ -21,8 +21,7 @@ class CompaniesController extends Controller
 
     public function store(CompanyRequest $request)
     {
-        $result = $request->all();
-        unset($result['_method'],$result['_token']);
+        $result = $request->inputs();
         if ($request->hasfile('logo')) {
             $image = $request->file('logo');
             $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
@@ -37,8 +36,7 @@ class CompaniesController extends Controller
 
     public function update(CompanyRequest $request, $id)
     {
-        $result = $request->all();
-        unset($result['_method'],$result['_token']);
+        $result = $request->inputs();
         if ($request->hasfile('logo')) {
             $image = $request->file('logo');
             $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
@@ -53,7 +51,7 @@ class CompaniesController extends Controller
     public function destroy($id)
     {
         Company::where('id', $id)->delete();
-        return back();
+        return redirect('/companies');
     }
 
     public function show($id)

@@ -10,7 +10,7 @@ class ShowEmployee extends Component {
         this.state = {
             data_target: `show${this.props.id}`,
             employee:{},
-            company:[],
+            company:'',
         };
         this.show = this.show.bind(this)
     }
@@ -21,7 +21,7 @@ class ShowEmployee extends Component {
                             'Content-Type': 'application/json'}})
                     .then((response) => {  
                         this.setState({employee:response.data});
-                        this.setState({company: response.data.compan})
+                        this.setState({company: response.data.company['name']})
                     }).catch((err) => {
                         console.log(err);
                     })

@@ -6,6 +6,7 @@ import UpdateEmployee from './updateEmployee';
 import ShowEmployee from './showEmployee';
 import AddEmployee from './addEmployee';
 import Home from '../Home';
+import NotFound from '../Err404';
 
 class ListEmployees extends Component {
     constructor(props) {
@@ -38,7 +39,7 @@ class ListEmployees extends Component {
                 value.phone=employee.phone
             }
         });
-        this.setState({employee});
+        this.setState({employees:this.state.employees});
     }
 
     addEmployee(employee) {
@@ -54,8 +55,6 @@ class ListEmployees extends Component {
                 .then((response) => {
                         this.setState({employees: response.data})  
                 }).catch((err) => {
-                    console.log('asas');
-                    
                     console.log(err);
                 })
     }
@@ -112,7 +111,7 @@ class ListEmployees extends Component {
             )
         } else {
             return (
-                <h1>Not Found</h1>
+                <NotFound />
             )
         }
     }
