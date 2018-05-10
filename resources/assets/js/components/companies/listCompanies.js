@@ -44,7 +44,7 @@ class ListCompanies extends Component {
 
     editCompany(company) {
         this.state.companies.map((value, index) => {
-            if (value.id === company.id) {
+            if (value.id === company.id) {              
                 value.name = company.name;
                 value.email = company.email;
                 value.logo = company.logo;

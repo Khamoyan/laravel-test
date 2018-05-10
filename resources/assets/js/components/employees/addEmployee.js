@@ -52,13 +52,15 @@ class AddEmployee extends Component {
     }
 
     componentWillMount() {
-        axios.get(`/api/companies/?token=${localStorage.getItem('token')}`).then((response) => {
-            this.setState({companies: Object.values(response.data)});
+        axios.get(`/api/companies`,
+                { headers: {Authorization:`Bearer ${localStorage.getItem('token')}`, 
+                             'Content-Type': 'application/json' }})
+                .then((response) => {
+                    this.setState({companies: Object.values(response.data)});
+                }).catch((err) => {
+                    console.log(err);
 
-        }).catch((err) => {
-            console.log(err);
-
-        })
+                })
     }
 
     companiesSelect() {

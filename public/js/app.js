@@ -18831,6 +18831,18 @@ var ListEmployees = function (_Component) {
     }
 
     _createClass(ListEmployees, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var _this2 = this;
+
+            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/employees', { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
+                    'Content-Type': 'application/json' } }).then(function (response) {
+                _this2.setState({ employees: response.data });
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }
+    }, {
         key: 'deleteEmployee',
         value: function deleteEmployee(employee) {
             var employees = this.state.employees;
@@ -18862,24 +18874,11 @@ var ListEmployees = function (_Component) {
             alert('creting');
         }
     }, {
-        key: 'componentWillMount',
-        value: function componentWillMount() {
-            var _this2 = this;
-
-            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/employees', { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
-                    'Content-Type': 'application/json' } }).then(function (response) {
-                _this2.setState({ employees: response.data });
-            }).catch(function (err) {
-                console.log(err);
-            });
-        }
-    }, {
         key: 'renderEmployees',
         value: function renderEmployees() {
             var deleteEmployee = this.deleteEmployee;
             var editEmployee = this.editEmployee;
             var showEmployee = this.state.showEmployee;
-            var status = this.state.status;
 
             return this.state.employees.map(function (value, index) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -72192,7 +72191,8 @@ var UpdateEmployee = function (_Component) {
         value: function componentWillMount() {
             var _this3 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies/?token=' + localStorage.getItem('token')).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies', { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
+                    'Content-Type': 'application/json' } }).then(function (response) {
                 _this3.setState({ companies: Object.values(response.data) });
             }).catch(function (err) {
                 console.log(err);
@@ -72311,7 +72311,8 @@ var AddEmployee = function (_Component) {
         value: function componentWillMount() {
             var _this3 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies/?token=' + localStorage.getItem('token')).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/companies', { headers: { Authorization: 'Bearer ' + localStorage.getItem('token'),
+                    'Content-Type': 'application/json' } }).then(function (response) {
                 _this3.setState({ companies: Object.values(response.data) });
             }).catch(function (err) {
                 console.log(err);

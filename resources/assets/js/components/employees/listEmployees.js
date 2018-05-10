@@ -19,6 +19,16 @@ class ListEmployees extends Component {
         this.editEmployee = this.editEmployee.bind(this);
         this.addEmployee = this.addEmployee.bind(this)
     }
+    componentWillMount() {
+        axios.get(`/api/employees`, 
+                    { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,    
+                                'Content-Type': 'application/json'}})
+                .then((response) => {
+                        this.setState({employees: response.data})  
+                }).catch((err) => {
+                    console.log(err);
+                })
+    }
 
     deleteEmployee(employee) {
         let employees = this.state.employees;
@@ -30,7 +40,7 @@ class ListEmployees extends Component {
         this.setState({employees});
     }
 
-    editEmployee(employee) {
+    editEmployee(employee) {       
         this.state.employees.map((value, index) => {
             if (value.id === employee.id) {
                 value.first_name = employee.first_name;
@@ -48,22 +58,10 @@ class ListEmployees extends Component {
         alert('creting');
     }
 
-    componentWillMount() {
-        axios.get(`/api/employees`, 
-                    { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,    
-                                'Content-Type': 'application/json'}})
-                .then((response) => {
-                        this.setState({employees: response.data})  
-                }).catch((err) => {
-                    console.log(err);
-                })
-    }
-
     renderEmployees() {
         const deleteEmployee = this.deleteEmployee;
         const editEmployee = this.editEmployee;
         const showEmployee=this.state.showEmployee;
-        const status=this.state.status;
 
         return this.state.employees.map(function (value, index) {
             return (

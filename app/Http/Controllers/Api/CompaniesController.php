@@ -46,7 +46,7 @@ class CompaniesController extends Controller
                 $image->move($destinationPath, $result['logo']);
             }
         }
-        $company = Company::where('id', $id)->get();
+        $company = Company::where('id', $id)->first();
         return response()->json($company, 201);
     }
 
