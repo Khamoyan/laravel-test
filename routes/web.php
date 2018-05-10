@@ -18,15 +18,15 @@ Route::get('/home', function () {
      return view('home');
  });
 
-Route::get('/api', function () {
-    return view('api');
+Route::get('/app', function () {
+    return view('app');
 });
 
 Route::get('/home', 'HomeController@index');
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/companies', 'CompaniesController@index');
 Route::post('/companies', 'CompaniesController@store');

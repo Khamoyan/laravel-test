@@ -77,7 +77,7 @@
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     @endauth
-                    <a href={{url('/api')}}>Api</a>
+                    <a href={{url('/app')}}>App</a>
                 </div>
             @endif
         </div>

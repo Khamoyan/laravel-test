@@ -1,4 +1,4 @@
-@extends('layouts.api')
+@extends('layouts.appreact')
 
 <div class="container">
      <div id='root'></div>
