@@ -13,8 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-    Route::post('/login', 'Api\LoginController@login');
-    Route::post('/logout', 'Api\LoginController@logout');
+Route::post('/login', 'Api\LoginController@login');
+Route::get('/logout', 'Api\LoginController@logout');
 
 Route::group(['middleware' => ['before' => 'jwt.auth']], function () {
     Route::get('/employees', 'Api\EmployeesController@index');

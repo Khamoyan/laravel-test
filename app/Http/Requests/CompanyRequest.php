@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: armenuhi
- * Date: 05/05/18
- * Time: 01:19
- */
 
 namespace App\Http\Requests;
 
@@ -33,8 +27,7 @@ class CompanyRequest extends FormRequest
 
     public function inputs()
     {
-        $result=$this->all();
-        unset($result['_method'],$result['token'], $result['_token']);
+        $result = $this->only('id', 'name', 'email', 'logo', 'website');
         return $result;
     }
 }

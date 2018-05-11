@@ -4,62 +4,83 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\CompanyRequest;
 use App\Http\Controllers\Controller;
-use App\Models\Company;
+use App\Services\CompaniesService;
 
 class CompaniesController extends Controller
 {
-    
-    public function index()
+
+    /**
+     * Get all the companies
+     * 
+     * @param App\Services\CompaniesService $company_service
+     * @return \Illuminate\Http\Response
+     */
+
+    public function index(CompaniesService $company_service)
     {
-        $lists = Company::all();
-        return response()->json($lists,200);
+        $lists = $company_service->index();
+        return response()->json($lists);
     }
 
-    public function store(CompanyRequest $request)
+    /**
+     * Store a new company in storage.
+     *
+     * @param  App\Http\Requests\CompanyRequest  $request
+     * @param App\Services\CompaniesService $company_service
+     * @return \Illuminate\Http\Response
+     */
+
+    public function store(CompanyRequest $request, CompaniesService $company_service)
     {
-        $result = $request->inputs();
-        if ($request->hasfile('logo')) {
-            $destinationPath = storage_path('app/public/logos');
-            if (!file_exists($destinationPath)) {
-                File::makeDirectory($destinationPath);
-            }
-            $image = $request->file('logo');
-            $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
-            if (Company::create($result)) {
-                $image->move($destinationPath, $result['logo']);
-            }
-        }
+        $inputs=$request->inputs();
+        $image = $request->file('logo');
+        $result=$company_service->store($inputs, $image);
         return response()->json($result, 201);
     }
 
-    public function update(CompanyRequest $request, $id)
+    /**
+     * Update the specified company 
+     * 
+     * @param  int  $id
+     * @param App\Services\CompaniesService $company_service
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function update(CompanyRequest $request, $id, CompaniesService $company_service)
     {
-        $result = $request->inputs();
-        if ($request->hasfile('logo')) {
-            $destinationPath = storage_path('app/public/logos');
-            if (!file_exists($destinationPath)) {
-                File::makeDirectory($destinationPath);
-            }
-            $image = $request->file('logo');
-            $result['logo'] = time() . '.' . $image->getClientOriginalExtension();
-            if (Company::where('id', $id)->update($result)) {
-                $image->move($destinationPath, $result['logo']);
-            }
-        }
-        $company = Company::where('id', $id)->first();
-        return response()->json($company, 201);
+        $inputs=$request->inputs();
+        $image = $request->file('logo');
+        $result=$company_service->update($inputs,$id,$image);
+        return response()->json(null, 204);
     }
 
-    public function destroy($id)
+    /**
+     * Destroy the specified company 
+     *
+     * @param  int  $id
+     * @param App\Services\CompaniesService $company_service
+     * @return \Illuminate\Http\Response
+     */
+
+    public function destroy($id, CompaniesService $company_service)
     {
-        $company = Company::where('id', $id)->first();
-        Company::where('id', $id)->delete();
-        return response()->json($company, 200);
+        $company_service->destroy($id);
+        return response()->json(null, 204);
     }
 
-    public function show($id)
+    /**
+     * Show the specified company 
+     *
+     * @param  int  $id
+     * @param App\Services\CompaniesService $company_service
+     * @return \Illuminate\Http\Response
+     */
+
+    public function show($id, CompaniesService $company_service)
     {
-        $company=Company::with('employees')->where('id',$id)->first();
-        return response()->json($company, 200);
+        $company=$company_service->show($id);
+        return response()->json($company);
     }
+
 }

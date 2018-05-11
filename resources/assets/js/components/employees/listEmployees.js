@@ -24,7 +24,8 @@ class ListEmployees extends Component {
                     { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,    
                                 'Content-Type': 'application/json'}})
                 .then((response) => {
-                        this.setState({employees: response.data})  
+                        this.setState({employees: response.data})
+                        console.log(this.state.employees)  
                 }).catch((err) => {
                     console.log(err);
                 })

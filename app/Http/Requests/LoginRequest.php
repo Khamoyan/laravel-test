@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: armenuhi
- * Date: 05/05/18
- * Time: 13:37
- */
 
 namespace App\Http\Requests;
 
@@ -25,7 +19,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-
+            'email' => 'required|email',
+            'password'=> 'required',
         ];
     }
 

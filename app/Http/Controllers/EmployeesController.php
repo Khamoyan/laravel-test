@@ -2,48 +2,85 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
-use App\Models\Company;
+use App\Services\EmployeesService;
+use App\Services\CompaniesService;
 use App\Http\Requests\EmployeeRequest;
 
 class EmployeesController extends Controller
 {
 
     /**
-     * @return Illuminate\Http\Request
-     **/
+     * Get all the employees
+     * 
+     * @param App\Services\EmployeesService $employee_service
+     * @param App\Services\CompaniesService $company_service
+     * @return \Illuminate\Http\Response
+     */
 
-    public function index()
+    public function index(EmployeesService $employee_service, CompaniesService $company_service)
     {
-        $lists=Employee::paginate(4);
-        $companies=Company::all();
+
+        $lists = $employee_service->indexWeb();
+        $companies = $company_service->indexWeb();
         return view('employees.index',compact('lists','companies'));
     }
 
-    public function store(EmployeeRequest $request)
+    /**
+     * Store a new employee in storage.
+     *
+     * @param App\Services\EmployeesService $employee_service
+     * @param  \App\Http\Requests\EmployeeRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function store(EmployeeRequest $request, EmployeesService $employee_service)
     {
-        $result = $request->inputs();
-        Employee::create($result);
+        $inputs = $request->inputs();
+        $result = $employee_service->store($inputs);
         return back();        
     }
 
-    public function update(EmployeeRequest $request, $id)
-    {
+    /**
+     * Update the specified employee
+     *
+     * @param App\Services\EmployeesService $employee_service
+     * @param  \App\Http\Requests\EmployeeRequest  $request
+     * @return \Illuminate\Http\Response
+     */
 
-        $result = $request->inputs();
-        Employee::where('id', $id)->update($result);
+    public function update(EmployeeRequest $request, $id, EmployeesService $employee_service)
+    {
+        $inputs = $request->inputs();
+        $employee_service->update($inputs,$id);
         return back();   
     }
 
-    public function destroy($id)
+    /**
+     * Destroy the specified employee 
+     *
+     * @param  int  $id
+     * @param App\Services\EmployeesService $employee_service
+     * @return \Illuminate\Http\Response
+     */
+
+    public function destroy($id, EmployeesService $employee_service)
     {
-        Employee::where('id', $id)->delete();
+        $employee_service->destroy($id);
         return redirect('/employees');
     }
 
-    public function show($id)
+    /**
+     * Show the specified employee  
+     *
+     * @param  int  $id
+     * @param App\Services\EmployeesService $employee_service
+     * @return \Illuminate\Http\Response
+     */
+
+    public function show($id, EmployeesService $employee_service)
     {
-        $employee = Employee::with('company')->where('id',$id)->first();
+        $employee = $employee_service->show($id);
         return view('employees.show',['employee'=>$employee]);
     }
+
 }

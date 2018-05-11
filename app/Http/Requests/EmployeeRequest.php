@@ -27,8 +27,7 @@ class EmployeeRequest extends FormRequest
 
     public function inputs()
     {
-        $result=$this->all();
-        unset($result['_method'],$result['token'],$result['_token']);
+        $result = $this->only('id', 'first_name', 'last_name', 'email', 'phone', 'company_id');
         return $result;
     }
 

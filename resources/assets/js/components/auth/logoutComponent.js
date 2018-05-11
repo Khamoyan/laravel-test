@@ -17,16 +17,14 @@ class LogoutComponent extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        let auth_token = localStorage.getItem('token');
-        const token = {
-            'auth_token': auth_token,
-        };
-        this.logout(token)
-
+        this.logout()
     }
 
     logout(data) {
-        axios.post('/api/logout', data).then((response) => {
+        axios.get('/api/logout',
+                    { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,
+                                    'Content-Type': 'application/json' }})
+            .then((response) => {
             localStorage.clear();
             this.setState({status: true});
         }).catch((err) => {

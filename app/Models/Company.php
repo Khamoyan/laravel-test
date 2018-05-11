@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     //
-    protected $table='companies';
+    protected $table = 'companies';
 
-    protected $fillable=[
+    protected $fillable = [
     	'name',
     	'email',
     	'logo',
@@ -20,4 +20,5 @@ class Company extends Model
      {
     	return $this->hasMany('App\Models\Employee');
      }
+     
 }

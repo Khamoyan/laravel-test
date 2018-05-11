@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     //
-    protected $table='employees';
+    protected $table = 'employees';
 
-    protected $fillable=[
+    protected $fillable = [
     	'first_name',
     	'last_name',
     	'company_id',
@@ -19,7 +19,7 @@ class Employee extends Model
 
     public function company()
     {
-    	return $this->belongsTo('App\Models\Company','company_id');
+    	return $this->belongsTo('App\Models\Company', 'company_id');
     }
     
 }

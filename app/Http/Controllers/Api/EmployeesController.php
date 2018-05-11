@@ -4,44 +4,81 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployeeRequest;
-use App\Models\Employee;
+use App\Services\EmployeesService;
 
 class EmployeesController extends Controller
 {
-    
-    public function index()
+
+    /**
+     * Get all the employees
+     * 
+     * @param App\Services\EmployeesService $employee_service
+     * @return \Illuminate\Http\Response
+     */
+
+    public function index(EmployeesService $employee_service)
     {
-        $lists = Employee::all();
-        return response()->json($lists, 200);
+        $lists = $employee_service->index();
+        return response()->json($lists);
     }
 
-    public function store(EmployeeRequest $request)
+     /**
+     * Store a new employee in storage.
+     *
+     * @param App\Services\EmployeesService $employee_service
+     * @param  \App\Http\Requests\EmployeeRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function store(EmployeeRequest $request, EmployeesService $employee_service)
     {
-        $result = $request->inputs();
-        Employee::create($result);
+        $inputs = $request->inputs();
+        $result = $employee_service->store($inputs);
         return response()->json($result, 201);
 
     }
 
-    public function update(EmployeeRequest $request, $id)
+      /**
+     * Update the specified employee
+     *
+     * @param App\Services\EmployeesService $employee_service
+     * @param  \App\Http\Requests\EmployeeRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function update(EmployeeRequest $request, $id, EmployeesService $employee_service)
     {
-        $result = $request->inputs();
-        Employee::where('id', $id)->update($result);
-        $employee =Employee::where('id', $id)->first();
-        return response()->json($employee, 201);
+        $inputs = $request->inputs();
+        $employee_service->update($inputs,$id);
+        return response()->json(null, 204);
     }
 
-    public function destroy($id)
+    /**
+     * Destroy the specified employee 
+     *
+     * @param  int  $id
+     * @param App\Services\EmployeesService $employee_service
+     * @return \Illuminate\Http\Response
+     */
+
+    public function destroy($id, EmployeesService $employee_service)
     {
-        $employee = Employee::where('id', $id)->first();
-        Employee::where('id', $id)->delete();
-        return response()->json($employee, 200);
+        $employee_service->destroy($id);
+        return response()->json(null, 204);
     }
 
-    public function show($id)
+    /**
+     * Show the specified employee 
+     *
+     * @param  int  $id
+     * @param App\Services\EmployeesService $employee_service
+     * @return \Illuminate\Http\Response
+     */
+
+    public function show($id, EmployeesService $employee_service)
     {
-        $employee = Employee::with('company')->where('id',$id)->first();   
-        return response()->json($employee, 200);
+        $employee = $employee_service->show($id);
+        return response()->json($employee);
     }
 
 }
