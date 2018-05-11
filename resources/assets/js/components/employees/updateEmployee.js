@@ -13,10 +13,10 @@ class UpdateEmployee extends Component {
                 email: '',
                 phone: '',
                 company_id: '',
-                _method:'PUT'
+                _method: 'PUT'
             },
             companies: [],
-            company_id:'',
+            company_id: '',
             id: this.props.id,
             data_target: `update${this.props.id}`
         };
@@ -46,28 +46,36 @@ class UpdateEmployee extends Component {
     }
 
     handelUpdateEmployees(id, employees) {
-      axios.post(`/api/employees/${id}`,
-                     employees, 
-                     { headers: {Authorization:`Bearer ${localStorage.getItem('token')}`, 
-                                'Content-Type': 'application/json' }})  
-                    .then((response) => { 
-                        this.setState({employee: response.data});
-                        this.props.editEmployee(this.state.employee);
-                    }).catch((err) => {
-                        
-                    })
+        axios.post(`/api/employees/${id}`,
+            employees,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => {
+                this.setState({employee: response.data});
+                this.props.editEmployee(this.state.employee);
+            }).catch((err) => {
+
+        })
     }
 
     componentWillMount() {
         axios.get(`/api/companies`,
-                { headers: {Authorization:`Bearer ${localStorage.getItem('token')}`, 
-                            'Content-Type': 'application/json' }})
-                .then((response) => {           
-                    this.setState({companies: Object.values(response.data)});
-                }).catch((err) => {
-                    console.log(err);
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => {
+                this.setState({companies: Object.values(response.data)});
+            }).catch((err) => {
+            console.log(err);
 
-                })
+        })
     }
 
     update() {
@@ -83,8 +91,8 @@ class UpdateEmployee extends Component {
                     </button>
                 </td>
                 <UpdateEmployeeModal id={this.state.data_target} updateEmployee={this.handleSubmit}
-                                      handleInput={this.handleInput} companies={this.state.companies}
-                                      handleChange={this.handleChange}/>
+                                     handleInput={this.handleInput} companies={this.state.companies}
+                                     handleChange={this.handleChange}/>
             </div>
         )
     }

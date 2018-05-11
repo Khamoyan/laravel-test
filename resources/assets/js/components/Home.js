@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import {Redirect} from 'react-router';
-import {HashRouter, Route, Link} from 'react-router-dom';
-import ListEmployees from './employees/listEmployees';
-import ListCompanies from './companies/listCompanies';
+import { Link} from 'react-router-dom';
 import LogoutComponent from './auth/logoutComponent';
 import {isIfStatement} from 'babel-types';
 import NotFound from './Err404';
@@ -41,7 +38,7 @@ class Home extends Component {
                 </div>
             )
         } else {
-            return ( <NotFound />  )
+            return ( <NotFound/>  )
         }
     }
 

@@ -8,23 +8,23 @@ use App\Models\Employee;
 class EmployeesService
 {
 
-     /**
+    /**
      * Get all the employees for Api
      *
      */
-    
-    public function index()
+
+    public function getAllEmployees()
     {
-         $result = Employee::all();
-         return $result;
+        $result = Employee::all();
+        return $result;
     }
 
-     /**
+    /**
      * Get all the employees for web
      *
      */
 
-    public function indexWeb()
+    public function getAllEmployeesWeb()
     {
         $result = Employee::paginate(4);
         return $result;
@@ -35,7 +35,7 @@ class EmployeesService
      *
      */
 
-    public function store($inputs)
+    public function createEmployee($inputs)
     {
         $result = Employee::create($inputs);
         return $result;
@@ -46,10 +46,10 @@ class EmployeesService
      *
      */
 
-    public function update($inputs, $id)
+    public function updateEmployee($inputs, $id)
     {
-       $result = Employee::where('id', $id)->update($inputs);
-       return $result;
+        $result = Employee::where('id', $id)->update($inputs);
+        return $result;
     }
 
     /**
@@ -57,7 +57,7 @@ class EmployeesService
      *
      */
 
-    public function destroy($id)
+    public function deleteEmployee($id)
     {
         $result = Employee::where('id', $id)->delete();
         return $result;
@@ -68,10 +68,10 @@ class EmployeesService
      *
      */
 
-    public function show($id)
+    public function showEmployee($id)
     {
-        $result = Employee::with('company')->where('id',$id)->first();  
-        return $result; 
+        $result = Employee::with('company')->where('id', $id)->first();
+        return $result;
     }
 
 }

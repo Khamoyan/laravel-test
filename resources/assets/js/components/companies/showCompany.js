@@ -16,16 +16,20 @@ class ShowCompany extends Component {
 
     componentWillMount() {
         axios.get(`/api/companies/${this.props.id}`,
-                { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,
-                            'Content-Type': 'application/json' }})
-            .then((response) => {
-                this.setState({company:response.data});
-            }).catch((err) => {
-                console.log(err);
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                }
             })
+            .then((response) => {
+                this.setState({company: response.data});
+            }).catch((err) => {
+            console.log(err);
+        })
     }
 
-    show() { 
+    show() {
 
         $(`#${this.state.data_target}`).modal();
     }

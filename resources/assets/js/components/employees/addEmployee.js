@@ -40,27 +40,35 @@ class AddEmployee extends Component {
     }
 
     handelAddEmployee(employees) {
-        axios.post(`/api/employees`,    
-                    employees,
-                    { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,
-                                'Content-Type': 'application/json' }})
-                .then((response) => {
-                     this.props.addEmployee(response.data);
-                }).catch((err) => {
+        axios.post(`/api/employees`,
+            employees,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => {
+                this.props.addEmployee(response.data);
+            }).catch((err) => {
 
-                })
+        })
     }
 
     componentWillMount() {
         axios.get(`/api/companies`,
-                { headers: {Authorization:`Bearer ${localStorage.getItem('token')}`, 
-                             'Content-Type': 'application/json' }})
-                .then((response) => {
-                    this.setState({companies: Object.values(response.data)});
-                }).catch((err) => {
-                    console.log(err);
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => {
+                this.setState({companies: Object.values(response.data)});
+            }).catch((err) => {
+            console.log(err);
 
-                })
+        })
     }
 
     companiesSelect() {
@@ -68,7 +76,7 @@ class AddEmployee extends Component {
             <div>
                 <label>Company:</label>
                 <select className="form-control" onChange={this.handleChange}>
-                    <option>Choose a company </option>
+                    <option>Choose a company</option>
                     {this.state.companies.map(function (value, index) {
                         return (
                             <option value={value.id}>
@@ -115,7 +123,7 @@ class AddEmployee extends Component {
                     {this.companiesSelect()}
                     <button type="submit" className="btn btn-primary" onSubmit={this.handleSubmit}>Create</button>
                 </form>
-            </div>     
+            </div>
         )
     }
 }

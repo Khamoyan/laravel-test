@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter, Switch, Route, Link,Router} from 'react-router-dom';
+import {HashRouter, Route} from 'react-router-dom';
 import ListEmployees from './employees/listEmployees'
 import ListCompanies from './companies/listCompanies';
 import Home from './Home';
@@ -17,12 +17,12 @@ class Main extends Component {
             <div className="container">
                 <div>
                     <HashRouter>
-                            <div>
-                                <Route exact path='/' render={() => <LoginComponent/>}/>
-                                <Route exact path='/employees' render={() => <ListEmployees/>}/>
-                                <Route exact path='/companies' render={() => <ListCompanies/>}/>
-                                <Route exact path='/home' render={() => <Home/>}/>
-                            </div>
+                        <div>
+                            <Route exact path='/' render={() => <LoginComponent/>}/>
+                            <Route exact path='/employees' render={() => <ListEmployees/>}/>
+                            <Route exact path='/companies' render={() => <ListCompanies/>}/>
+                            <Route exact path='/home' render={() => <Home/>}/>
+                        </div>
                     </HashRouter>
                 </div>
 

@@ -21,15 +21,19 @@ class ListCompanies extends Component {
     }
 
     componentWillMount() {
-        axios.get(`/api/companies/`, 
-                        { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,    
-                                    'Content-Type': 'application/json'}})
-                    .then((response) => {
-                        this.setState({companies: response.data});
-                    }).catch((err) => {
-                        console.log(err);
+        axios.get(`/api/companies/`,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => {
+                this.setState({companies: response.data});
+            }).catch((err) => {
+            console.log(err);
 
-                    })
+        })
     }
 
     deleteCompany(company) {
@@ -39,19 +43,19 @@ class ListCompanies extends Component {
                 companies.splice(index, 1);
             }
         });
-        this.setState({companies:this.state.companies});
+        this.setState({companies: this.state.companies});
     }
 
     editCompany(company) {
         this.state.companies.map((value, index) => {
-            if (value.id === company.id) {              
+            if (value.id === company.id) {
                 value.name = company.name;
                 value.email = company.email;
                 value.logo = company.logo;
                 value.website = company.website;
             }
         });
-        this.setState({companies:this.state.companies});
+        this.setState({companies: this.state.companies});
     }
 
     addCompany(company) {
@@ -70,7 +74,8 @@ class ListCompanies extends Component {
                     <td> {value.name} </td>
                     <td> {value.email} </td>
                     <td> {value.website} </td>
-                    <td><img src={`http://laravel.development/storage/logos/${value.logo}`} style={{height: 61 + 'px'}}/></td>
+                    <td><img src={`http://laravel.development/storage/logos/${value.logo}`}
+                             style={{height: 61 + 'px'}}/></td>
                     <td><DeleteCompany id={value.id} deleteCompany={deleteCompany}/></td>
                     <td><UpdateCompany id={value.id} editCompany={editCompany}/></td>
                     <td><ShowCompany id={value.id}/></td>
@@ -105,7 +110,7 @@ class ListCompanies extends Component {
                 </div>
             )
         } else {
-            return ( <NotFound />)
+            return ( <NotFound/>)
         }
     }
 }

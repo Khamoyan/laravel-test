@@ -28,7 +28,7 @@ class UpdateCompany extends Component {
             state[key] = e.target.files[0];
         }
         this.setState({company: state});
-        
+
     }
 
     handleSubmit(e) {
@@ -39,21 +39,25 @@ class UpdateCompany extends Component {
         dataUpdate.append('website', this.state.company.website);
         dataUpdate.append('logo', this.state.company.logo);
         dataUpdate.append('_method', 'PUT');
-        
+
         this.handelUpdateCompany(this.state.id, dataUpdate)
     }
 
-    handelUpdateCompany(id, data) {  
+    handelUpdateCompany(id, data) {
         axios.post(`/api/companies/${id}`,
-                    data, 
-                    { headers: {Authorization:`Bearer ${localStorage.getItem('token')}`, 
-                                'Content-Type': 'application/json' }})  
-                .then((response) => {
-                            this.setState({company: response.data});
-                            this.props.editCompany(this.state.company);
-                }).catch((err) => {
+            data,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => {
+                this.setState({company: response.data});
+                this.props.editCompany(this.state.company);
+            }).catch((err) => {
 
-                })
+        })
     }
 
     update() {

@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Redirect, HashRouter, Route, Router, Switch} from 'react-router-dom'
-import {Link} from 'react-router-dom';
-import Main from '../Main';
-import RegisterComponent from './registerComponent';
+import {Redirect, HashRouter, Switch} from 'react-router-dom'
+import ReactDOM from 'react-dom';
 
 class LoginComponent extends Component {
 

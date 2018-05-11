@@ -40,15 +40,19 @@ class AddCompany extends Component {
     }
 
     handelAddCompany(data) {
-        axios.post(`/api/companies`,    
-                    data,
-                    { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,
-                                'Content-Type': 'application/json' }})
-                .then((response) => {
-                    this.props.addCompany(response.data);
-                }).catch((err) => {
+        axios.post(`/api/companies`,
+            data,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => {
+                this.props.addCompany(response.data);
+            }).catch((err) => {
 
-                })
+        })
     }
 
     render() {

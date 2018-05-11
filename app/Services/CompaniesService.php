@@ -10,35 +10,35 @@ class CompaniesService
      * Get all the companies for Api
      *
      */
-    
-    public function index()
+
+    public function getAllCompanies()
     {
         $result = Company::all();
         return $result;
     }
 
-     /**
+    /**
      * Get all the companies for web
      *
      */
 
-    public function indexWeb()
+    public function getAllCompaniesWeb()
     {
         $result = Company::paginate(4);
         return $result;
     }
 
-     /**
+    /**
      * Store a new company
      *
      */
 
-    public function store($inputs, $image)
+    public function createCompany($inputs, $image)
     {
         $destinationPath = storage_path('app/public/logos');
         if (!is_dir($destinationPath)) {
-                File::makeDirectory($destinationPath);
-         }
+            File::makeDirectory($destinationPath);
+        }
 
         $inputs['logo'] = time() . '.' . $image->getClientOriginalExtension();
         if (Company::create($inputs)) {
@@ -47,17 +47,17 @@ class CompaniesService
         return $inputs;
     }
 
-     /**
+    /**
      * Update the specified  company
      *
      */
 
-    public function update($inputs, $id, $image)
+    public function updateCompany($inputs, $id, $image)
     {
         $destinationPath = storage_path('app/public/logos');
         if (!is_dir($destinationPath)) {
-                File::makeDirectory($destinationPath);
-         }
+            File::makeDirectory($destinationPath);
+        }
 
         $inputs['logo'] = time() . '.' . $image->getClientOriginalExtension();
         if (Company::where('id', $id)->update($inputs)) {
@@ -66,25 +66,25 @@ class CompaniesService
         return $inputs;
     }
 
-     /**
+    /**
      * Delete the specified company
      *
      */
 
-    public function destroy($id)
+    public function deleteCompany($id)
     {
         $result = Company::where('id', $id)->delete();
         return $result;
     }
 
-     /**
+    /**
      * Show the specified company
      *
      */
 
-    public function show($id)
+    public function showCompany($id)
     {
-        $company = Company::with('employees')->where('id',$id)->first();
+        $company = Company::with('employees')->where('id', $id)->first();
         return $company;
     }
 

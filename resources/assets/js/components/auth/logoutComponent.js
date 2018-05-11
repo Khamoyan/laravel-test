@@ -22,12 +22,16 @@ class LogoutComponent extends Component {
 
     logout(data) {
         axios.get('/api/logout',
-                    { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,
-                                    'Content-Type': 'application/json' }})
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                }
+            })
             .then((response) => {
-            localStorage.clear();
-            this.setState({status: true});
-        }).catch((err) => {
+                localStorage.clear();
+                this.setState({status: true});
+            }).catch((err) => {
         })
     }
 

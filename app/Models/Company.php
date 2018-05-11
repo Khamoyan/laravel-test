@@ -10,15 +10,15 @@ class Company extends Model
     protected $table = 'companies';
 
     protected $fillable = [
-    	'name',
-    	'email',
-    	'logo',
-    	'website',
+        'name',
+        'email',
+        'logo',
+        'website',
     ];
 
-     public function employees()
-     {
-    	return $this->hasMany('App\Models\Employee');
-     }
-     
+    public function employees()
+    {
+        return $this->hasMany('App\Models\Employee');
+    }
+
 }

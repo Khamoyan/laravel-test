@@ -19,16 +19,21 @@ class ListEmployees extends Component {
         this.editEmployee = this.editEmployee.bind(this);
         this.addEmployee = this.addEmployee.bind(this)
     }
+
     componentWillMount() {
-        axios.get(`/api/employees`, 
-                    { headers: { Authorization:`Bearer ${localStorage.getItem('token')}`,    
-                                'Content-Type': 'application/json'}})
-                .then((response) => {
-                        this.setState({employees: response.data})
-                        console.log(this.state.employees)  
-                }).catch((err) => {
-                    console.log(err);
-                })
+        axios.get(`/api/employees`,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => {
+                this.setState({employees: response.data})
+                console.log(this.state.employees)
+            }).catch((err) => {
+            console.log(err);
+        })
     }
 
     deleteEmployee(employee) {
@@ -41,16 +46,16 @@ class ListEmployees extends Component {
         this.setState({employees});
     }
 
-    editEmployee(employee) {       
+    editEmployee(employee) {
         this.state.employees.map((value, index) => {
             if (value.id === employee.id) {
                 value.first_name = employee.first_name;
                 value.last_name = employee.last_name;
                 value.email = employee.email;
-                value.phone=employee.phone
+                value.phone = employee.phone
             }
         });
-        this.setState({employees:this.state.employees});
+        this.setState({employees: this.state.employees});
     }
 
     addEmployee(employee) {
@@ -62,20 +67,20 @@ class ListEmployees extends Component {
     renderEmployees() {
         const deleteEmployee = this.deleteEmployee;
         const editEmployee = this.editEmployee;
-        const showEmployee=this.state.showEmployee;
+        const showEmployee = this.state.showEmployee;
 
         return this.state.employees.map(function (value, index) {
             return (
                 <tbody>
-                    <tr>
-                        <td> {value.first_name}</td>
-                        <td> {value.last_name} </td>
-                        <td> {value.email} </td>
-                        <td> {value.phone} </td>
-                        <td><DeleteEmployee id={value.id} deleteEmployee={deleteEmployee}/></td>
-                        <td><UpdateEmployee id={value.id} editEmployee={editEmployee}/></td>
-                        <td><ShowEmployee id={value.id}/></td>
-                    </tr>
+                <tr>
+                    <td> {value.first_name}</td>
+                    <td> {value.last_name} </td>
+                    <td> {value.email} </td>
+                    <td> {value.phone} </td>
+                    <td><DeleteEmployee id={value.id} deleteEmployee={deleteEmployee}/></td>
+                    <td><UpdateEmployee id={value.id} editEmployee={editEmployee}/></td>
+                    <td><ShowEmployee id={value.id}/></td>
+                </tr>
                 </tbody>
             )
         })
@@ -93,15 +98,15 @@ class ListEmployees extends Component {
                         <h2>Employees list</h2>
                         <table className="table">
                             <thead>
-                                <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
-                                    <th>Show</th>
-                                </tr>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                                <th>Show</th>
+                            </tr>
                             </thead>
                             {this.renderEmployees()}
                         </table>
@@ -110,7 +115,7 @@ class ListEmployees extends Component {
             )
         } else {
             return (
-                <NotFound />
+                <NotFound/>
             )
         }
     }

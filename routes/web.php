@@ -30,8 +30,8 @@ Route::get('/companies/{id}', 'CompaniesController@show');
 Route::put('/companies/{id}', 'CompaniesController@update');
 Route::delete('/companies/{id}', 'CompaniesController@destroy');
 
-Route::get('/employees','EmployeesController@index');
-Route::post('/employees','EmployeesController@store');
-Route::get('/employees/{id}','EmployeesController@show');
-Route::put('/employees/{id}','EmployeesController@update');
-Route::delete('/employees/{id}','EmployeesController@destroy');
+Route::get('/employees', 'EmployeesController@index');
+Route::post('/employees', 'EmployeesController@store');
+Route::get('/employees/{id}', 'EmployeesController@show');
+Route::put('/employees/{id}', 'EmployeesController@update');
+Route::delete('/employees/{id}', 'EmployeesController@destroy');
