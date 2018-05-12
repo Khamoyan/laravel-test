@@ -4553,7 +4553,7 @@ var NotFound = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'h1',
                     null,
-                    'NOT FOUND :('
+                    'NOT FOUND :( '
                 )
             );
         }
@@ -63698,7 +63698,6 @@ var ListEmployees = function (_Component) {
                 }
             }).then(function (response) {
                 _this2.setState({ employees: response.data });
-                console.log(_this2.state.employees);
             }).catch(function (err) {
                 console.log(err);
             });
@@ -63740,56 +63739,43 @@ var ListEmployees = function (_Component) {
             var deleteEmployee = this.deleteEmployee;
             var editEmployee = this.editEmployee;
             var showEmployee = this.state.showEmployee;
-
             return this.state.employees.map(function (value, index) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'tbody',
-                    null,
+                    'tr',
+                    { key: index },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'tr',
+                        'td',
                         null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'td',
-                            null,
-                            ' ',
-                            value.first_name
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'td',
-                            null,
-                            ' ',
-                            value.last_name,
-                            ' '
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'td',
-                            null,
-                            ' ',
-                            value.email,
-                            ' '
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'td',
-                            null,
-                            ' ',
-                            value.phone,
-                            ' '
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'td',
-                            null,
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__deleteEmployee__["a" /* default */], { id: value.id, deleteEmployee: deleteEmployee })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'td',
-                            null,
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__updateEmployee__["a" /* default */], { id: value.id, editEmployee: editEmployee })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'td',
-                            null,
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__showEmployee__["a" /* default */], { id: value.id })
-                        )
+                        ' ',
+                        value.first_name
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        ' ',
+                        value.last_name,
+                        ' '
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        ' ',
+                        value.email,
+                        ' '
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        ' ',
+                        value.phone,
+                        ' '
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__deleteEmployee__["a" /* default */], { id: value.id, deleteEmployee: deleteEmployee }),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__updateEmployee__["a" /* default */], { id: value.id, editEmployee: editEmployee }),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__showEmployee__["a" /* default */], { id: value.id })
                     )
                 );
             });
@@ -63859,7 +63845,11 @@ var ListEmployees = function (_Component) {
                                     )
                                 )
                             ),
-                            this.renderEmployees()
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'tbody',
+                                null,
+                                this.renderEmployees()
+                            )
                         )
                     )
                 );
@@ -63944,17 +63934,13 @@ var DeleteEmployee = function (_Component) {
         key: 'render',
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
+                'td',
                 null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'td',
-                    null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'button',
-                        { type: 'button', className: 'btn btn-info btn-lg delete', 'data-toggle': 'modal',
-                            'data-target': this.state.data_target, onClick: this.deleteModal },
-                        ' Delete'
-                    )
+                    'button',
+                    { type: 'button', className: 'btn btn-info btn-lg delete', 'data-toggle': 'modal',
+                        'data-target': this.state.data_target, onClick: this.deleteModal },
+                    ' Delete'
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__modals_deleteEmployeeModal__["a" /* default */], { id: this.state.data_target, 'delete': this.handleSubmit })
             );
@@ -64151,17 +64137,13 @@ var UpdateEmployee = function (_Component) {
         key: 'render',
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
+                'td',
                 null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'td',
-                    null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'button',
-                        { type: 'button', className: 'btn btn-info btn-lg edit', 'data-toggle': 'modal',
-                            'data-target': this.state.data_target, onClick: this.update },
-                        ' Edit'
-                    )
+                    'button',
+                    { type: 'button', className: 'btn btn-info btn-lg edit', 'data-toggle': 'modal',
+                        'data-target': this.state.data_target, onClick: this.update },
+                    ' Edit'
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__modals_updateEmployeeModal__["a" /* default */], { id: this.state.data_target, updateEmployee: this.handleSubmit,
                     handleInput: this.handleInput, companies: this.state.companies,
@@ -64223,7 +64205,7 @@ var UpdateEmployeeModal = function (_Component) {
                     this.props.companies.map(function (value, index) {
                         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             "option",
-                            { value: value.id },
+                            { key: index, value: value.id },
                             value.name
                         );
                     })
@@ -64696,7 +64678,7 @@ var AddEmployee = function (_Component) {
                     this.state.companies.map(function (value, index) {
                         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'option',
-                            { value: value.id },
+                            { key: index, value: value.id },
                             value.name
                         );
                     })
@@ -71188,10 +71170,10 @@ var ListCompanies = function (_Component) {
             var deleteCompany = this.deleteCompany;
             var editCompany = this.editCompany;
 
-            return this.state.companies.map(function (value) {
+            return this.state.companies.map(function (value, index) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'tr',
-                    null,
+                    { key: index },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'td',
                         null,
@@ -71219,16 +71201,8 @@ var ListCompanies = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'http://laravel.development/storage/logos/' + value.logo,
                             style: { height: 61 + 'px' } })
                     ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'td',
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__deleteCompany__["a" /* default */], { id: value.id, deleteCompany: deleteCompany })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'td',
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__updateCompany__["a" /* default */], { id: value.id, editCompany: editCompany })
-                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__deleteCompany__["a" /* default */], { id: value.id, deleteCompany: deleteCompany }),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__updateCompany__["a" /* default */], { id: value.id, editCompany: editCompany }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'td',
                         null,
@@ -71260,45 +71234,53 @@ var ListCompanies = function (_Component) {
                             'table',
                             { className: 'table' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'tr',
+                                'thead',
                                 null,
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'th',
+                                    'tr',
                                     null,
-                                    'Company Name'
-                                ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'th',
-                                    null,
-                                    'Email'
-                                ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'th',
-                                    null,
-                                    'Web Site'
-                                ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'th',
-                                    null,
-                                    'Logo'
-                                ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'th',
-                                    null,
-                                    'Edit'
-                                ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'th',
-                                    null,
-                                    'Delete'
-                                ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'th',
-                                    null,
-                                    'Show'
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Company Name'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Email'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Web Site'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Logo'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Edit'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Delete'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Show'
+                                    )
                                 )
                             ),
-                            this.renderCompanies()
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'tbody',
+                                null,
+                                this.renderCompanies()
+                            )
                         )
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -71394,17 +71376,13 @@ var DeleteCompany = function (_Component) {
         key: 'render',
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
+                'td',
                 null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'td',
-                    null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'button',
-                        { type: 'button', className: 'btn btn-info btn-lg delete', 'data-toggle': 'modal',
-                            'data-target': this.state.data_target, onClick: this.deleteModal },
-                        ' Delete'
-                    )
+                    'button',
+                    { type: 'button', className: 'btn btn-info btn-lg delete', 'data-toggle': 'modal',
+                        'data-target': this.state.data_target, onClick: this.deleteModal },
+                    ' Delete'
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__modals_deteleCompanyModal__["a" /* default */], { id: this.state.data_target, 'delete': this.handleSubmit })
             );
@@ -71643,47 +71621,51 @@ var ShowCompanyModal = function (_Component) {
                                         "table",
                                         { className: "table" },
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "tr",
+                                            "tbody",
                                             null,
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "th",
+                                                "tr",
                                                 null,
-                                                "Email:"
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    "th",
+                                                    null,
+                                                    "Email:"
+                                                ),
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    "td",
+                                                    null,
+                                                    this.props.company['email']
+                                                )
                                             ),
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "td",
+                                                "tr",
                                                 null,
-                                                this.props.company['email']
-                                            )
-                                        ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "tr",
-                                            null,
-                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "th",
-                                                null,
-                                                "Web site:"
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    "th",
+                                                    null,
+                                                    "Web site:"
+                                                ),
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    "td",
+                                                    null,
+                                                    this.props.company['website']
+                                                )
                                             ),
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "td",
+                                                "tr",
                                                 null,
-                                                this.props.company['website']
-                                            )
-                                        ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            "tr",
-                                            null,
-                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "th",
-                                                null,
-                                                "Logo:"
-                                            ),
-                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                "td",
-                                                null,
-                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", {
-                                                    src: "http://laravel.development/storage/logos/" + this.props.company['logo'],
-                                                    style: { height: 61 + 'px' } })
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    "th",
+                                                    null,
+                                                    "Logo:"
+                                                ),
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    "td",
+                                                    null,
+                                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", {
+                                                        src: "http://laravel.development/storage/logos/" + this.props.company['logo'],
+                                                        style: { height: 61 + 'px' } })
+                                                )
                                             )
                                         )
                                     )
@@ -71794,17 +71776,13 @@ var UpdateCompany = function (_Component) {
         key: 'render',
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
+                'td',
                 null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'td',
-                    null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'button',
-                        { type: 'button', className: 'btn btn-info btn-lg edit', 'data-toggle': 'modal',
-                            'data-target': this.state.data_target, onClick: this.update },
-                        ' Edit'
-                    )
+                    'button',
+                    { type: 'button', className: 'btn btn-info btn-lg edit', 'data-toggle': 'modal',
+                        'data-target': this.state.data_target, onClick: this.update },
+                    ' Edit'
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__modals_updateCompanyModal__["a" /* default */], { id: this.state.data_target, updateCompany: this.handleSubmit,
                     handleInput: this.handleInput })
@@ -71879,7 +71857,7 @@ var UpdateCompanyModal = function (_Component) {
                                 ),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     "form",
-                                    { enctype: "multipart/form-data" },
+                                    { encType: "multipart/form-data" },
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                         "div",
                                         { className: "form-row" },

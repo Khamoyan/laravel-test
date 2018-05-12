@@ -78,16 +78,16 @@ class ListCompanies extends Component {
         let deleteCompany = this.deleteCompany;
         let editCompany = this.editCompany;
 
-        return this.state.companies.map(function (value) {
+        return this.state.companies.map(function (value, index) {
             return (
-                <tr>
+                <tr key = {index}>
                     <td> {value.name} </td>
                     <td> {value.email} </td>
                     <td> {value.website} </td>
                     <td><img src={`http://laravel.development/storage/logos/${value.logo}`}
                              style={{height: 61 + 'px'}}/></td>
-                    <td><DeleteCompany id={value.id} deleteCompany={deleteCompany}/></td>
-                    <td><UpdateCompany id={value.id} editCompany={editCompany}/></td>
+                     <DeleteCompany id={value.id} deleteCompany={deleteCompany}/>
+                     <UpdateCompany id={value.id} editCompany={editCompany}/>
                     <td><ShowCompany id={value.id}/></td>
                 </tr>
             )
@@ -105,16 +105,20 @@ class ListCompanies extends Component {
                     <div className="container">
                         <h2>Companies list</h2>
                         <table className="table">
-                            <tr>
-                                <th>Company Name</th>
-                                <th>Email</th>
-                                <th>Web Site</th>
-                                <th>Logo</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                                <th>Show</th>
-                            </tr>
-                            {this.renderCompanies()}
+                            <thead>
+                                <tr>
+                                    <th>Company Name</th>
+                                    <th>Email</th>
+                                    <th>Web Site</th>
+                                    <th>Logo</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                    <th>Show</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.renderCompanies()}
+                            </tbody>                    
                         </table>
                     </div>
                     <div>

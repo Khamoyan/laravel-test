@@ -9,7 +9,7 @@ class UpdateEmployeeModal extends Component {
                     <option>Choose a company</option>
                     {this.props.companies.map(function (value, index) {
                         return (
-                            <option value={value.id}>
+                            <option key = {index} value={value.id}>
                                 {value.name}
                             </option>
                         )

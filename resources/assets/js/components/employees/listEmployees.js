@@ -30,7 +30,6 @@ class ListEmployees extends Component {
             })
             .then((response) => {
                 this.setState({employees: response.data})
-                console.log(this.state.employees)
             }).catch((err) => {
             console.log(err);
         })
@@ -68,20 +67,17 @@ class ListEmployees extends Component {
         const deleteEmployee = this.deleteEmployee;
         const editEmployee = this.editEmployee;
         const showEmployee = this.state.showEmployee;
-
         return this.state.employees.map(function (value, index) {
             return (
-                <tbody>
-                <tr>
+                <tr key = {index}>
                     <td> {value.first_name}</td>
                     <td> {value.last_name} </td>
                     <td> {value.email} </td>
                     <td> {value.phone} </td>
-                    <td><DeleteEmployee id={value.id} deleteEmployee={deleteEmployee}/></td>
-                    <td><UpdateEmployee id={value.id} editEmployee={editEmployee}/></td>
+                     <DeleteEmployee id={value.id} deleteEmployee={deleteEmployee}/>
+                     <UpdateEmployee id={value.id} editEmployee={editEmployee}/>
                     <td><ShowEmployee id={value.id}/></td>
                 </tr>
-                </tbody>
             )
         })
     }
@@ -108,7 +104,9 @@ class ListEmployees extends Component {
                                 <th>Show</th>
                             </tr>
                             </thead>
-                            {this.renderEmployees()}
+                            <tbody>
+                                {this.renderEmployees()}
+                            </tbody>
                         </table>
                     </div>
                 </div>

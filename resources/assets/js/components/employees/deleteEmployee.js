@@ -42,14 +42,13 @@ class DeleteEmployee extends Component {
 
     render() {
         return (
-            <div>
-                <td>
-                    <button type="button" className="btn btn-info btn-lg delete" data-toggle="modal"
-                            data-target={this.state.data_target} onClick={this.deleteModal}> Delete
-                    </button>
-                </td>
+             <td>
+                <button type="button" className="btn btn-info btn-lg delete" data-toggle="modal"
+                      data-target={this.state.data_target} onClick={this.deleteModal}> Delete
+                 </button>
+                
                 <DeleteEmployeeModal id={this.state.data_target} delete={this.handleSubmit}/>
-            </div>
+            </td>
         )
     }
 }

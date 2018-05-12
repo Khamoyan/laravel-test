@@ -79,7 +79,7 @@ class AddEmployee extends Component {
                     <option>Choose a company</option>
                     {this.state.companies.map(function (value, index) {
                         return (
-                            <option value={value.id}>
+                            <option key ={index} value={value.id}>
                                 {value.name}
                             </option>
                         )

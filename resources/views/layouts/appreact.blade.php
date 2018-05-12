@@ -25,6 +25,9 @@
     <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css">
 </head>
 <body>
+        <main class="py-4">
+             @yield('content')
+        </main>
     <script src="{{mix('js/app.js')}}" ></script>
 </body>
 

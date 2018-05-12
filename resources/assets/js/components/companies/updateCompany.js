@@ -65,15 +65,13 @@ class UpdateCompany extends Component {
 
     render() {
         return (
-            <div>
                 <td>
-                    <button type="button" className="btn btn-info btn-lg edit" data-toggle="modal"
-                            data-target={this.state.data_target} onClick={this.update}> Edit
-                    </button>
+                        <button type="button" className="btn btn-info btn-lg edit" data-toggle="modal"
+                                data-target={this.state.data_target} onClick={this.update}> Edit
+                        </button>
+                    <UpdateCompanyModal id={this.state.data_target} updateCompany={this.handleSubmit}
+                                        handleInput={this.handleInput}/>
                 </td>
-                <UpdateCompanyModal id={this.state.data_target} updateCompany={this.handleSubmit}
-                                    handleInput={this.handleInput}/>
-            </div>
         )
     }
 }

@@ -13,7 +13,7 @@ class UpdateCompanyModal extends Component {
                             </div>
                             <div className="modal-body">
                                 <h4 className="modal-title">Edit Companies</h4>
-                                <form enctype="multipart/form-data">
+                                <form encType="multipart/form-data">
                                     <div className="form-row">
 
                                         <div className="form-group col-md-6">
