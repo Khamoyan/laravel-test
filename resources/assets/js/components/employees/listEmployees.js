@@ -46,9 +46,9 @@ class ListEmployees extends Component {
         this.setState({employees});
     }
 
-    editEmployee(employee) {
+    editEmployee(employee, id) {
         this.state.employees.map((value, index) => {
-            if (value.id === employee.id) {
+            if (value.id === id) {
                 value.first_name = employee.first_name;
                 value.last_name = employee.last_name;
                 value.email = employee.email;

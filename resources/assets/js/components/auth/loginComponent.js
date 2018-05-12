@@ -78,10 +78,6 @@ class LoginComponent extends Component {
                             <input type="password" className="form-control" placeholder='Password' name="password"
                                    onChange={(e) => this.handleInput('password', e)}/>
                         </div>
-                        <div className="form-check">
-                            <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                            <label className="form-check-label"> Remember Me</label>
-                        </div>
                         <button type="submit" className="btn btn-primary">Login {redirect_to_home}</button>
                     </form>
                 </div>

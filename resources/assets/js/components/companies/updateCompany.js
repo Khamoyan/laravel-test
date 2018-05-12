@@ -53,8 +53,7 @@ class UpdateCompany extends Component {
                 }
             })
             .then((response) => {
-                this.setState({company: response.data});
-                this.props.editCompany(this.state.company);
+               this.props.editCompany(this.state.company,id);
             }).catch((err) => {
 
         })

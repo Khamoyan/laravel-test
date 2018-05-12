@@ -84,7 +84,7 @@ class CompaniesController extends Controller
 
     public function show($id, CompaniesService $company_service)
     {
-        $company = $company_service->showCompany($id);
+        $company = $company_service->getCompanyById($id);
         return response()->json($company);
     }
 

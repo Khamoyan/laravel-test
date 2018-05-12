@@ -18,10 +18,10 @@ class Main extends Component {
                 <div>
                     <HashRouter>
                         <div>
-                            <Route exact path='/' render={() => <LoginComponent/>}/>
-                            <Route exact path='/employees' render={() => <ListEmployees/>}/>
-                            <Route exact path='/companies' render={() => <ListCompanies/>}/>
-                            <Route exact path='/home' render={() => <Home/>}/>
+                            <Route exact path='/' component = {LoginComponent}/>
+                            <Route exact path='/employees' component = {ListEmployees}/>
+                            <Route exact path='/companies' component = {ListCompanies}/>
+                            <Route exact path='/home' component = {Home}/>
                         </div>
                     </HashRouter>
                 </div>

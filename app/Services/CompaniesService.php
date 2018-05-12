@@ -82,7 +82,7 @@ class CompaniesService
      *
      */
 
-    public function showCompany($id)
+    public function getCompanyById($id)
     {
         $company = Company::with('employees')->where('id', $id)->first();
         return $company;

@@ -55,8 +55,7 @@ class UpdateEmployee extends Component {
                 }
             })
             .then((response) => {
-                this.setState({employee: response.data});
-                this.props.editEmployee(this.state.employee);
+                this.props.editEmployee(this.state.employee, id);
             }).catch((err) => {
 
         })

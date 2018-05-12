@@ -8,16 +8,19 @@ import AddCompany from './addCompany';
 import Home from '../Home';
 import {exportDefaultSpecifier} from 'babel-types';
 import NotFound from '../Err404';
+import Pagination from "react-js-pagination";
 
 class ListCompanies extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            companies: []
+            companies: [],
+            activePage: 1
         };
         this.deleteCompany = this.deleteCompany.bind(this);
         this.editCompany = this.editCompany.bind(this);
         this.addCompany = this.addCompany.bind(this);
+        this.handlePageChange=this.handlePageChange.bind(this);
     }
 
     componentWillMount() {
@@ -36,6 +39,11 @@ class ListCompanies extends Component {
         })
     }
 
+    handlePageChange(pageNumber) {
+        
+        this.setState({activePage: pageNumber});
+      }
+
     deleteCompany(company) {
         let companies = this.state.companies
         companies.map((value, index) => {
@@ -46,9 +54,11 @@ class ListCompanies extends Component {
         this.setState({companies: this.state.companies});
     }
 
-    editCompany(company) {
+    editCompany(company, id) {
+        console.log(company);
+        
         this.state.companies.map((value, index) => {
-            if (value.id === company.id) {
+            if (value.id === id) {
                 value.name = company.name;
                 value.email = company.email;
                 value.logo = company.logo;
@@ -106,6 +116,15 @@ class ListCompanies extends Component {
                             </tr>
                             {this.renderCompanies()}
                         </table>
+                    </div>
+                    <div>
+                        <Pagination
+                        activePage={this.state.activePage}
+                        itemsCountPerPage={2}
+                        totalItemsCount={5}
+                        pageRangeDisplayed={3}
+                        onChange={this.handlePageChange}
+                        />
                     </div>
                 </div>
             )

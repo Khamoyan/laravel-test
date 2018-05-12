@@ -68,7 +68,7 @@ class EmployeesService
      *
      */
 
-    public function showEmployee($id)
+    public function getEmployeeById($id)
     {
         $result = Employee::with('company')->where('id', $id)->first();
         return $result;

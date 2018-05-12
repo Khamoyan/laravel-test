@@ -82,7 +82,7 @@ class EmployeesController extends Controller
 
     public function show($id, EmployeesService $employee_service)
     {
-        $employee = $employee_service->showEmployee($id);
+        $employee = $employee_service->getEmployeeById($id);
         return response()->json($employee);
     }
 
