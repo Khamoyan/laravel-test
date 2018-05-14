@@ -73,7 +73,6 @@ class UpdateEmployee extends Component {
                 this.setState({companies: Object.values(response.data)});
             }).catch((err) => {
             console.log(err);
-
         })
     }
 

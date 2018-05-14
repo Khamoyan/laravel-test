@@ -30,7 +30,7 @@ class DeleteEmployee extends Component {
                 }
             })
             .then((response) => {
-                this.props.deleteEmployee(this.props.id);
+                this.props.deleteEmployee(id);
             }).catch((err) => {
 
         })

@@ -31,7 +31,7 @@ class DeleteCompany extends Component {
                 }
             })
             .then((response) => {
-                this.props.deleteCompany(response.data.id);
+                this.props.deleteCompany(id);
             }).catch((err) => {
 
         })
