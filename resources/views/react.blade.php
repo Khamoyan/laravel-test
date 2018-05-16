@@ -8,8 +8,6 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
     <!-- Scripts -->
      <script src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -25,9 +23,15 @@
     <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css">
 </head>
 <body>
-        <main class="py-4">
-             @yield('content')
-        </main>
+    <div class="container">
+        <a  href="{{ url('/') }}">
+            {{ config('app.name', 'Laravel') }}
+        </a>
+    </div>
+
+    <div class="container">
+        <div id='root'></div>
+    </div>
     <script src="{{mix('js/app.js')}}" ></script>
 </body>
 

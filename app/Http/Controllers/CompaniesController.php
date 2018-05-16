@@ -11,14 +11,14 @@ class CompaniesController extends Controller
     /**
      * Get all the companies
      *
-     * @param App\Services\CompaniesService $company_service
+     * @param App\Services\CompaniesService $companyService
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function index(CompaniesService $company_service)
+    public function index(CompaniesService $companyService)
     {
-        $lists = $company_service->getAllCompaniesWeb();
+        $lists = $companyService->getAll(true);
         return view('companies.index', ['lists' => $lists]);
     }
 
@@ -26,16 +26,16 @@ class CompaniesController extends Controller
      * Store a new company in storage.
      *
      * @param  App\Http\Requests\CompanyRequest $request
-     * @param App\Services\CompaniesService     $company_service
+     * @param App\Services\CompaniesService     $companyService
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function store(CompanyRequest $request, CompaniesService $company_service)
+    public function store(CompanyRequest $request, CompaniesService $companyService)
     {
         $inputs = $request->inputs();
         $image = $request->file('logo');
-        $result = $company_service->createCompany($inputs, $image);
+        $result = $companyService->create($inputs, $image);
         return back();
     }
 
@@ -44,16 +44,16 @@ class CompaniesController extends Controller
      *
      * @param  int                              $id
      * @param  App\Http\Requests\CompanyRequest $request
-     * @param App\Services\CompaniesService     $company_service
+     * @param App\Services\CompaniesService     $companyService
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function update(CompanyRequest $request, $id, CompaniesService $company_service)
+    public function update(CompanyRequest $request, $id, CompaniesService $companyService)
     {
         $inputs = $request->inputs();
         $image = $request->file('logo');
-        $result = $company_service->updateCompany($inputs, $id, $image);
+        $result = $companyService->update($inputs, $id, $image);
         return back();
     }
 
@@ -61,14 +61,14 @@ class CompaniesController extends Controller
      * Destroy the specified company
      *
      * @param  int                          $id
-     * @param App\Services\CompaniesService $company_service
+     * @param App\Services\CompaniesService $companyService
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy($id, CompaniesService $company_service)
+    public function destroy($id, CompaniesService $companyService)
     {
-        $company_service->deleteCompany($id);
+        $CompanyService->delete($id);
         return redirect('/companies');
     }
 
@@ -76,14 +76,14 @@ class CompaniesController extends Controller
      * Show the specified company
      *
      * @param  int                          $id
-     * @param App\Services\CompaniesService $company_service
+     * @param App\Services\CompaniesService $companyService
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function show($id, CompaniesService $company_service)
+    public function show($id, CompaniesService $companyService)
     {
-        $company = $company_service->getCompanyById($id);
+        $company = $companyService->getById($id);
         return view('companies.show', ['company' => $company]);
     }
 

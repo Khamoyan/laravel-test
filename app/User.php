@@ -37,11 +37,6 @@ class User extends Authenticatable
         'is_admin' => 'boolean',
     ];
 
-    public function isAdmin()
-    {
-        return $this->is_admin;
-    }
-
     public function getJWTIdentifier()
     {
         return $this->getKey();

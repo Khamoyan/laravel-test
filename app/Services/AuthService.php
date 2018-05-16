@@ -5,7 +5,7 @@ namespace App\Services;
 use App\User;
 use JWTAuth;
 
-class LoginService
+class AuthService
 {
     public function login($inputs, $credentials)
     {
@@ -20,9 +20,11 @@ class LoginService
             } else {
                 $response = ['success' => false, 'data' => 'Record doesnt exists'];
             }
-
-            return $response;
+        } else{
+            $response=['success' => false, 'data'=>'Wrong login or password'];
         }
+        
+        return $response;
     }
 
 }

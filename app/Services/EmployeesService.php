@@ -11,31 +11,30 @@ class EmployeesService
     /**
      * Get all the employees for Api
      *
+     * @param bool   $is_a_number_page
      */
 
-    public function getAllEmployees()
+    public function getAll($is_a_number_page)
     {
-        $result = Employee::all();
-        return $result;
-    }
+        if(!$is_a_number_page){
 
-    /**
-     * Get all the employees for web
-     *
-     */
+            $result = Employee::all();
 
-    public function getAllEmployeesWeb()
-    {
-        $result = Employee::paginate(4);
+        } else {
+            
+            $result = Employee::paginate(3);
+        }
+        
         return $result;
     }
 
     /**
      * Store a new employee
      *
+     * @param array   $inputs
      */
 
-    public function createEmployee($inputs)
+    public function create($inputs)
     {
         $result = Employee::create($inputs);
         return $result;
@@ -44,9 +43,11 @@ class EmployeesService
     /**
      * Update the specified employee
      *
+     * @param array   $inputs
+     * @param int     $id
      */
 
-    public function updateEmployee($inputs, $id)
+    public function update($inputs, $id)
     {
         $result = Employee::where('id', $id)->update($inputs);
         return $result;
@@ -55,9 +56,10 @@ class EmployeesService
     /**
      * Delete the specified employee
      *
+     * @param int     $id
      */
 
-    public function deleteEmployee($id)
+    public function delete($id)
     {
         $result = Employee::where('id', $id)->delete();
         return $result;
@@ -66,9 +68,10 @@ class EmployeesService
     /**
      * Show the specified employee
      *
+     * @param int    $id
      */
 
-    public function getEmployeeById($id)
+    public function getById($id)
     {
         $result = Employee::with('company')->where('id', $id)->first();
         return $result;

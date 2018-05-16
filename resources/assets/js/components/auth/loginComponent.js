@@ -47,21 +47,18 @@ class LoginComponent extends Component {
     }
 
     render() {
-        if (this.state.success) {
-            localStorage['isLogged'] = true
-
-        } else {
-            localStorage['isLogged'] = false
-        }
-
         let redirect_to_home
         if (this.state.success) {
+            localStorage['isLogged'] = true
             redirect_to_home =
                 <HashRouter>
                     <Switch>
                         <Redirect from='/' to='/home'/>;
                     </Switch>
                 </HashRouter>
+
+        } else {
+            localStorage['isLogged'] = false
         }
         return (
             <div className='containe'>

@@ -23,14 +23,13 @@ class ShowCompany extends Component {
                 }
             })
             .then((response) => {
-                this.setState({company: response.data});
+                this.setState({company: response.data});    
             }).catch((err) => {
             console.log(err);
         })
     }
 
     show() {
-
         $(`#${this.state.data_target}`).modal();
     }
 

@@ -12,30 +12,30 @@ class EmployeesController extends Controller
     /**
      * Get all the employees
      *
-     * @param App\Services\EmployeesService $employee_service
+     * @param App\Services\EmployeesService $employeeService
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function index(EmployeesService $employee_service)
+    public function index(EmployeesService $employeeService)
     {
-        $lists = $employee_service->getAllEmployees();
+        $lists = $employeeService->getAll(false);
         return response()->json($lists);
     }
 
     /**
      * Store a new employee in storage.
      *
-     * @param App\Services\EmployeesService       $employee_service
+     * @param App\Services\EmployeesService       $employeeService
      * @param  \App\Http\Requests\EmployeeRequest $request
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function store(EmployeeRequest $request, EmployeesService $employee_service)
+    public function store(EmployeeRequest $request, EmployeesService $employeeService)
     {
         $inputs = $request->inputs();
-        $result = $employee_service->createEmployee($inputs);
+        $result = $employeeService->create($inputs);
         return response()->json($result, 201);
 
     }
@@ -43,16 +43,16 @@ class EmployeesController extends Controller
     /**
      * Update the specified employee
      *
-     * @param App\Services\EmployeesService       $employee_service
+     * @param App\Services\EmployeesService       $employeeService
      * @param  \App\Http\Requests\EmployeeRequest $request
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function update(EmployeeRequest $request, $id, EmployeesService $employee_service)
+    public function update(EmployeeRequest $request, $id, EmployeesService $employeeService)
     {
         $inputs = $request->inputs();
-        $employee_service->updateEmployee($inputs, $id);
+        $employeeService->update($inputs, $id);
         return response()->json(null, 204);
     }
 
@@ -60,14 +60,14 @@ class EmployeesController extends Controller
      * Destroy the specified employee
      *
      * @param  int                          $id
-     * @param App\Services\EmployeesService $employee_service
+     * @param App\Services\EmployeesService $employeeService
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy($id, EmployeesService $employee_service)
+    public function destroy($id, EmployeesService $employeeService)
     {
-        $employee_service->deleteEmployee($id);
+        $employeeService->delete($id);
         return response()->json(null, 204);
     }
 
@@ -75,14 +75,14 @@ class EmployeesController extends Controller
      * Show the specified employee
      *
      * @param  int                          $id
-     * @param App\Services\EmployeesService $employee_service
+     * @param App\Services\EmployeesService $employeeService
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function show($id, EmployeesService $employee_service)
+    public function show($id, EmployeesService $employeeService)
     {
-        $employee = $employee_service->getEmployeeById($id);
+        $employee = $employeeService->getById($id);
         return response()->json($employee);
     }
 

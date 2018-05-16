@@ -8,14 +8,12 @@ import AddCompany from './addCompany';
 import Home from '../Home';
 import {exportDefaultSpecifier} from 'babel-types';
 import NotFound from '../Err404';
-import Pagination from "react-js-pagination";
 
 class ListCompanies extends Component {
     constructor(props) {
         super(props);
         this.state = {
             companies: [],
-            activePage: 1
         };
         this.deleteCompany = this.deleteCompany.bind(this);
         this.editCompany = this.editCompany.bind(this);
@@ -120,15 +118,6 @@ class ListCompanies extends Component {
                                 {this.renderCompanies()}
                             </tbody>                    
                         </table>
-                    </div>
-                    <div>
-                        <Pagination
-                        activePage={this.state.activePage}
-                        itemsCountPerPage={2}
-                        totalItemsCount={5}
-                        pageRangeDisplayed={3}
-                        onChange={this.handlePageChange}
-                        />
                     </div>
                 </div>
             )

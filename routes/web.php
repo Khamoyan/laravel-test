@@ -15,7 +15,7 @@ Route::get('/', function () {
 });
 
 Route::get('/app', function () {
-    return view('app');
+    return view('react');
 });
 
 Route::get('/home', 'HomeController@index');

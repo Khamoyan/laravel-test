@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
-use App\Services\LoginService;
+use App\Services\AuthService;
 use JWTAuth;
 
 class LoginController extends Controller
@@ -17,11 +17,11 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function login(LoginRequest $request, LoginService $login_service)
+    public function login(LoginRequest $request, AuthService $authService)
     {
         $inputs = $request->inputs();
         $credentials = $request->only('email', 'password');
-        $response = $login_service->login($inputs, $credentials);
+        $response = $authService->login($inputs, $credentials);
         return response()->json($response, 201);
     }
 
@@ -35,7 +35,7 @@ class LoginController extends Controller
     public function logout()
     {
         JWTAuth::invalidate(JWTAuth::getToken());
-        return response()->json(['message' => 'Logout successful'], 200);
+        return response()->json(['message' => 'Logout successful']);
     }
 
 }
