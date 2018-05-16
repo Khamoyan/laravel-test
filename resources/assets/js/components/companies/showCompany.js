@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import ShowCompanyModal from '../modals/showCompanyModal';
+import PropTypes from 'prop-types';
 
 class ShowCompany extends Component {
 
@@ -45,5 +46,9 @@ class ShowCompany extends Component {
         )
     }
 }
+
+ShowCompany.propTypes = {
+    id: PropTypes.number,
+  }
 
 export default ShowCompany;

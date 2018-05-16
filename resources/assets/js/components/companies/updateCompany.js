@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import UpdateCompanyModal from '../modals/updateCompanyModal';
+import PropTypes from 'prop-types';
 
 class UpdateCompany extends Component {
     constructor(props) {
@@ -75,5 +76,10 @@ class UpdateCompany extends Component {
         )
     }
 }
+
+UpdateCompany.propTypes = {
+    id: PropTypes.number,
+    editCompany: PropTypes.func
+  }
 
 export default UpdateCompany;

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import UpdateEmployeeModal from '../modals/updateEmployeeModal';
-
+import PropTypes from 'prop-types';
 
 class UpdateEmployee extends Component {
     constructor(props) {
@@ -94,5 +94,10 @@ class UpdateEmployee extends Component {
         )
     }
 }
+
+UpdateEmployee.propTypes = {
+    id: PropTypes.number,
+    editEmployee: PropTypes.func
+  }
 
 export default UpdateEmployee;

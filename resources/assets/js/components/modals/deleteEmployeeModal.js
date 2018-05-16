@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class DeleteEmployeeModal extends Component {
     render() {
@@ -21,5 +22,9 @@ class DeleteEmployeeModal extends Component {
         )
     }
 }
+
+DeleteEmployeeModal.propTypes = {
+    id: PropTypes.string,
+  }
 
 export default DeleteEmployeeModal;

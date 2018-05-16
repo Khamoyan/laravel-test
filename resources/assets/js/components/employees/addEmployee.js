@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 class AddEmployee extends Component {
 
@@ -127,5 +128,9 @@ class AddEmployee extends Component {
         )
     }
 }
+
+AddEmployee.propTypes = {
+    addEmployee: PropTypes.func
+  }
 
 export default AddEmployee;

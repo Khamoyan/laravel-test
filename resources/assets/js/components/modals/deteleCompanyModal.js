@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class DeleteCompanyModal extends Component {
     render() {
@@ -20,6 +21,10 @@ class DeleteCompanyModal extends Component {
             </div>
         )
     }
+}
+
+DeleteCompanyModal.propTypes = {
+    id: PropTypes.string
 }
 
 export default DeleteCompanyModal

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import DeleteCompanyModal from '../modals/deteleCompanyModal';
-
+import PropTypes from 'prop-types';
 
 class DeleteCompany extends Component {
     constructor(props) {
@@ -52,5 +52,10 @@ class DeleteCompany extends Component {
         )
     }
 }
+
+DeleteCompany.propTypes = {
+    id: PropTypes.number,
+    deleteCompany: PropTypes.func
+  }
 
 export default DeleteCompany;

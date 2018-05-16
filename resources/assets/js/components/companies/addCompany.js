@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import FormData from 'form-data'
+import PropTypes from 'prop-types';
 
 class AddCompany extends Component {
 
@@ -90,5 +91,9 @@ class AddCompany extends Component {
         )
     }
 }
+
+AddCompany.propTypes = {
+    addCompany: PropTypes.func
+  }
 
 export default AddCompany;

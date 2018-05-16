@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class UpdateEmployeeModal extends Component {
     companiesSelect() {
@@ -74,6 +75,12 @@ class UpdateEmployeeModal extends Component {
             </div>
         )
     }
+}
+
+UpdateEmployeeModal.propTypes = {
+    id: PropTypes.string,
+    handleInput: PropTypes.func,
+    updateEmployee: PropTypes.func
 }
 
 export default UpdateEmployeeModal;

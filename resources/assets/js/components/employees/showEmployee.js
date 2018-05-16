@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import ShowEmployeeModal from '../modals/showEmployeeModal';
-
+import PropTypes from 'prop-types';
 
 class ShowEmployee extends Component {
 
@@ -47,5 +47,9 @@ class ShowEmployee extends Component {
         )
     }
 }
+
+ShowEmployee.propTypes = {
+    id: PropTypes.number,
+  }
 
 export default ShowEmployee;

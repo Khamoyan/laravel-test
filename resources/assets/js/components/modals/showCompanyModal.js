@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class ShowCompanyModal extends Component {
     render() {
@@ -12,7 +13,7 @@ class ShowCompanyModal extends Component {
                         <div className="modal-body">
                             <h4 className="modal-title">Show Employee</h4>
                             <div className="container">
-                                <h3>{this.props.company[name]}</h3>
+                                <h3>{this.props.company['name']}</h3>
                                 <div className="container">
                                     <table className="table">
                                         <tbody>
@@ -41,6 +42,11 @@ class ShowCompanyModal extends Component {
             </div>
         )
     }
+}
+
+ShowCompanyModal.propTypes = {
+    id: PropTypes.string,
+    company: PropTypes.object
 }
 
 export default ShowCompanyModal;

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class UpdateCompanyModal extends Component {
     render() {
@@ -53,6 +54,12 @@ class UpdateCompanyModal extends Component {
             </div>
         )
     }
+}
+
+UpdateCompanyModal.propTypes = {
+    id: PropTypes.string,
+    handleInput: PropTypes.func,
+    updateCompany: PropTypes.func
 }
 
 export default UpdateCompanyModal;

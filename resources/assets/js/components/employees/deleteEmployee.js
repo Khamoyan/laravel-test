@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import DeleteEmployeeModal from '../modals/deleteEmployeeModal';
+import PropTypes from 'prop-types';
 
 class DeleteEmployee extends Component {
     constructor(props) {
@@ -52,5 +53,10 @@ class DeleteEmployee extends Component {
         )
     }
 }
+
+DeleteEmployee.propTypes = {
+    id: PropTypes.number,
+    deleteEmployee: PropTypes.func
+  }
 
 export default DeleteEmployee;

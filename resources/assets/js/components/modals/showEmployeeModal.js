@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class ShowEmployeeModal extends Component {
     render() {     
@@ -43,6 +44,12 @@ class ShowEmployeeModal extends Component {
             </div>
         )
     }
+}
+
+ShowEmployeeModal.propTypes = {
+    id: PropTypes.string,
+    company: PropTypes.string,
+    list: PropTypes.object
 }
 
 export default ShowEmployeeModal;

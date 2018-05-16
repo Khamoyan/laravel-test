@@ -18,7 +18,6 @@ class ListCompanies extends Component {
         this.deleteCompany = this.deleteCompany.bind(this);
         this.editCompany = this.editCompany.bind(this);
         this.addCompany = this.addCompany.bind(this);
-        this.handlePageChange=this.handlePageChange.bind(this);
     }
 
     componentWillMount() {
@@ -37,11 +36,6 @@ class ListCompanies extends Component {
         })
     }
 
-    handlePageChange(pageNumber) {
-        
-        this.setState({activePage: pageNumber});
-      }
-
     deleteCompany(company) {
         let companies = this.state.companies
         companies.map((value, index) => {
@@ -53,8 +47,7 @@ class ListCompanies extends Component {
     }
 
     editCompany(company, id) {
-        console.log(company);
-        
+   
         this.state.companies.map((value, index) => {
             if (value.id === id) {
                 value.name = company.name;
