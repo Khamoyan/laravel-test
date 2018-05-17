@@ -6,7 +6,6 @@ import UpdateEmployee from './updateEmployee';
 import ShowEmployee from './showEmployee';
 import AddEmployee from './addEmployee';
 import Home from '../Home';
-import NotFound from '../Err404';
 
 class ListEmployees extends Component {
     constructor(props) {
@@ -29,7 +28,7 @@ class ListEmployees extends Component {
                 }
             })
             .then((response) => {
-                this.setState({employees: response.data})
+                this.setState({employees: response.data})                
             }).catch((err) => {
             console.log(err);
         })
@@ -83,26 +82,23 @@ class ListEmployees extends Component {
     }
 
     render() {
-        let isLogged = localStorage.getItem('isLogged');
-        if (isLogged === 'true') {
-            const divStyle = {};
             return (
-                <div style={divStyle}>
+                <div>
                     <Home/>
                     <AddEmployee addEmployee={this.addEmployee}/>
                     <div className="container">
                         <h2>Employees list</h2>
                         <table className="table">
                             <thead>
-                            <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                                <th>Show</th>
-                            </tr>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                    <th>Show</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 {this.renderEmployees()}
@@ -110,13 +106,8 @@ class ListEmployees extends Component {
                         </table>
                     </div>
                 </div>
-            )
-        } else {
-            return (
-                <NotFound/>
-            )
+            )  
         }
-    }
 }
 
 export default ListEmployees;

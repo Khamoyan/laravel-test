@@ -91,10 +91,8 @@ class AddEmployee extends Component {
     }
 
     render() {
-        const divStyle = {};
         return (
-            <div style={divStyle}>
-
+            <div>
                 <h2>Create</h2>
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-row">

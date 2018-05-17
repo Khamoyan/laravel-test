@@ -57,10 +57,8 @@ class AddCompany extends Component {
     }
 
     render() {
-        const divStyle = {}
         return (
-            <div style={divStyle}>
-
+            <div>
                 <h2>Create</h2>
                 <form onSubmit={this.handleSubmit} encType="multipart/form-data" id='form'>
                     <div className="form-row">

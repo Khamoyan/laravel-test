@@ -36,9 +36,8 @@ class ShowEmployee extends Component {
     }
 
     render() {
-        const divStyle = {}
         return (
-            <div style={divStyle}>
+            <div>
                 <button type="button" className="btn btn-info btn-lg edit" data-toggle="modal"
                         data-target={this.state.data_target} onClick={this.show}>Show Employee
                 </button>

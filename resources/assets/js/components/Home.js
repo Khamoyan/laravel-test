@@ -1,21 +1,18 @@
 import React, {Component} from 'react';
-import {Redirect} from 'react-router';
 import { Link} from 'react-router-dom';
 import LogoutComponent from './auth/logoutComponent';
 import {isIfStatement} from 'babel-types';
-import NotFound from './Err404';
+import PropTypes from 'prop-types';
+
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {}
-
     }
 
     HomePage() {
-        let isLogged = localStorage.getItem('isLogged');
         let name = localStorage.getItem('name');
-        if (isLogged === 'true') {
             return (
                 <div>
                     <h3>Hello {name}</h3>
@@ -34,13 +31,10 @@ class Home extends Component {
                             </ul>
                         </div>
                     </nav>
-                    <LogoutComponent/>
+                    <LogoutComponent getToken={this.props.getToken}/>
                 </div>
             )
-        } else {
-            return ( <NotFound/>  )
         }
-    }
 
     render() {
         return (
@@ -48,5 +42,9 @@ class Home extends Component {
         );
     }
 }
+
+Home.propTypes = {
+    getToken: PropTypes.func
+  }
 
 export default Home;

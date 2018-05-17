@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Redirect, HashRouter, Switch} from 'react-router-dom'
+import {HashRouter, Switch} from 'react-router-dom'
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 class LoginComponent extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            success: false,
             user: {
                 email: '',
                 password: '',
@@ -16,9 +16,6 @@ class LoginComponent extends Component {
                 auth_token: '',
             }
         }
-
-        localStorage.setItem['isLogged'] = false
-
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInput = this.handleInput.bind(this)
         this.login = this.login.bind(this);
@@ -39,48 +36,39 @@ class LoginComponent extends Component {
         axios.post('/api/login', data).then((response) => {
             localStorage['token'] = response.data.data['auth_token']
             localStorage['name'] = response.data.data['name']
-            this.setState({success: response.data['success']});
+            this.props.getToken(localStorage.getItem("token"));
 
         }).catch((err) => {
 
         })
     }
 
-    render() {
-        let redirect_to_home
-        if (this.state.success) {
-            localStorage['isLogged'] = true
-            redirect_to_home =
-                <HashRouter>
-                    <Switch>
-                        <Redirect from='/' to='/home'/>;
-                    </Switch>
-                </HashRouter>
-
-        } else {
-            localStorage['isLogged'] = false
-        }
-        return (
-            <div className='containe'>
-                <div>
-                    <h3>Login</h3>
-                    <form onSubmit={this.handleSubmit}>
-                        <div className="form-group">
-                            <label>Email address</label>
-                            <input type="email" className="form-control" placeholder="Email" name="email"
-                                   onChange={(e) => this.handleInput('email', e)}/>
-                        </div>
-                        <div className="form-group">
-                            <label>Password</label>
-                            <input type="password" className="form-control" placeholder='Password' name="password"
-                                   onChange={(e) => this.handleInput('password', e)}/>
-                        </div>
-                        <button type="submit" className="btn btn-primary">Login {redirect_to_home}</button>
-                    </form>
+    render() {   
+            return (
+                <div className='containe'>
+                    <div>
+                        <h3>Login</h3>
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="form-group">
+                                <label>Email address</label>
+                                <input type="email" className="form-control" placeholder="Email" name="email"
+                                       onChange={(e) => this.handleInput('email', e)}/>
+                            </div>
+                            <div className="form-group">
+                                <label>Password</label>
+                                <input type="password" className="form-control" placeholder='Password' name="password"
+                                       onChange={(e) => this.handleInput('password', e)}/>
+                            </div>
+                            <button type="submit" className="btn btn-primary">Login </button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        )
+            ) 
     }
 }
+
+LoginComponent.propTypes = {
+    getToken: PropTypes.func
+  }
 
 export default LoginComponent;

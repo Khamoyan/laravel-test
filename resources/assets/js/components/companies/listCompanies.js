@@ -7,7 +7,6 @@ import UpdateCompany from './updateCompany';
 import AddCompany from './addCompany';
 import Home from '../Home';
 import {exportDefaultSpecifier} from 'babel-types';
-import NotFound from '../Err404';
 
 class ListCompanies extends Component {
     constructor(props) {
@@ -32,7 +31,6 @@ class ListCompanies extends Component {
                 this.setState({companies: response.data});
             }).catch((err) => {
             console.log(err);
-
         })
     }
 
@@ -86,11 +84,8 @@ class ListCompanies extends Component {
     }
 
     render() {
-        let isLogged = localStorage.getItem('isLogged');
-        if (isLogged === 'true') {
-            const divStyle = {}
             return (
-                <div style={divStyle}>
+                <div>
                     <Home/>
                     <AddCompany addCompany={this.addCompany}/>
                     <div className="container">
@@ -114,10 +109,7 @@ class ListCompanies extends Component {
                     </div>
                 </div>
             )
-        } else {
-            return ( <NotFound/>)
         }
-    }
 }
 
 export default ListCompanies;
