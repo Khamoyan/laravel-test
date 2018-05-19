@@ -11,7 +11,7 @@ class ShowCompanyModal extends Component {
                             <button type="button" className="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div className="modal-body">
-                            <h4 className="modal-title">Show Employee</h4>
+                            <h4 className="modal-title">Show Company</h4>
                             <div className="container">
                                 <h3>{this.props.company['name']}</h3>
                                 <div className="container">

@@ -12,6 +12,8 @@ class ListEmployees extends Component {
         super(props);
         this.state = {
             employees: [],
+            employee:{},
+            showId:null,
         };
 
         this.deleteEmployee = this.deleteEmployee.bind(this);
@@ -53,19 +55,22 @@ class ListEmployees extends Component {
                 value.phone = employee.phone
             }
         });
-        this.setState({employees: this.state.employees});
+        this.setState({employee, showId: id,employees: this.state.employees});
     }
 
     addEmployee(employee) {
-        this.state.employees.push(employee);
-        this.setState({employees: this.state.employees});
-        alert('creting');
+        let employees =  this.state.employees
+        employees.push(employee);
+        this.setState({employee, showId:employee.id, employees});
     }
 
     renderEmployees() {
         const deleteEmployee = this.deleteEmployee;
         const editEmployee = this.editEmployee;
         const showEmployee = this.state.showEmployee;
+        const employee=this.state.employee;
+        const showId=this.state.showId;
+
         return this.state.employees.map(function (value, index) {
             return (
                 <tr key = {index}>
@@ -75,7 +80,7 @@ class ListEmployees extends Component {
                     <td> {value.phone} </td>
                      <DeleteEmployee id={value.id} deleteEmployee={deleteEmployee}/>
                      <UpdateEmployee id={value.id} editEmployee={editEmployee}/>
-                    <td><ShowEmployee id={value.id}/></td>
+                    <td><ShowEmployee id={value.id} showId={showId} employee={employee} /></td>
                 </tr>
             )
         })

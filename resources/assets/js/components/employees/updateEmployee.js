@@ -13,7 +13,8 @@ class UpdateEmployee extends Component {
                 email: '',
                 phone: '',
                 company_id: '',
-                _method: 'PUT'
+                _method: 'PUT',
+                error: [],
             },
             companies: [],
             company_id: '',
@@ -22,7 +23,7 @@ class UpdateEmployee extends Component {
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handelUpdateEmployees = this.handelUpdateEmployees.bind(this)
+        this.handelUpdateEmployee = this.handelUpdateEmployee.bind(this)
         this.handleInput = this.handleInput.bind(this);
         this.update = this.update.bind(this)
         this.handleChange = this.handleChange.bind(this);
@@ -42,10 +43,10 @@ class UpdateEmployee extends Component {
     handleSubmit(e) {
         e.preventDefault();
         this.state.employee.company_id = this.state.company_id;
-        this.handelUpdateEmployees(this.state.id, this.state.employee)
+        this.handelUpdateEmployee(this.state.id, this.state.employee)
     }
 
-    handelUpdateEmployees(id, employees) {
+    handelUpdateEmployee(id, employees) {
         axios.post(`/api/employees/${id}`,
             employees,
             {
@@ -57,7 +58,7 @@ class UpdateEmployee extends Component {
             .then((response) => {
                 this.props.editEmployee(this.state.employee, id);
             }).catch((err) => {
-
+                    this.setState({error: err.response.data.errors})
         })
     }
 
@@ -89,7 +90,7 @@ class UpdateEmployee extends Component {
               
                      <UpdateEmployeeModal id={this.state.data_target} updateEmployee={this.handleSubmit}
                                      handleInput={this.handleInput} companies={this.state.companies}
-                                     handleChange={this.handleChange}/>
+                                     handleChange={this.handleChange} error={this.state.error}/>
                </td>
         )
     }

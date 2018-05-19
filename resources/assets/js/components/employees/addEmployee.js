@@ -98,29 +98,29 @@ class AddEmployee extends Component {
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label>First Name</label>
-                            <input type="text" className="form-control" placeholder="First Name" name="first_name"
+                            <input type="text" className="form-control" required placeholder="First Name" name="first_name"
                                    onChange={(e) => this.handleInput('first_name', e)}/>
                         </div>
                         <div className="form-group col-md-6">
                             <label>Last Name</label>
-                            <input type="text" className="form-control" placeholder="Last Name" name="last_name"
+                            <input type="text" className="form-control" required placeholder="Last Name" name="last_name"
                                    onChange={(e) => this.handleInput('last_name', e)}/>
                         </div>
                     </div>
                     <div className="form-group">
                         <label>Email</label>
-                        <input type="email" className="form-control" placeholder="email@gmail.com" name="email"
+                        <input type="email" className="form-control" required autoFocus placeholder="email@gmail.com" name="email"
                                onChange={(e) => this.handleInput('email', e)}/>
                     </div>
 
                     <div className="form-group">
                         <label>Phon</label>
-                        <input type="text" className="form-control" placeholder="099******" name="phone"
+                        <input type="text" className="form-control" required placeholder="099******" name="phone"
                                onChange={(e) => this.handleInput('phone', e)}/>
                     </div>
 
                     {this.companiesSelect()}
-                    <button type="submit" className="btn btn-primary" onSubmit={this.handleSubmit}>Create</button>
+                    <button type="submit" className="btn btn-primary"  onSubmit={this.handleSubmit}>Create</button>
                 </form>
             </div>
         )

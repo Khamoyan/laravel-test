@@ -10,20 +10,15 @@ class DeleteEmployee extends Component {
             id: this.props.id,
             data_target: `delete${this.props.id}`
         };
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handelDeleteEmployees = this.handelDeleteEmployees.bind(this)
+
+        this.handelDeleteEmployee = this.handelDeleteEmployee.bind(this)
         this.deleteModal = this.deleteModal.bind(this)
 
     }
 
-    handleSubmit(e) {
+    handelDeleteEmployee(e) {
         e.preventDefault();
-        this.handelDeleteEmployees(this.state.id)
-
-    }
-
-    handelDeleteEmployees(id) {
-        axios.delete(`/api/employees/${id}`,
+        axios.delete(`/api/employees/${this.state.id}`,
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -31,7 +26,7 @@ class DeleteEmployee extends Component {
                 }
             })
             .then((response) => {
-                this.props.deleteEmployee(id);
+                this.props.deleteEmployee(this.state.id);
             }).catch((err) => {
 
         })
@@ -48,7 +43,7 @@ class DeleteEmployee extends Component {
                       data-target={this.state.data_target} onClick={this.deleteModal}> Delete
                  </button>
                 
-                <DeleteEmployeeModal id={this.state.data_target} delete={this.handleSubmit}/>
+                <DeleteEmployeeModal id={this.state.data_target} delete={this.handelDeleteEmployee}/>
             </td>
         )
     }

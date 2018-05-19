@@ -11,7 +11,8 @@ class UpdateCompany extends Component {
                 name: '',
                 email: '',
                 logo: '',
-                website: ''
+                website: '',
+                error:[],
             },
             id: this.props.id,
             data_target: `update${this.props.id}`
@@ -56,7 +57,7 @@ class UpdateCompany extends Component {
             .then((response) => {
                this.props.editCompany(this.state.company, id);
             }).catch((err) => {
-
+                this.setState({error: err.response.data.errors})
         })
     }
 
@@ -71,7 +72,7 @@ class UpdateCompany extends Component {
                                 data-target={this.state.data_target} onClick={this.update}> Edit
                         </button>
                     <UpdateCompanyModal id={this.state.data_target} updateCompany={this.handleSubmit}
-                                        handleInput={this.handleInput}/>
+                                        handleInput={this.handleInput} />
                 </td>
         )
     }

@@ -13,6 +13,8 @@ class ListCompanies extends Component {
         super(props);
         this.state = {
             companies: [],
+            company:{},
+            showId:null,
         };
         this.deleteCompany = this.deleteCompany.bind(this);
         this.editCompany = this.editCompany.bind(this);
@@ -45,7 +47,6 @@ class ListCompanies extends Component {
     }
 
     editCompany(company, id) {
-   
         this.state.companies.map((value, index) => {
             if (value.id === id) {
                 value.name = company.name;
@@ -53,19 +54,21 @@ class ListCompanies extends Component {
                 value.logo = company.logo;
                 value.website = company.website;
             }
-        });
-        this.setState({companies: this.state.companies});
+        });  
+        this.setState({showId: id, company, companies: this.state.companies});
     }
 
     addCompany(company) {
-        this.state.companies.push(company);
-        this.setState({companies: this.state.companies});
-        alert('creting');
+        let companies = this.state.companies;
+        companies.push(company);
+        this.setState({showid:company.id, company, companies});
     }
 
     renderCompanies() {
         let deleteCompany = this.deleteCompany;
         let editCompany = this.editCompany;
+        let showId=this.state.showId;
+        let company=this.state.company;
 
         return this.state.companies.map(function (value, index) {
             return (
@@ -77,7 +80,7 @@ class ListCompanies extends Component {
                              style={{height: 61 + 'px'}}/></td>
                      <DeleteCompany id={value.id} deleteCompany={deleteCompany}/>
                      <UpdateCompany id={value.id} editCompany={editCompany}/>
-                    <td><ShowCompany id={value.id}/></td>
+                    <td><ShowCompany id={value.id} showId={showId} company={company} /></td>
                 </tr>
             )
         })

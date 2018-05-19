@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import ShowCompanyModal from '../modals/showCompanyModal';
 import PropTypes from 'prop-types';
+import UpdateCompany from './updateCompany';
+import ListCompanies from './listCompanies';
 
 class ShowCompany extends Component {
 
@@ -11,8 +13,7 @@ class ShowCompany extends Component {
             data_target: `show${this.props.id}`,
             company: {},
         }
-        this.show = this.show.bind(this)
-
+        this.show = this.show.bind(this);
     }
 
     componentWillMount() {
@@ -24,13 +25,16 @@ class ShowCompany extends Component {
                 }
             })
             .then((response) => {
-                this.setState({company: response.data});    
+                this.setState({company: response.data});
             }).catch((err) => {
             console.log(err);
         })
     }
 
     show() {
+        if(this.props.id === this.props.showId){ 
+            this.setState({company: this.props.company});
+        }  
         $(`#${this.state.data_target}`).modal();
     }
 
@@ -42,12 +46,15 @@ class ShowCompany extends Component {
                 </button>
                 <ShowCompanyModal id={this.state.data_target} company={this.state.company}/>
             </div>
+           
         )
     }
 }
 
 ShowCompany.propTypes = {
     id: PropTypes.number,
+    showId: PropTypes.number,
+    company: PropTypes.object,
   }
 
 export default ShowCompany;

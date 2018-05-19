@@ -41,10 +41,11 @@ class CompaniesService
         }
 
         $inputs['logo'] = time() . '.' . $image->getClientOriginalExtension();
-        if (Company::create($inputs)) {
+        $result = Company::create($inputs);
+        if($result) {
             $image->move($destinationPath, $inputs['logo']);
         }
-        return $inputs;
+        return $result;
     }
 
     /**

@@ -32,6 +32,9 @@ class ShowEmployee extends Component {
     }
 
     show() {
+        if(this.props.id === this.props.showId){ 
+            this.setState({employee: this.props.employee});
+        }
         $(`#${this.state.data_target}`).modal();
     }
 
@@ -49,6 +52,8 @@ class ShowEmployee extends Component {
 
 ShowEmployee.propTypes = {
     id: PropTypes.number,
+    showId:PropTypes.number,
+    employee:PropTypes.object,
   }
 
 export default ShowEmployee;

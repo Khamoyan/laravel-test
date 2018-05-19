@@ -31,32 +31,35 @@ class UpdateEmployeeModal extends Component {
                                 <button type="button" className="close" data-dismiss="modal">&times;</button>
                             </div>
                             <div className="modal-body">
-                                <h4 className="modal-title">Edit Companies</h4>
-
+                                <h4 className="modal-title">Edit Employee</h4>
 
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
                                         <label>First Name</label>
-                                        <input type="text" className="form-control" placeholder="First Name"
+                                        {this.props.error ? (<div><p>{this.state.error.first_name}</p></div> ) : (null) }
+                                        <input required type="text" className="form-control" placeholder="First Name"
                                                name="first_name"
                                                onChange={(e) => this.props.handleInput('first_name', e)}/>
                                     </div>
 
                                     <div className="form-group col-md-6">
+                                    {this.props.error ? (<div><p>{this.state.error.last_name}</p></div> ) : (null) }
                                         <label>Last Name</label>
-                                        <input type="text" className="form-control" placeholder="Last Name"
+                                        <input required type="text" className="form-control" placeholder="Last Name"
                                                name="last_name"
                                                onChange={(e) => this.props.handleInput('last_name', e)}/>
                                     </div>
                                 </div>
                                 <div className="form-group">
+                                {this.props.error ? (<div><p>{this.state.error.email}</p></div> ) : (null) }
                                     <label>Email</label>
                                     <input type="email" className="form-control" placeholder="email@gmail.com"
-                                           name="email" onChange={(e) => this.props.handleInput('email', e)}/>
+                                           name="email" required autoFocus onChange={(e) => this.props.handleInput('email', e)}/>
                                 </div>
                                 <div className="form-group">
+                                    {this.props.error ? (<div><p>{this.state.error.phone}</p></div> ) : (null) }
                                     <label>Phon</label>
-                                    <input type="text" className="form-control" placeholder="099******" name="phone"
+                                    <input type="text" className="form-control" placeholder="099******" name="phone" required
                                            onChange={(e) => this.props.handleInput('phone', e)}/>
                                 </div>
                                 {this.companiesSelect()}

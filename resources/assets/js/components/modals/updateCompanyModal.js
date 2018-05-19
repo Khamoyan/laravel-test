@@ -13,31 +13,35 @@ class UpdateCompanyModal extends Component {
                                 <button type="button" className="close" data-dismiss="modal">&times;</button>
                             </div>
                             <div className="modal-body">
-                                <h4 className="modal-title">Edit Companies</h4>
+                                <h4 className="modal-title">Edit Company</h4>
                                 <form encType="multipart/form-data">
                                     <div className="form-row">
 
                                         <div className="form-group col-md-6">
+                                         {this.props.error ? (<div><p>{this.props.error.name}</p></div> ) : (null) }
                                             <label>Company Name</label>
-                                            <input type="text" className="form-control" placeholder="Name" name="name"
+                                            <input type="text" className="form-control" required placeholder="Name" name="name"
                                                    onChange={(e) => this.props.handleInput('name', e)}/>
                                         </div>
 
                                         <div className="form-group col-md-6">
+                                        {this.props.error ? (<div><p>{this.state.props.email}</p></div> ) : (null) }
                                             <label>Email</label>
                                             <input type="email" className="form-control" placeholder="Email"
-                                                   name="email"
+                                                   name="email" required autoFocus
                                                    onChange={(e) => this.props.handleInput('email', e)}/>
                                         </div>
                                     </div>
                                     <div className="form-group">
+                                    {this.props.error ? (<div><p>{this.props.error.website}</p></div> ) : (null) }
                                         <label>Web Site</label>
                                         <input type="text" className="form-control" placeholder="websit.com"
-                                               name="website"
+                                               name="website" required
                                                onChange={(e) => this.props.handleInput('website', e)}/>
                                     </div>
                                     <div className="form-group">
-                                        <input type="file" name="logo"
+                                    {this.props.error ? (<div><p>{this.props.error.logo}</p></div> ) : (null) }
+                                        <input type="file" name="logo" required
                                                onChange={(e) => this.props.handleInput('logo', e)}/>
                                     </div>
                                     <button type="submit" className="btn btn-primary" onClick={this.props.updateCompany}

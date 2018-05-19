@@ -13,7 +13,8 @@ class AddCompany extends Component {
                 name: '',
                 email: '',
                 logo: '',
-                website: ''
+                website: '',
+                error:[],
             },
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -50,9 +51,9 @@ class AddCompany extends Component {
                 }
             })
             .then((response) => {
-                this.props.addCompany(response.data);
+                this.props.addCompany(response.data); 
             }).catch((err) => {
-
+                this.setState({error: err.response.data.errors})
         })
     }
 
@@ -64,24 +65,28 @@ class AddCompany extends Component {
                     <div className="form-row">
 
                         <div className="form-group col-md-6">
+                        {this.state.error ? (<div><p>{this.state.error.name}</p></div> ) : (null) }
                             <label>Company Name</label>
-                            <input type="text" className="form-control" placeholder="Name" name="name"
+                            <input type="text" className="form-control"  required placeholder="Name" name="name"
                                    onChange={(e) => this.handleInput('name', e)}/>
                         </div>
 
                         <div className="form-group col-md-6">
+                        {this.state.error ? (<div><p>{this.state.error.email}</p></div> ) : (null) }
                             <label>Email</label>
-                            <input type="email" className="form-control" placeholder="Email" name="email"
+                            <input type="email" className="form-control" required autoFocus placeholder="Email" name="email"
                                    onChange={(e) => this.handleInput('email', e)}/>
                         </div>
                     </div>
                     <div className="form-group">
+                    {this.state.error ? (<div><p>{this.state.error.website}</p></div> ) : (null) }
                         <label>Web Site</label>
-                        <input type="text" className="form-control" placeholder="websit.com" name="website"
+                        <input type="text" className="form-control" required placeholder="websit.com" name="website"
                                onChange={(e) => this.handleInput('website', e)}/>
                     </div>
                     <div className="form-group">
-                        <input type="file" name="logo" onChange={(e) => this.handleInput('logo', e)}/>
+                        {this.state.error ? (<div><p>{this.state.error.logo}</p></div> ) : (null) }
+                        <input type="file" name="logo" required onChange={(e) => this.handleInput('logo', e)}/>
                     </div>
                     <button type="submit" className="btn btn-primary">Create</button>
                 </form>
